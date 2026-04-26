@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -185,6 +186,38 @@
       font-size: 13px;
       color: #afc0d8;
       font-weight: 300;
+    }
+
+    .social-bar {
+      background: var(--navy);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .social-bar-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      border: 1.5px solid rgba(201,168,76,0.4);
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 17px;
+      text-decoration: none;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+    }
+    .social-bar-icon:hover {
+      background: var(--gold);
+      color: var(--navy);
+      border-color: var(--gold);
+    }
+    .social-bar-icon.inactive {
+      opacity: 0.3;
+      pointer-events: none;
     }
 
     .trust-bar {
@@ -731,6 +764,17 @@
     </div>
   </div>
 
+  <!-- Social Media Icons -->
+  <div class="social-bar" id="social-bar">
+    <a id="home-facebook"  href="#" target="_blank" class="social-bar-icon inactive"><i class="fab fa-facebook-f"></i></a>
+    <a id="home-instagram" href="#" target="_blank" class="social-bar-icon inactive"><i class="fab fa-instagram"></i></a>
+    <a id="home-twitter"   href="#" target="_blank" class="social-bar-icon inactive"><i class="fab fa-x-twitter"></i></a>
+    <a id="home-linkedin"  href="#" target="_blank" class="social-bar-icon inactive"><i class="fab fa-linkedin-in"></i></a>
+    <a id="home-tiktok"    href="#" target="_blank" class="social-bar-icon inactive"><i class="fab fa-tiktok"></i></a>
+    <a id="home-youtube"   href="#" target="_blank" class="social-bar-icon inactive"><i class="fab fa-youtube"></i></a>
+    <a id="home-pinterest" href="#" target="_blank" class="social-bar-icon inactive"><i class="fab fa-pinterest-p"></i></a>
+  </div>
+
   <div class="trust-bar">
     <div class="trust-item"><div class="trust-dot"></div> Small Business Specialists</div>
     <div class="trust-item"><div class="trust-dot"></div> Personalized Service</div>
@@ -1102,6 +1146,24 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
+  // Load social icons on home page
+  function loadSocialIcons() {
+    ['facebook','instagram','twitter','linkedin','tiktok','youtube','pinterest'].forEach(s => {
+      const url = localStorage.getItem('social_' + s) || '';
+      const el = document.getElementById('home-' + s);
+      if (el) {
+        if (url) {
+          el.href = url;
+          el.classList.remove('inactive');
+        } else {
+          el.href = '#';
+          el.classList.add('inactive');
+        }
+      }
+    });
+  }
+  loadSocialIcons();
+
   // ADMIN
   const ADMIN_PASSWORD = 'Precise2026!';
   const SOCIALS = ['facebook','instagram','twitter','linkedin','tiktok','youtube','pinterest'];
@@ -1133,6 +1195,7 @@
       const openBtn = document.getElementById('open-' + s);
       openBtn.href = val || '#';
     });
+    loadSocialIcons();
     const saved = document.getElementById('admin-saved');
     saved.style.display = 'block';
     setTimeout(() => saved.style.display = 'none', 3000);
