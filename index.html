@@ -766,13 +766,9 @@
 
   <!-- Social Media Icons -->
   <div class="social-bar" id="social-bar">
-    <a id="home-facebook"  href="#" target="_blank" class="social-bar-icon inactive"><i class="fab fa-facebook-f"></i></a>
-    <a id="home-instagram" href="#" target="_blank" class="social-bar-icon inactive"><i class="fab fa-instagram"></i></a>
-    <a id="home-twitter"   href="#" target="_blank" class="social-bar-icon inactive"><i class="fab fa-x-twitter"></i></a>
-    <a id="home-linkedin"  href="#" target="_blank" class="social-bar-icon inactive"><i class="fab fa-linkedin-in"></i></a>
-    <a id="home-tiktok"    href="#" target="_blank" class="social-bar-icon inactive"><i class="fab fa-tiktok"></i></a>
-    <a id="home-youtube"   href="#" target="_blank" class="social-bar-icon inactive"><i class="fab fa-youtube"></i></a>
-    <a id="home-pinterest" href="#" target="_blank" class="social-bar-icon inactive"><i class="fab fa-pinterest-p"></i></a>
+    <a href="https://www.facebook.com/profile.php?id=61587159568032" target="_blank" class="social-bar-icon"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://www.instagram.com/pricesefinancials/" target="_blank" class="social-bar-icon"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.tiktok.com/@precise.financial?lang=en" target="_blank" class="social-bar-icon"><i class="fab fa-tiktok"></i></a>
   </div>
 
   <div class="trust-bar">
@@ -1147,18 +1143,21 @@
   }
 
   // Load social icons on home page
+  function openSocial(platform) {
+    const url = localStorage.getItem('social_' + platform);
+    if (url) window.open(url, '_blank');
+  }
+
   function loadSocialIcons() {
-    ['facebook','instagram','twitter','linkedin','tiktok','youtube','pinterest'].forEach(s => {
+    ['facebook','instagram','tiktok'].forEach(s => {
       const url = localStorage.getItem('social_' + s) || '';
       const el = document.getElementById('home-' + s);
       if (!el) return;
       if (url) {
-        el.href = url;
         el.style.opacity = '1';
         el.style.pointerEvents = 'auto';
         el.style.cursor = 'pointer';
       } else {
-        el.removeAttribute('href');
         el.style.opacity = '0.3';
         el.style.pointerEvents = 'none';
         el.style.cursor = 'default';
@@ -1169,7 +1168,7 @@
 
   // ADMIN
   const ADMIN_PASSWORD = 'Precise2026!';
-  const SOCIALS = ['facebook','instagram','twitter','linkedin','tiktok','youtube','pinterest'];
+  const SOCIALS = ['facebook','instagram','tiktok'];
 
   function adminLogin() {
     const pw = document.getElementById('admin-pw-input').value;
