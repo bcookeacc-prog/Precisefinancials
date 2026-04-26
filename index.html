@@ -1151,14 +1151,17 @@
     ['facebook','instagram','twitter','linkedin','tiktok','youtube','pinterest'].forEach(s => {
       const url = localStorage.getItem('social_' + s) || '';
       const el = document.getElementById('home-' + s);
-      if (el) {
-        if (url) {
-          el.href = url;
-          el.classList.remove('inactive');
-        } else {
-          el.href = '#';
-          el.classList.add('inactive');
-        }
+      if (!el) return;
+      if (url) {
+        el.href = url;
+        el.style.opacity = '1';
+        el.style.pointerEvents = 'auto';
+        el.style.cursor = 'pointer';
+      } else {
+        el.removeAttribute('href');
+        el.style.opacity = '0.3';
+        el.style.pointerEvents = 'none';
+        el.style.cursor = 'default';
       }
     });
   }
@@ -1207,6 +1210,7 @@
     document.getElementById('admin-dashboard-box').style.display = 'none';
     document.getElementById('admin-pw-input').value = '';
     document.getElementById('admin-error').style.display = 'none';
+    loadSocialIcons();
   }
 
   // Open admin via URL hash #admin
