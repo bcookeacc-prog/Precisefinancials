@@ -287,6 +287,22 @@
       padding: 1.75rem 1.4rem;
     }
     .home-card:hover { }
+    .process-steps { display: flex; align-items: flex-start; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; }
+    .process-step { flex: 1; min-width: 180px; max-width: 220px; text-align: center; padding: 1.5rem 1rem; }
+    .process-num { width: 36px; height: 36px; background: var(--gold); color: var(--navy); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 16px; margin: 0 auto 0.75rem; }
+    .process-icon { font-size: 32px; margin-bottom: 0.75rem; }
+    .process-step h3 { font-family: 'Playfair Display', serif; font-size: 16px; color: var(--navy); margin-bottom: 0.5rem; }
+    .process-step p { font-size: 13px; color: var(--text-muted); line-height: 1.7; }
+    .process-arrow { font-size: 24px; color: var(--gold); align-self: center; padding-top: 1rem; }
+    .faq-list { margin-top: 1rem; }
+    .faq-item { border-bottom: 1px solid rgba(10,31,68,0.1); }
+    .faq-question { width: 100%; background: none; border: none; text-align: left; padding: 1.25rem 0; font-size: 16px; font-weight: 600; color: var(--navy); cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-family: 'Source Sans 3', sans-serif; }
+    .faq-question:hover { color: var(--gold); }
+    .faq-arrow { font-size: 12px; transition: transform 0.3s; flex-shrink: 0; }
+    .faq-answer { display: none; padding: 0 0 1.25rem; }
+    .faq-answer p { font-size: 15px; color: var(--text-muted); line-height: 1.8; }
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+    .faq-item.open .faq-answer { display: block; }
     .home-card-icon { font-size: 26px; margin-bottom: 14px; }
     .home-card h3 {
       font-family: 'Playfair Display', serif;
@@ -840,6 +856,7 @@
     <button data-page="services" onclick="showPage('services')">Services</button>
     <button data-page="pricing" onclick="showPage('pricing')">Pricing</button>
     <button data-page="contact" onclick="showPage('contact')">Contact</button>
+    <button data-page="faq" onclick="showPage('faq')">FAQ</button>
     <button data-page="book" onclick="showPage('book')" style="background:var(--gold);color:var(--navy);border-radius:4px;font-weight:700;">Book Now</button>
   </div>
 </nav>
@@ -908,6 +925,41 @@
       <div class="home-card">
         <div class="home-card-icon">&#127970;</div><h3>LLC Setup</h3>
         <p>Launch your business the right way with full LLC formation and financial setup support.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" style="background:#fff;padding:4rem 2.5rem;">
+    <div class="section-label">How it works</div>
+    <div class="section-title">Our Simple <em>Process</em></div>
+    <div class="divider"></div>
+    <div class="process-steps">
+      <div class="process-step">
+        <div class="process-num">1</div>
+        <div class="process-icon">&#128197;</div>
+        <h3>Book a Free Call</h3>
+        <p>Schedule your free 30-minute consultation so we can learn about your business and what you need.</p>
+      </div>
+      <div class="process-arrow">&#8594;</div>
+      <div class="process-step">
+        <div class="process-num">2</div>
+        <div class="process-icon">&#128269;</div>
+        <h3>We Review Your Books</h3>
+        <p>We assess your current financial situation and identify exactly what needs attention.</p>
+      </div>
+      <div class="process-arrow">&#8594;</div>
+      <div class="process-step">
+        <div class="process-num">3</div>
+        <div class="process-icon">&#128196;</div>
+        <h3>You Get a Custom Plan</h3>
+        <p>We put together a personalized service plan tailored to your goals and budget.</p>
+      </div>
+      <div class="process-arrow">&#8594;</div>
+      <div class="process-step">
+        <div class="process-num">4</div>
+        <div class="process-icon">&#10003;</div>
+        <h3>We Handle the Rest</h3>
+        <p>Sit back and focus on growing your business while we keep your finances clean and on track.</p>
       </div>
     </div>
   </div>
@@ -1233,6 +1285,96 @@
     </div>
   </div>
 </div>
+
+<!-- FAQ -->
+<div id="faq" class="page">
+  <div class="section" style="max-width:760px">
+    <div class="section-label">Got Questions?</div>
+    <div class="section-title">Frequently Asked <em>Questions</em></div>
+    <div class="divider"></div>
+
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          What services do you offer? <span class="faq-arrow">&#9660;</span>
+        </button>
+        <div class="faq-answer">
+          <p>We offer bookkeeping, tax preparation, financial strategy, payroll services, and LLC setup. We also offer one-time services like catch-up bookkeeping, profit clarity audits, and startup packages.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Do you work with remote clients? <span class="faq-arrow">&#9660;</span>
+        </button>
+        <div class="faq-answer">
+          <p>Yes! We work with clients remotely across the country. All communication, document sharing, and reporting can be handled securely online.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          What software do you use? <span class="faq-arrow">&#9660;</span>
+        </button>
+        <div class="faq-answer">
+          <p>We primarily work with QuickBooks Online, which makes it easy to collaborate, share reports, and keep your books accessible at all times.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          How does billing work? <span class="faq-arrow">&#9660;</span>
+        </button>
+        <div class="faq-answer">
+          <p>Monthly packages are billed at the start of each month. One-time services are invoiced upon completion. We offer flexible payment options — reach out to discuss what works best for you.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          How long does it take to get started? <span class="faq-arrow">&#9660;</span>
+        </button>
+        <div class="faq-answer">
+          <p>After your free 30-minute consultation, we can typically onboard new clients within 3&ndash;5 business days. We will walk you through every step of the process.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          My books are a mess. Can you still help? <span class="faq-arrow">&#9660;</span>
+        </button>
+        <div class="faq-answer">
+          <p>Absolutely. We specialize in catch-up and cleanup bookkeeping. No matter how far behind you are, we will get your books organized and current so you can move forward with confidence.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Is my financial information kept confidential? <span class="faq-arrow">&#9660;</span>
+        </button>
+        <div class="faq-answer">
+          <p>Yes, always. Your financial information is handled with the highest level of confidentiality and professionalism. We take data privacy seriously.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          What is the free consultation? <span class="faq-arrow">&#9660;</span>
+        </button>
+        <div class="faq-answer">
+          <p>It is a free 30-minute call where we get to know your business, discuss your needs, and answer any questions you have. There is no obligation to sign up afterward.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="text-align:center;margin-top:3rem;">
+      <p style="color:var(--text-muted);margin-bottom:1rem;">Still have questions? We are happy to help.</p>
+      <button class="btn-gold" onclick="showPage('book')">Book a Free Consultation</button>
+    </div>
+  </div>
+</div>
 <!-- ADMIN OVERLAY -->
 <div id="admin-overlay">
   <!-- LOGIN -->
@@ -1530,6 +1672,13 @@
     }
   });
 
+
+  function toggleFaq(btn) {
+    const item = btn.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
 
   function handleBookSubmit() {
     const name = document.getElementById('book-name').value.trim();
