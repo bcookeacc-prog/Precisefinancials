@@ -1323,30 +1323,39 @@
   }
 
   function renderRequests() {
-    const list = document.getElementById('admin-requests-list');
-    const requests = JSON.parse(localStorage.getItem('pf_requests') || '[]');
-    if (requests.length === 0) {
-      list.innerHTML = '<div class="no-requests">No requests yet.</div>';
-      return;
-    }
-    list.innerHTML = requests.map(r =>
-      '<div class="request-card">' +
-        '<button class="request-delete-btn" onclick="deleteRequest(' + r.id + ')" title="Delete">×</button>' +
-        '<div class="request-card-name">' + r.name + '</div>' +
-        '<div class="request-card-meta">' + r.email + ' | ' + r.phone + '</div>' +
-        '<div class="request-card-services">' + (r.services.length ? r.services.join(', ') : 'No services selected') + '</div>' +
-        '<div class="request-card-message">' + r.message + '</div>' +
-        '<div class="request-card-date">Submitted: ' + r.date + '</div>' +
-      '</div>'
-    ).join('');
+    try {
+      const list = document.getElementById('admin-requests-list');
+      if (!list) { alert('Error: requests list element not found.'); return; }
+      const raw = localStorage.getItem('pf_requests');
+      const requests = raw ? JSON.parse(raw) : [];
+      if (requests.length === 0) {
+        list.innerHTML = '<div class="no-requests">No requests yet.</div>';
+        return;
+      }
+      let html = '';
+      for (let i = 0; i < requests.length; i++) {
+        const r = requests[i];
+        html += '<div class="request-card">';
+        html += '<button class="request-delete-btn" onclick="deleteRequest(' + i + ')" title="Delete">&times;</button>';
+        html += '<div class="request-card-name">' + (r.name || '') + '</div>';
+        html += '<div class="request-card-meta">' + (r.email || '') + ' | ' + (r.phone || '') + '</div>';
+        html += '<div class="request-card-services">' + (r.services && r.services.length ? r.services.join(', ') : 'No services selected') + '</div>';
+        html += '<div class="request-card-message">' + (r.message || '') + '</div>';
+        html += '<div class="request-card-date">Submitted: ' + (r.date || '') + '</div>';
+        html += '</div>';
+      }
+      list.innerHTML = html;
+    } catch(e) { alert('renderRequests error: ' + e.message); }
   }
 
-  function deleteRequest(id) {
+  function deleteRequest(index) {
     if (!confirm('Delete this request?')) return;
-    let requests = JSON.parse(localStorage.getItem('pf_requests') || '[]');
-    requests = requests.filter(r => r.id !== id);
-    localStorage.setItem('pf_requests', JSON.stringify(requests));
-    renderRequests();
+    try {
+      let requests = JSON.parse(localStorage.getItem('pf_requests') || '[]');
+      requests.splice(index, 1);
+      localStorage.setItem('pf_requests', JSON.stringify(requests));
+      renderRequests();
+    } catch(e) { alert('deleteRequest error: ' + e.message); }
   }
 
   function adminSave() {
@@ -1395,10 +1404,12 @@
       setTimeout(() => err.style.display = 'none', 3000);
       return;
     }
-    const submission = { id: Date.now(), date: new Date().toLocaleString(), name, email, phone, services, message };
-    const requests = JSON.parse(localStorage.getItem('pf_requests') || '[]');
-    requests.unshift(submission);
-    localStorage.setItem('pf_requests', JSON.stringify(requests));
+    try {
+      const submission = { id: Date.now(), date: new Date().toLocaleString(), name, email, phone, services, message };
+      const requests = JSON.parse(localStorage.getItem('pf_requests') || '[]');
+      requests.unshift(submission);
+      localStorage.setItem('pf_requests', JSON.stringify(requests));
+    } catch(e) { alert('Save error: ' + e.message); }
     document.getElementById('contact-name').value = '';
     document.getElementById('contact-email').value = '';
     document.getElementById('contact-phone').value = '';
