@@ -1130,6 +1130,11 @@
           <label>Message</label>
           <textarea placeholder="Tell us how we can help your business..."></textarea>
         </div>
+        <div id="form-error" style="display:none;color:#c0392b;font-size:13px;margin-bottom:0.75rem;">Please fill out all fields before submitting.</div>
+        <div id="form-success" style="display:none;background:#eaf4ec;border:1px solid #a8d5b0;border-radius:4px;padding:1.25rem 1.5rem;margin-bottom:0.75rem;text-align:center;">
+          <p style="font-size:16px;font-weight:700;color:#1a6b3c;margin-bottom:0.4rem;">Thank You for Reaching Out!</p>
+          <p style="font-size:14px;color:#2d6a4f;line-height:1.6;">Your message has been received. A member of our team will be in touch with you within <strong>1&ndash;3 business days</strong>. We look forward to connecting with you.</p>
+        </div>
         <button class="btn-submit" onclick="handleSubmit()">Send Message</button>
       </div>
     </div>
@@ -1309,11 +1314,14 @@
     let filled = true;
     inputs.forEach(i => { if (!i.value.trim()) filled = false; });
     if (!filled) {
-      alert('Please fill out all fields before submitting.');
+      const err = document.getElementById('form-error');
+      err.style.display = 'block';
+      setTimeout(() => err.style.display = 'none', 3000);
       return;
     }
-    alert('Thank you for reaching out! We will be in touch within 1 business day.');
     inputs.forEach(i => i.value = '');
+    document.getElementById('form-error').style.display = 'none';
+    document.getElementById('form-success').style.display = 'block';
   }
 </script>
 
