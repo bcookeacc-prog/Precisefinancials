@@ -1235,8 +1235,11 @@
     <button class="admin-save-btn" onclick="adminSave()">Save Settings</button>
     <div class="admin-saved" id="admin-saved">Settings saved successfully!</div>
 
-    <div class="admin-section-title" style="margin-top:2rem;">Customer Requests</div>
-    <p style="font-size:13px;color:var(--text-muted);margin-bottom:1rem;">All contact form submissions appear below.</p>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-top:2rem;">
+      <div class="admin-section-title" style="margin:0;">Customer Requests</div>
+      <button onclick="renderRequests()" style="font-size:12px;padding:4px 12px;background:var(--navy);color:#fff;border:none;border-radius:3px;cursor:pointer;">Refresh</button>
+    </div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:1rem;margin-top:0.5rem;">All contact form submissions appear below.</p>
     <div id="admin-requests-list"></div>
 
     <div class="admin-logout" onclick="adminLogout()">Log Out</div>
@@ -1403,6 +1406,7 @@
     document.querySelectorAll('.checkbox-group input').forEach(c => c.checked = false);
     document.getElementById('form-error').style.display = 'none';
     document.getElementById('form-success').style.display = 'block';
+    if (document.getElementById('admin-requests-list')) renderRequests();
   }
 </script>
 
