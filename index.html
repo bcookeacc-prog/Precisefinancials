@@ -1237,7 +1237,7 @@
 
     <div style="display:flex;align-items:center;justify-content:space-between;margin-top:2rem;">
       <div class="admin-section-title" style="margin:0;">Customer Requests</div>
-      <button onclick="renderRequests()" style="font-size:12px;padding:4px 12px;background:var(--navy);color:#fff;border:none;border-radius:3px;cursor:pointer;">Refresh</button>
+      <button onclick="debugRequests()" style="font-size:12px;padding:4px 12px;background:var(--navy);color:#fff;border:none;border-radius:3px;cursor:pointer;">Refresh</button>
     </div>
     <p style="font-size:13px;color:var(--text-muted);margin-bottom:1rem;margin-top:0.5rem;">All contact form submissions appear below.</p>
     <div id="admin-requests-list"></div>
@@ -1322,6 +1322,11 @@
     renderRequests();
   }
 
+  function debugRequests() {
+    const raw = localStorage.getItem('pf_requests');
+    alert('Stored data: ' + (raw || 'NOTHING FOUND'));
+    renderRequests();
+  }
   function renderRequests() {
     try {
       const list = document.getElementById('admin-requests-list');
