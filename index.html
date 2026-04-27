@@ -611,6 +611,10 @@
     .pkg-price span { font-size: 16px; font-family: 'Source Sans 3', sans-serif; color: var(--text-muted); font-weight: 400; }
     .pkg-featured .pkg-price { color: var(--white); }
     .pkg-featured .pkg-price span { color: #afc0d8; }
+    .pkg-tagline { font-size: 13px; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem; }
+    .pkg-featured .pkg-tagline { color: var(--gold-light); }
+    .pkg-best { font-size: 13px; color: var(--text-muted); font-style: italic; margin-bottom: 1.25rem; line-height: 1.5; }
+    .pkg-featured .pkg-best { color: #afc0d8; }
     .pkg-list { list-style: none; flex: 1; }
     .pkg-list li {
       font-size: 14px;
@@ -1025,87 +1029,81 @@
     <div class="section-title">Pricing &amp; <em>Packages</em></div>
     <div class="divider"></div>
 
-    <!-- Packages -->
     <div class="pkg-grid">
       <div class="pkg-card">
-        <div class="pkg-badge">Bronze</div>
-        <div class="pkg-price">$400<span>/mo</span></div>
+        <div class="pkg-badge">Starter</div>
+        <div class="pkg-tagline">Clean &amp; Compliant</div>
+        <div class="pkg-price">$300&ndash;$400<span>/mo</span></div>
+        <div class="pkg-best">Best for solo business owners and new businesses.</div>
         <ul class="pkg-list">
-          <li>Monthly Bookkeeping</li>
-          <li>Financial Statements Monthly</li>
-          <li>200 Transactions per Month</li>
-          <li>Payroll for up to 10 Employees</li>
-          <li>QuickBooks Online Essentials ($35/mo)</li>
+          <li>Monthly bookkeeping</li>
+          <li>Bank &amp; credit card reconciliations (up to 2 accounts)</li>
+          <li>Monthly financial reports (P&amp;L, Balance Sheet)</li>
+          <li>Simple monthly summary</li>
+          <li>Email support</li>
         </ul>
-        <button class="btn-outline" onclick="showPage('contact')">Get Started</button>
+        <button class="btn-outline" onclick="showPage('book')">Book a Consultation</button>
       </div>
       <div class="pkg-card pkg-featured">
-        <div class="pkg-badge">Silver</div>
-        <div class="pkg-price">$600<span>/mo</span></div>
+        <div class="pkg-badge">Growth</div>
+        <div class="pkg-tagline">Know Your Numbers</div>
+        <div class="pkg-price">$500&ndash;$750<span>/mo</span></div>
+        <div class="pkg-best">Best for growing businesses that need clarity and control.</div>
         <ul class="pkg-list">
-          <li>Monthly Bookkeeping</li>
-          <li>Financial Statements Monthly</li>
-          <li>Payroll for up to 10 Employees</li>
-          <li>Bill Pay Service</li>
-          <li>Up to 4 Bank or Credit Card Accounts</li>
-          <li>Accounts Receivable &amp; Payable</li>
-          <li>QuickBooks Online Plus ($80/mo)</li>
-          <li>Basic Mileage Tracking</li>
+          <li>Everything in Starter</li>
+          <li>Up to 4 accounts</li>
+          <li>Payroll (up to 5 employees)</li>
+          <li>Detailed financial breakdown</li>
+          <li>Quarterly check-in call</li>
         </ul>
-        <button class="btn-gold" onclick="showPage('contact')">Get Started</button>
+        <button class="btn-gold" onclick="showPage('book')">Book a Consultation</button>
       </div>
       <div class="pkg-card">
-        <div class="pkg-badge">Gold</div>
-        <div class="pkg-price">$920<span>/mo</span></div>
+        <div class="pkg-badge">Premium</div>
+        <div class="pkg-tagline">Profit &amp; Scale</div>
+        <div class="pkg-price">$900&ndash;$1,500+<span>/mo</span></div>
+        <div class="pkg-best">Best for businesses ready to scale and maximize profit.</div>
         <ul class="pkg-list">
-          <li>Daily Bookkeeping</li>
-          <li>Financial Statements Monthly</li>
-          <li>Payroll for 1–25 Employees</li>
-          <li>Bill Pay Services</li>
-          <li>2,000 Transactions per Month</li>
-          <li>Invoicing</li>
-          <li>Up to 6 Bank or Credit Card Accounts</li>
-          <li>Accounts Receivable &amp; Payable</li>
-          <li>QuickBooks Online Advanced ($180/mo)</li>
-          <li>Basic Mileage Tracking</li>
+          <li>Everything in Growth</li>
+          <li>Job costing &amp; profitability tracking</li>
+          <li>Cash flow forecasting</li>
+          <li>Budgeting</li>
+          <li>Monthly strategy calls</li>
+          <li>Priority support</li>
         </ul>
-        <button class="btn-outline" onclick="showPage('contact')">Get Started</button>
+        <button class="btn-outline" onclick="showPage('book')">Book a Consultation</button>
       </div>
     </div>
 
-    <!-- Individual Add-ons -->
-    <div class="section-label" style="margin-top:3.5rem">Add-Ons</div>
-    <div class="section-title">Individual Pricing &amp; <em>Add-Ons</em></div>
+    <div class="section-label" style="margin-top:3.5rem">One-Time</div>
+    <div class="section-title">One-Time <em>Services</em></div>
     <div class="divider"></div>
     <table class="price-table">
       <tbody>
-        <tr><td>Historical Bookkeeping Clean-Up</td><td>$125/hr <span class="price-note">(1 hr minimum)</span></td></tr>
-        <tr><td>Basic Bookkeeping Services (200 transactions)</td><td>$300/mo</td></tr>
-        <tr><td>Bill Pay</td><td>$150/mo</td></tr>
-        <tr><td>Invoicing</td><td>$250/mo</td></tr>
-        <tr><td>Accounts Payable &amp; Receivable</td><td>$100/mo</td></tr>
-        <tr><td>Additional Bank Accounts &amp; Credit Cards</td><td>$15/account</td></tr>
-        <tr><td>Additional Transactions</td><td>$25/account</td></tr>
-        <tr><td>Tax Prep &amp; Filing</td><td>Price upon consultation</td></tr>
+        <tr><td>Catch-Up / Cleanup</td><td>$600 &ndash; $3,000+</td></tr>
+        <tr><td>Startup Package (LLC + Setup)</td><td>$400 &ndash; $800</td></tr>
+        <tr><td>Profit Clarity Audit</td><td>$250 &ndash; $500</td></tr>
+        <tr><td>Job Costing Setup</td><td>$300 &ndash; $1,000</td></tr>
       </tbody>
     </table>
 
-    <!-- Payroll -->
-    <div class="section-label" style="margin-top:3rem">Payroll</div>
-    <div class="section-title"><em>Payroll</em> Pricing</div>
+    <div class="section-label" style="margin-top:3rem">Add-Ons</div>
+    <div class="section-title">Individual <em>Add-Ons</em></div>
     <div class="divider"></div>
     <table class="price-table">
       <tbody>
-        <tr><td>1–10 Employees</td><td>$150/mo</td></tr>
-        <tr><td>11–20 Employees</td><td>$200/mo</td></tr>
-        <tr><td>21–25 Employees</td><td>$300/mo</td></tr>
-        <tr><td>25–50 Employees</td><td>$500/mo</td></tr>
-        <tr><td>50+ Employees</td><td>Price upon consultation</td></tr>
+        <tr><td>Payroll</td><td>$100 base + $10 per employee</td></tr>
+        <tr><td>Tax Prep Support</td><td>$200 &ndash; $400</td></tr>
       </tbody>
     </table>
+
+    <div style="margin-top:3.5rem;background:var(--navy);border-radius:6px;padding:2.5rem;text-align:center;border-top:3px solid var(--gold);">
+      <div class="section-label" style="color:var(--gold);">Our Promise</div>
+      <p style="color:#fff;font-size:17px;line-height:1.8;max-width:600px;margin:0 auto;font-style:italic;">&ldquo;We don&rsquo;t just track your numbers &mdash; we help you understand them and grow your business with confidence.&rdquo;</p>
+    </div>
+
   </div>
 </div>
-
 <!-- CONTACT -->
 <div id="contact" class="page">
   <div class="section">
