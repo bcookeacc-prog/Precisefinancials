@@ -170,6 +170,8 @@
       min-width: 180px;
       text-align: center;
       transition: background 0.2s, border-color 0.2s;
+      cursor: pointer;
+      font-family: 'Source Sans 3', sans-serif;
     }
     .hero-stat:hover {
       background: rgba(201,168,76,0.15);
@@ -751,21 +753,21 @@
     <h1>Financial Clarity for <em>Your</em> Business</h1>
     <p>Precise Financials, LLC delivers expert bookkeeping, tax preparation, payroll, and financial planning, so you can focus on growing what matters most.</p>
     <div class="hero-stats">
-      <div class="hero-stat" onclick="showPage('pricing')" style="cursor:pointer">
+      <button class="hero-stat" onclick="showPage('pricing')">
         <div class="hero-stat-icon">&#9878;</div>
         <div class="hero-stat-label">Precise Bookkeeping</div>
         <div class="hero-stat-sub">Accurate records every time</div>
-      </div>
-      <div class="hero-stat" onclick="showPage('about')" style="cursor:pointer">
+      </button>
+      <button class="hero-stat" onclick="showPage('about')">
         <div class="hero-stat-icon">&#10003;</div>
         <div class="hero-stat-label">Licensed &amp; Certified</div>
         <div class="hero-stat-sub">Colorado City, Arizona</div>
-      </div>
-      <div class="hero-stat" onclick="showPage('contact')" style="cursor:pointer">
+      </button>
+      <button class="hero-stat" onclick="showPage('contact')">
         <div class="hero-stat-icon">&#9997;</div>
         <div class="hero-stat-label">Free Consultation</div>
         <div class="hero-stat-sub">Let's talk about your business</div>
-      </div>
+      </button>
     </div>
   </div>
 
