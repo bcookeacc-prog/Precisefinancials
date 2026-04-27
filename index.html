@@ -951,7 +951,7 @@
 <!-- HOME -->
 <div id="home" class="page active">
   <div class="hero">
-    <div class="hero-web-card" onclick="showPage('pricing')">
+    <div class="hero-web-card" onclick="showPage('pricing'); setTimeout(function(){ var el=document.getElementById('website-packages'); if(el) el.scrollIntoView({behavior:'smooth'}); }, 100);">
       <div class="hwc-label">&#9998; Website Services</div>
       <div class="hwc-title">Custom Sites for Small Businesses</div>
       <ul class="hwc-items">
@@ -1271,7 +1271,7 @@
       </tbody>
     </table>
 
-    <div class="section-label" style="margin-top:3.5rem">Website Services</div>
+    <div id="website-packages" class="section-label" style="margin-top:3.5rem">Website Services</div>
     <div class="section-title">Website <em>Packages</em></div>
     <div class="divider"></div>
     <div class="pkg-grid">
