@@ -772,7 +772,12 @@
       font-weight: 700;
       margin-bottom: 0.25rem;
     }
-    .admin-sub { font-size: 13px; color: var(--text-muted); margin-bottom: 1.75rem; }
+    .admin-sub { font-size: 13px; color: var(--text-muted); margin-bottom: 1rem; }
+    .admin-tabs { display: flex; gap: 0; margin: 1rem 0 0; border-bottom: 2px solid rgba(10,31,68,0.1); }
+    .admin-tab { flex: 1; padding: 9px 4px; font-size: 11px; font-weight: 700; background: none; border: none; border-bottom: 3px solid transparent; margin-bottom: -2px; cursor: pointer; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.04em; transition: all 0.2s; }
+    .admin-tab.active { color: var(--navy); border-bottom-color: var(--gold); }
+    .admin-tab-content { display: none; padding-top: 1.25rem; }
+    .admin-tab-content.active { display: block; }
     .admin-error { color: #c0392b; font-size: 13px; margin-top: 0.5rem; display: none; }
     .admin-section-title {
       font-family: 'Playfair Display', serif;
@@ -1319,6 +1324,27 @@
       </div>
     </div>
 
+    <div style="background:#f0f5fb;border:1px solid rgba(10,31,68,0.12);border-left:4px solid var(--gold);border-radius:6px;padding:1.5rem 1.75rem;margin-top:2rem;">
+      <div style="font-family:'Playfair Display',serif;font-size:18px;color:var(--navy);margin-bottom:0.5rem;">Request Website Services</div>
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:1rem;">Fill out the form below and we'll be in touch to get started on your site.</p>
+      <div class="form-group"><label class="form-label">Name *</label><input type="text" id="web-name" class="form-input" placeholder="Your name"></div>
+      <div class="form-group"><label class="form-label">Email *</label><input type="email" id="web-email" class="form-input" placeholder="your@email.com"></div>
+      <div class="form-group"><label class="form-label">Phone</label><input type="tel" id="web-phone" class="form-input" placeholder="(555) 000-0000"></div>
+      <div class="form-group"><label class="form-label">Package Interest</label>
+        <select id="web-package" class="form-input">
+          <option value="">-- Select a package --</option>
+          <option>Basic ($400–$800)</option>
+          <option>Standard ($900–$1,500)</option>
+          <option>Premium ($2,000–$4,000+)</option>
+          <option>Not sure yet</option>
+        </select>
+      </div>
+      <div class="form-group"><label class="form-label">Tell us about your business</label><textarea id="web-notes" class="form-input" rows="3" placeholder="What does your business do? Any specific features you need?"></textarea></div>
+      <div id="web-error" style="color:#c0392b;font-size:13px;display:none;margin-bottom:0.75rem;"></div>
+      <div id="web-success" style="color:#1a6b3c;font-size:13px;display:none;margin-bottom:0.75rem;">✓ Request submitted! We'll be in touch soon.</div>
+      <button class="btn-submit" onclick="handleWebsiteRequest()" style="max-width:220px;">Submit Request</button>
+    </div>
+
     <div class="section-label" style="margin-top:2.5rem">Website Add-On</div>
     <div class="section-title">Monthly <em>Maintenance</em></div>
     <div class="divider"></div>
@@ -1608,26 +1634,45 @@
     <button class="admin-save-btn" onclick="adminSave()">Save Settings</button>
     <div class="admin-saved" id="admin-saved">Settings saved successfully!</div>
 
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-top:2rem;">
-      <div class="admin-section-title" style="margin:0;">Customer Requests</div>
-      <button onclick="renderRequests()" style="font-size:12px;padding:4px 12px;background:var(--navy);color:#fff;border:none;border-radius:3px;cursor:pointer;">Refresh</button>
+    <div class="admin-section-title" style="margin-top:1.5rem;margin-bottom:0;">Requests</div>
+    <div class="admin-tabs">
+      <button class="admin-tab active" onclick="switchAdminTab('inquiries',this)">📋 Inquiries</button>
+      <button class="admin-tab" onclick="switchAdminTab('consultations',this)">📅 30-Min Calls</button>
+      <button class="admin-tab" onclick="switchAdminTab('website',this)">🌐 Website</button>
+      <button class="admin-tab" onclick="switchAdminTab('trash',this)">🗑 Trash</button>
     </div>
-    <p style="font-size:13px;color:var(--text-muted);margin-bottom:1rem;margin-top:0.5rem;">All contact form submissions appear below.</p>
-    <div id="admin-requests-list"></div>
 
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-top:2rem;">
-      <div class="admin-section-title" style="margin:0;color:#1a6b3c;">Consultation Requests</div>
-      <button onclick="renderConsultations()" style="font-size:12px;padding:4px 12px;background:var(--navy);color:#fff;border:none;border-radius:3px;cursor:pointer;">Refresh</button>
+    <div id="admin-tab-inquiries" class="admin-tab-content active">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.5rem;">
+        <p style="font-size:13px;color:var(--text-muted);margin:0;">Contact form submissions.</p>
+        <button onclick="renderRequests()" style="font-size:12px;padding:4px 12px;background:var(--navy);color:#fff;border:none;border-radius:3px;cursor:pointer;">Refresh</button>
+      </div>
+      <div id="admin-requests-list"></div>
     </div>
-    <p style="font-size:13px;color:var(--text-muted);margin-bottom:1rem;margin-top:0.5rem;">30-minute consultation booking requests.</p>
-    <div id="admin-consultations-list"></div>
 
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-top:2rem;">
-      <div class="admin-section-title" style="margin:0;color:#c0392b;">Deleted Requests</div>
-      <button onclick="emptyTrash()" style="font-size:12px;padding:4px 12px;background:#c0392b;color:#fff;border:none;border-radius:3px;cursor:pointer;">Empty Trash</button>
+    <div id="admin-tab-consultations" class="admin-tab-content">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.5rem;">
+        <p style="font-size:13px;color:var(--text-muted);margin:0;">30-minute consultation bookings.</p>
+        <button onclick="renderConsultations()" style="font-size:12px;padding:4px 12px;background:var(--navy);color:#fff;border:none;border-radius:3px;cursor:pointer;">Refresh</button>
+      </div>
+      <div id="admin-consultations-list"></div>
     </div>
-    <p style="font-size:13px;color:var(--text-muted);margin-bottom:1rem;margin-top:0.5rem;">Deleted requests are kept here. Restore or permanently remove them.</p>
+
+    <div id="admin-tab-website" class="admin-tab-content">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.5rem;">
+        <p style="font-size:13px;color:var(--text-muted);margin:0;">Website design &amp; setup requests.</p>
+        <button onclick="renderWebsiteRequests()" style="font-size:12px;padding:4px 12px;background:var(--navy);color:#fff;border:none;border-radius:3px;cursor:pointer;">Refresh</button>
+      </div>
+      <div id="admin-website-list"></div>
+    </div>
+
+    <div id="admin-tab-trash" class="admin-tab-content">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.5rem;">
+        <p style="font-size:13px;color:var(--text-muted);margin:0;">Deleted requests — restore or remove permanently.</p>
+        <button onclick="emptyTrash()" style="font-size:12px;padding:4px 12px;background:#c0392b;color:#fff;border:none;border-radius:3px;cursor:pointer;">Empty Trash</button>
+      </div>
     <div id="admin-trash-list"></div>
+    </div>
 
     <div class="admin-logout" onclick="adminLogout()">Log Out</div>
   </div>
@@ -1709,6 +1754,7 @@
     renderRequests();
     renderTrash();
     renderConsultations();
+    renderWebsiteRequests();
   }
 
   function renderRequests() {
@@ -1905,6 +1951,72 @@
       renderConsultations();
     } catch(e) { alert('deleteConsultation error: ' + e.message); }
   }
+  function switchAdminTab(tab, btn) {
+    document.querySelectorAll('.admin-tab').forEach(function(t){ t.classList.remove('active'); });
+    document.querySelectorAll('.admin-tab-content').forEach(function(t){ t.classList.remove('active'); });
+    btn.classList.add('active');
+    document.getElementById('admin-tab-' + tab).classList.add('active');
+    if (tab === 'inquiries') renderRequests();
+    if (tab === 'consultations') renderConsultations();
+    if (tab === 'website') renderWebsiteRequests();
+    if (tab === 'trash') renderTrash();
+  }
+
+  function renderWebsiteRequests() {
+    try {
+      var list = document.getElementById('admin-website-list');
+      if (!list) return;
+      var reqs = JSON.parse(localStorage.getItem('pf_website_requests') || '[]');
+      if (reqs.length === 0) { list.innerHTML = '<div class="no-requests">No website requests yet.</div>'; return; }
+      var html = '';
+      for (var i = 0; i < reqs.length; i++) {
+        var r = reqs[i];
+        html += '<div class="request-card" style="position:relative;">';
+        html += '<button onclick="deleteWebsiteRequest(' + i + ')" class="request-delete-btn" title="Delete">&#10005;</button>';
+        html += '<div class="request-card-name">' + r.name + '</div>';
+        html += '<div class="request-card-detail">' + r.email + (r.phone ? ' &bull; ' + r.phone : '') + '</div>';
+        if (r.package) html += '<div class="request-card-detail"><strong>Package:</strong> ' + r.package + '</div>';
+        if (r.notes) html += '<div class="request-card-detail"><strong>Notes:</strong> ' + r.notes + '</div>';
+        html += '<div class="request-card-date">' + r.date + '</div>';
+        html += '</div>';
+      }
+      list.innerHTML = html;
+    } catch(e) { alert('renderWebsiteRequests error: ' + e.message); }
+  }
+
+  function deleteWebsiteRequest(index) {
+    try {
+      var reqs = JSON.parse(localStorage.getItem('pf_website_requests') || '[]');
+      reqs.splice(index, 1);
+      localStorage.setItem('pf_website_requests', JSON.stringify(reqs));
+      renderWebsiteRequests();
+    } catch(e) { alert('deleteWebsiteRequest error: ' + e.message); }
+  }
+
+  function handleWebsiteRequest() {
+    var name = document.getElementById('web-name').value.trim();
+    var email = document.getElementById('web-email').value.trim();
+    var phone = document.getElementById('web-phone').value.trim();
+    var pkg = document.getElementById('web-package').value;
+    var notes = document.getElementById('web-notes').value.trim();
+    var err = document.getElementById('web-error');
+    var suc = document.getElementById('web-success');
+    err.style.display = 'none'; suc.style.display = 'none';
+    if (!name || !email) { err.textContent = 'Please enter your name and email.'; err.style.display = 'block'; return; }
+    try {
+      var submission = { id: Date.now(), date: new Date().toLocaleString(), name: name, email: email, phone: phone, package: pkg, notes: notes };
+      var reqs = JSON.parse(localStorage.getItem('pf_website_requests') || '[]');
+      reqs.unshift(submission);
+      localStorage.setItem('pf_website_requests', JSON.stringify(reqs));
+    } catch(e) { err.textContent = 'Save error: ' + e.message; err.style.display = 'block'; return; }
+    document.getElementById('web-name').value = '';
+    document.getElementById('web-email').value = '';
+    document.getElementById('web-phone').value = '';
+    document.getElementById('web-package').value = '';
+    document.getElementById('web-notes').value = '';
+    suc.style.display = 'block';
+  }
+
   function handleSubmit() {
     const name = document.getElementById('contact-name').value.trim();
     const email = document.getElementById('contact-email').value.trim();
