@@ -165,6 +165,67 @@
     }
     .btn-outline:hover { background: rgba(201,168,76,0.12); }
 
+    .hero-web-card {
+      position: absolute;
+      top: 2rem;
+      left: 2.5rem;
+      width: 210px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(201,168,76,0.55);
+      border-radius: 14px;
+      padding: 1.2rem 1.4rem;
+      text-align: left;
+      cursor: pointer;
+      transition: background 0.2s;
+      z-index: 2;
+    }
+    .hero-web-card:hover { background: rgba(201,168,76,0.1); }
+    .hwc-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .hwc-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      color: #fff;
+      font-weight: 700;
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+    .hwc-items {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 10px 0;
+    }
+    .hwc-items li {
+      font-size: 12px;
+      color: #b8cce0;
+      padding: 3px 0;
+    }
+    .hwc-items li::before { content: '✓ '; color: var(--gold); }
+    .hwc-price {
+      font-size: 11px;
+      color: #f0e6c8;
+      margin-bottom: 12px;
+      border-top: 1px solid rgba(201,168,76,0.25);
+      padding-top: 8px;
+    }
+    .hwc-btn {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--navy);
+      font-size: 11px;
+      font-weight: 800;
+      padding: 6px 14px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
     .hero-web-banner {
       margin-top: 2rem;
       display: inline-flex;
@@ -846,6 +907,7 @@
       .nav-links button.active, .nav-links button:hover { border-left: 3px solid var(--gold); border-bottom: none; color: var(--gold); }
       .hero h1 { font-size: 28px; }
       .hero { padding: 3rem 1.2rem; }
+      .hero-web-card { display: none; }
       .hero-stats { flex-direction: column; gap: 12px; align-items: stretch; }
       .hero-stat { min-width: unset; width: 100%; box-sizing: border-box; }
       .about-layout, .contact-layout { grid-template-columns: 1fr; }
@@ -889,6 +951,17 @@
 <!-- HOME -->
 <div id="home" class="page active">
   <div class="hero">
+    <div class="hero-web-card" onclick="showPage('pricing')">
+      <div class="hwc-label">&#9998; Website Services</div>
+      <div class="hwc-title">Custom Sites for Small Businesses</div>
+      <ul class="hwc-items">
+        <li>Basic &mdash; from $500</li>
+        <li>Standard &mdash; from $900</li>
+        <li>Premium &mdash; from $1,500</li>
+      </ul>
+      <div class="hwc-price">Maintenance plans available</div>
+      <span class="hwc-btn">View Packages</span>
+    </div>
     <div class="hero-badge">Trusted Financial Expertise</div>
     <h1>Financial Clarity for <em>Your</em> Business</h1>
     <p>Precise Financials, LLC delivers expert bookkeeping, tax preparation, payroll, and financial planning, so you can focus on growing what matters most.</p>
