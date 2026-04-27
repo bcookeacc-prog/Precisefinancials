@@ -753,17 +753,17 @@
     <h1>Financial Clarity for <em>Your</em> Business</h1>
     <p>Precise Financials, LLC delivers expert bookkeeping, tax preparation, payroll, and financial planning, so you can focus on growing what matters most.</p>
     <div class="hero-stats">
-      <button class="hero-stat" onclick="showPage('pricing')">
+      <button class="hero-stat" id="stat-pricing">
         <div class="hero-stat-icon">&#9878;</div>
         <div class="hero-stat-label">Precise Bookkeeping</div>
         <div class="hero-stat-sub">Accurate records every time</div>
       </button>
-      <button class="hero-stat" onclick="showPage('about')">
+      <button class="hero-stat" id="stat-about">
         <div class="hero-stat-icon">&#10003;</div>
         <div class="hero-stat-label">Licensed &amp; Certified</div>
         <div class="hero-stat-sub">Colorado City, Arizona</div>
       </button>
-      <button class="hero-stat" onclick="showPage('contact')">
+      <button class="hero-stat" id="stat-contact">
         <div class="hero-stat-icon">&#9997;</div>
         <div class="hero-stat-label">Free Consultation</div>
         <div class="hero-stat-sub">Let's talk about your business</div>
@@ -1172,6 +1172,10 @@
     });
   }
   loadSocialIcons();
+
+  document.getElementById('stat-pricing').addEventListener('click', function() { showPage('pricing'); });
+  document.getElementById('stat-about').addEventListener('click', function() { showPage('about'); });
+  document.getElementById('stat-contact').addEventListener('click', function() { showPage('contact'); });
 
   // ADMIN
   const ADMIN_PASSWORD = 'Precise2026!';
