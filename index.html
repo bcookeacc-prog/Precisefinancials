@@ -1661,6 +1661,14 @@
           <label>Message</label>
           <textarea id="contact-message" placeholder="Tell us how we can help your business..."></textarea>
         </div>
+        <div class="form-group">
+          <label>Preferred Meeting Date <span style="font-weight:400;font-size:11px;color:var(--text-muted);">(optional)</span></label>
+          <input type="date" id="contact-date" />
+        </div>
+        <div class="form-group">
+          <label>Preferred Meeting Time <span style="font-weight:400;font-size:11px;color:var(--text-muted);">(optional)</span></label>
+          <input type="time" id="contact-time" />
+        </div>
         <div id="form-error" style="display:none;color:#c0392b;font-size:13px;margin-bottom:0.75rem;">Please fill out all fields before submitting.</div>
         <div id="form-success" style="display:none;background:#eaf4ec;border:1px solid #a8d5b0;border-radius:4px;padding:1.25rem 1.5rem;margin-bottom:0.75rem;text-align:center;">
           <p style="font-size:16px;font-weight:700;color:#1a6b3c;margin-bottom:0.4rem;">Thank You for Reaching Out!</p>
@@ -2124,6 +2132,7 @@
         html += '<div class="request-card-meta">' + (r.email || '') + ' | ' + (r.phone || '') + '</div>';
         html += '<div class="request-card-services">' + (r.services && r.services.length ? r.services.join(', ') : 'No services selected') + '</div>';
         html += '<div class="request-card-message">' + (r.message || '') + '</div>';
+        if (r.prefDate || r.prefTime) html += '<div style="font-size:13px;color:#1a6b3c;font-weight:600;margin-top:4px;">📅 Preferred: ' + (r.prefDate || '') + (r.prefDate && r.prefTime ? ' at ' : '') + (r.prefTime ? formatTime(r.prefTime) : '') + '</div>';
         html += '<div style="font-size:12px;font-weight:700;color:' + statusColor + ';margin:6px 0 2px;">' + statusLabel + '</div>';
         if (status === 'reschedule' && s.note) html += '<div style="font-size:12px;color:var(--text-muted);margin-bottom:4px;">Suggested: ' + s.note + '</div>';
         html += '<div style="display:flex;gap:8px;margin-top:8px;">';
@@ -2640,6 +2649,8 @@
     const email = document.getElementById('contact-email').value.trim();
     const phone = document.getElementById('contact-phone').value.trim();
     const message = document.getElementById('contact-message').value.trim();
+    const prefDate = document.getElementById('contact-date').value;
+    const prefTime = document.getElementById('contact-time').value;
     const services = Array.from(document.querySelectorAll('.checkbox-group input:checked')).map(c => c.value);
     if (!name || !email || !phone || !message) {
       const err = document.getElementById('form-error');
@@ -2648,7 +2659,7 @@
       return;
     }
     try {
-      const submission = { id: Date.now(), date: new Date().toLocaleString(), name, email, phone, services, message };
+      const submission = { id: Date.now(), date: new Date().toLocaleString(), name, email, phone, services, message, prefDate, prefTime };
       const requests = JSON.parse(localStorage.getItem('pf_requests') || '[]');
       requests.unshift(submission);
       localStorage.setItem('pf_requests', JSON.stringify(requests));
@@ -2657,6 +2668,8 @@
     document.getElementById('contact-email').value = '';
     document.getElementById('contact-phone').value = '';
     document.getElementById('contact-message').value = '';
+    document.getElementById('contact-date').value = '';
+    document.getElementById('contact-time').value = '';
     document.querySelectorAll('.checkbox-group input').forEach(c => c.checked = false);
     document.getElementById('form-error').style.display = 'none';
     document.getElementById('form-success').style.display = 'block';
