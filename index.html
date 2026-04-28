@@ -2064,6 +2064,7 @@
   function adminLogin() {
     const pw = document.getElementById('admin-pw-input').value;
     if (pw === ADMIN_PASSWORD) {
+      localStorage.setItem('pf_admin_session', '1');
       document.getElementById('admin-login-box').style.display = 'none';
       document.getElementById('admin-dashboard-box').style.display = 'block';
       adminLoadLinks();
@@ -2197,6 +2198,7 @@
   }
 
   function adminLogout() {
+    localStorage.removeItem('pf_admin_session');
     document.getElementById('admin-overlay').classList.remove('open');
     document.getElementById('admin-login-box').style.display = 'block';
     document.getElementById('admin-dashboard-box').style.display = 'none';
@@ -2214,6 +2216,14 @@
       document.getElementById('admin-overlay').classList.add('open');
     }
   });
+
+  // Restore admin session after refresh
+  if (localStorage.getItem('pf_admin_session') === '1') {
+    document.getElementById('admin-overlay').classList.add('open');
+    document.getElementById('admin-login-box').style.display = 'none';
+    document.getElementById('admin-dashboard-box').style.display = 'block';
+    adminLoadLinks();
+  }
 
 
   function toggleFaq(btn) {
@@ -2251,21 +2261,54 @@
     document.getElementById('book-success').style.display = 'block';
   }
 
+  function getApptStatuses() {
+    try { return JSON.parse(localStorage.getItem('pf_appt_statuses') || '{}'); } catch(e) { return {}; }
+  }
+
+  function setApptStatus(id, status, note) {
+    var statuses = getApptStatuses();
+    statuses[id] = { status: status, note: note || '', updated: new Date().toLocaleString() };
+    localStorage.setItem('pf_appt_statuses', JSON.stringify(statuses));
+  }
+
+  function acceptConsultation(id) {
+    setApptStatus(id, 'accepted', '');
+    renderConsultations();
+  }
+
+  function requestReschedule(id) {
+    var note = prompt('Enter a suggested date and time to send to the client (e.g. "May 5 at 2:00 PM"):');
+    if (note === null) return;
+    setApptStatus(id, 'reschedule', note);
+    renderConsultations();
+  }
+
   function renderConsultations() {
     try {
       const list = document.getElementById('admin-consultations-list');
       if (!list) return;
       const consultations = JSON.parse(localStorage.getItem('pf_consultations') || '[]');
       if (consultations.length === 0) { list.innerHTML = '<div class="no-requests">No consultation requests yet.</div>'; return; }
+      const statuses = getApptStatuses();
       let html = '';
       for (let i = 0; i < consultations.length; i++) {
         const r = consultations[i];
+        const s = statuses[r.id] || {};
+        const status = s.status || 'pending';
+        const statusColor = status === 'accepted' ? '#1a6b3c' : status === 'reschedule' ? '#b8860b' : '#888';
+        const statusLabel = status === 'accepted' ? '✅ Confirmed' : status === 'reschedule' ? '🔁 Reschedule Requested' : '⏳ Pending';
         html += '<div class="request-card" style="border-top-color:#1a6b3c;">';
         html += '<button class="request-delete-btn" onclick="deleteConsultation(' + i + ')" title="Delete">&times;</button>';
         html += '<div class="request-card-name">' + (r.name || '') + '</div>';
         html += '<div class="request-card-meta">' + (r.email || '') + ' | ' + (r.phone || '') + '</div>';
         html += '<div class="request-card-services" style="color:#1a6b3c;">Preferred: ' + (r.preferredDate || '') + ' at ' + (r.preferredTime || '') + '</div>';
         if (r.notes) html += '<div class="request-card-message">' + r.notes + '</div>';
+        html += '<div style="font-size:12px;font-weight:700;color:' + statusColor + ';margin:6px 0 2px;">' + statusLabel + '</div>';
+        if (status === 'reschedule' && s.note) html += '<div style="font-size:12px;color:var(--text-muted);margin-bottom:4px;">Suggested: ' + s.note + '</div>';
+        html += '<div style="display:flex;gap:8px;margin-top:8px;">';
+        if (status !== 'accepted') html += '<button onclick="acceptConsultation(' + r.id + ')" style="flex:1;background:#1a6b3c;color:#fff;border:none;border-radius:4px;padding:7px;font-size:12px;font-weight:700;cursor:pointer;">✅ Accept</button>';
+        html += '<button onclick="requestReschedule(' + r.id + ')" style="flex:1;background:var(--gold);color:var(--navy);border:none;border-radius:4px;padding:7px;font-size:12px;font-weight:700;cursor:pointer;">🔁 Request New Time</button>';
+        html += '</div>';
         html += '<div class="request-card-date">Submitted: ' + (r.date || '') + '</div>';
         html += '</div>';
       }
