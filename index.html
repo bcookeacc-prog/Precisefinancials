@@ -2150,6 +2150,7 @@
     try {
       let requests = JSON.parse(localStorage.getItem('pf_requests') || '[]');
       const removed = requests.splice(index, 1)[0];
+      removed._type = 'inquiry';
       localStorage.setItem('pf_requests', JSON.stringify(requests));
       let trash = JSON.parse(localStorage.getItem('pf_trash') || '[]');
       trash.unshift(removed);
@@ -2164,10 +2165,14 @@
       let trash = JSON.parse(localStorage.getItem('pf_trash') || '[]');
       const restored = trash.splice(index, 1)[0];
       localStorage.setItem('pf_trash', JSON.stringify(trash));
-      let requests = JSON.parse(localStorage.getItem('pf_requests') || '[]');
-      requests.unshift(restored);
-      localStorage.setItem('pf_requests', JSON.stringify(requests));
+      const type = restored._type || 'inquiry';
+      const key = type === 'consultation' ? 'pf_consultations' : type === 'website' ? 'pf_website_requests' : 'pf_requests';
+      let items = JSON.parse(localStorage.getItem(key) || '[]');
+      items.unshift(restored);
+      localStorage.setItem(key, JSON.stringify(items));
       renderRequests();
+      renderConsultations();
+      renderWebsiteRequests();
       renderTrash();
     } catch(e) { alert('restoreRequest error: ' + e.message); }
   }
@@ -2197,15 +2202,26 @@
       let html = '';
       for (let i = 0; i < trash.length; i++) {
         const r = trash[i];
-        html += '<div class="request-card" style="opacity:0.75;border-color:#c0392b;">';
+        const type = r._type || 'inquiry';
+        const typeLabel = type === 'consultation' ? '📅 30-Min Call' : type === 'website' ? '🌐 Website Request' : '📋 Inquiry';
+        const typeColor = type === 'consultation' ? '#1a6b3c' : type === 'website' ? '#0a66c2' : 'var(--navy)';
+        html += '<div class="request-card" style="opacity:0.8;border-color:#c0392b;">';
         html += '<div style="position:absolute;top:0.75rem;right:0.75rem;display:flex;gap:6px;">';
         html += '<button onclick="restoreRequest(' + i + ')" style="font-size:11px;padding:3px 8px;background:#1a6b3c;color:#fff;border:none;border-radius:3px;cursor:pointer;">Restore</button>';
         html += '<button onclick="permanentDelete(' + i + ')" style="font-size:11px;padding:3px 8px;background:#c0392b;color:#fff;border:none;border-radius:3px;cursor:pointer;">Delete</button>';
         html += '</div>';
+        html += '<div style="font-size:11px;font-weight:700;color:' + typeColor + ';text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px;">' + typeLabel + '</div>';
         html += '<div class="request-card-name">' + (r.name || '') + '</div>';
-        html += '<div class="request-card-meta">' + (r.email || '') + ' | ' + (r.phone || '') + '</div>';
-        html += '<div class="request-card-services">' + (r.services && r.services.length ? r.services.join(', ') : 'No services selected') + '</div>';
-        html += '<div class="request-card-message">' + (r.message || '') + '</div>';
+        html += '<div class="request-card-meta">' + (r.email || '') + (r.phone ? ' | ' + r.phone : '') + '</div>';
+        if (type === 'consultation') {
+          html += '<div class="request-card-services" style="color:#1a6b3c;">Preferred: ' + (r.preferredDate || '') + ' at ' + (r.preferredTime || '') + '</div>';
+        } else if (type === 'website') {
+          if (r.business) html += '<div class="request-card-services">Business: ' + r.business + '</div>';
+          if (r.package) html += '<div class="request-card-services">Package: ' + r.package + '</div>';
+        } else {
+          html += '<div class="request-card-services">' + (r.services && r.services.length ? r.services.join(', ') : 'No services selected') + '</div>';
+          if (r.message) html += '<div class="request-card-message">' + r.message + '</div>';
+        }
         html += '<div class="request-card-date">Submitted: ' + (r.date || '') + '</div>';
         html += '</div>';
       }
@@ -2351,9 +2367,14 @@
   function deleteConsultation(index) {
     try {
       let consultations = JSON.parse(localStorage.getItem('pf_consultations') || '[]');
-      consultations.splice(index, 1);
+      const removed = consultations.splice(index, 1)[0];
+      removed._type = 'consultation';
       localStorage.setItem('pf_consultations', JSON.stringify(consultations));
+      let trash = JSON.parse(localStorage.getItem('pf_trash') || '[]');
+      trash.unshift(removed);
+      localStorage.setItem('pf_trash', JSON.stringify(trash));
       renderConsultations();
+      renderTrash();
     } catch(e) { alert('deleteConsultation error: ' + e.message); }
   }
   function switchAdminTab(tab, btn) {
@@ -2552,9 +2573,14 @@
   function deleteWebsiteRequest(index) {
     try {
       var reqs = JSON.parse(localStorage.getItem('pf_website_requests') || '[]');
-      reqs.splice(index, 1);
+      var removed = reqs.splice(index, 1)[0];
+      removed._type = 'website';
       localStorage.setItem('pf_website_requests', JSON.stringify(reqs));
+      var trash = JSON.parse(localStorage.getItem('pf_trash') || '[]');
+      trash.unshift(removed);
+      localStorage.setItem('pf_trash', JSON.stringify(trash));
       renderWebsiteRequests();
+      renderTrash();
     } catch(e) { alert('deleteWebsiteRequest error: ' + e.message); }
   }
 
