@@ -2462,9 +2462,19 @@
   function calGetConsultationDates() {
     var dates = {};
     try {
+      var statuses = getApptStatuses();
       var cons = JSON.parse(localStorage.getItem('pf_consultations') || '[]');
       cons.forEach(function(c) {
-        if (c.date) dates[c.date] = (dates[c.date] || []).concat({ time: c.time || '', name: c.name || 'Consultation booking', notes: 'Booked via website', fromBooking: true });
+        var dateKey = c.preferredDate || '';
+        if (!dateKey) return;
+        var s = statuses[c.id] || {};
+        var statusLabel = s.status === 'accepted' ? 'Confirmed' : s.status === 'reschedule' ? 'Reschedule Requested' : 'Pending';
+        dates[dateKey] = (dates[dateKey] || []).concat({
+          time: c.preferredTime || '',
+          name: c.name || 'Consultation booking',
+          notes: '30-Min Call — ' + statusLabel + (c.notes ? ' | ' + c.notes : ''),
+          fromBooking: true
+        });
       });
     } catch(e) {}
     return dates;
