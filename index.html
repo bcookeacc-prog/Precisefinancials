@@ -1416,25 +1416,10 @@
       </div>
     </div>
 
-    <div style="background:#f0f5fb;border:1px solid rgba(10,31,68,0.12);border-left:4px solid var(--gold);border-radius:6px;padding:1.5rem 1.75rem;margin-top:2rem;">
-      <div style="font-family:'Playfair Display',serif;font-size:18px;color:var(--navy);margin-bottom:0.5rem;">Request Website Services</div>
-      <p style="font-size:13px;color:var(--text-muted);margin-bottom:1rem;">Fill out the form below and we'll be in touch to get started on your site.</p>
-      <div class="form-group"><label class="form-label">Name *</label><input type="text" id="web-name" class="form-input" placeholder="Your name"></div>
-      <div class="form-group"><label class="form-label">Email *</label><input type="email" id="web-email" class="form-input" placeholder="your@email.com"></div>
-      <div class="form-group"><label class="form-label">Phone</label><input type="tel" id="web-phone" class="form-input" placeholder="(555) 000-0000"></div>
-      <div class="form-group"><label class="form-label">Package Interest</label>
-        <select id="web-package" class="form-input">
-          <option value="">-- Select a package --</option>
-          <option>Basic ($400–$800)</option>
-          <option>Standard ($900–$1,500)</option>
-          <option>Premium ($2,000–$4,000+)</option>
-          <option>Not sure yet</option>
-        </select>
-      </div>
-      <div class="form-group"><label class="form-label">Tell us about your business</label><textarea id="web-notes" class="form-input" rows="3" placeholder="What does your business do? Any specific features you need?"></textarea></div>
-      <div id="web-error" style="color:#c0392b;font-size:13px;display:none;margin-bottom:0.75rem;"></div>
-      <div id="web-success" style="color:#1a6b3c;font-size:13px;display:none;margin-bottom:0.75rem;">✓ Request submitted! We'll be in touch soon.</div>
-      <button class="btn-submit" onclick="handleWebsiteRequest()" style="max-width:220px;">Submit Request</button>
+    <div style="background:#f0f5fb;border:1px solid rgba(10,31,68,0.12);border-left:4px solid var(--gold);border-radius:6px;padding:2rem 1.75rem;margin-top:2rem;text-align:center;">
+      <div style="font-family:'Playfair Display',serif;font-size:22px;color:var(--navy);margin-bottom:0.75rem;">Ready to Get Started?</div>
+      <p style="font-size:14px;color:var(--text-muted);margin-bottom:1.5rem;max-width:480px;margin-left:auto;margin-right:auto;">Fill out our detailed website consultation form so we can understand exactly what you need and put together the perfect plan for your business.</p>
+      <button class="btn-gold" onclick="showPage('website-consult')" style="font-size:15px;padding:14px 32px;">Get a Custom Quote &rsaquo;</button>
     </div>
 
     <div class="section-label" style="margin-top:2.5rem">Ongoing Care</div>
@@ -1455,6 +1440,155 @@
       <p style="color:#fff;font-size:17px;line-height:1.8;max-width:600px;margin:0 auto 1.5rem;font-style:italic;">&ldquo;A great website is your hardest working employee &mdash; it's open 24/7 and always making a great first impression.&rdquo;</p>
       <button class="btn-gold" onclick="showPage('book')">Book a Free Consultation</button>
     </div>
+  </div>
+</div>
+<!-- WEBSITE CONSULTATION -->
+<div id="website-consult" class="page">
+  <div class="section" style="max-width:760px">
+    <div class="section-label">Let&rsquo;s Build Something Great</div>
+    <div class="section-title">Website <em>Consultation</em></div>
+    <div class="divider"></div>
+    <p style="color:var(--text-muted);font-size:15px;line-height:1.8;margin-bottom:2rem;">Tell us about your vision and we&rsquo;ll put together a custom plan. The more detail you share, the better we can tailor your quote. We&rsquo;ll follow up within 1&ndash;3 business days.</p>
+
+    <div style="font-family:'Playfair Display',serif;font-size:18px;color:var(--navy);margin-bottom:1rem;border-bottom:2px solid var(--gold);padding-bottom:0.5rem;">Contact Information</div>
+    <div class="form-group"><label class="form-label">Full Name *</label><input type="text" id="wc-name" class="form-input" placeholder="Your full name"></div>
+    <div class="form-group"><label class="form-label">Business Name *</label><input type="text" id="wc-business" class="form-input" placeholder="Your business name"></div>
+    <div class="form-group"><label class="form-label">Email Address *</label><input type="email" id="wc-email" class="form-input" placeholder="you@email.com"></div>
+    <div class="form-group"><label class="form-label">Phone Number</label><input type="tel" id="wc-phone" class="form-input" placeholder="(555) 000-0000"></div>
+
+    <div style="font-family:'Playfair Display',serif;font-size:18px;color:var(--navy);margin:2rem 0 1rem;border-bottom:2px solid var(--gold);padding-bottom:0.5rem;">About Your Website</div>
+    <div class="form-group">
+      <label class="form-label">Do you currently have a website?</label>
+      <select id="wc-has-site" class="form-input" onchange="toggleCurrentSite(this.value)">
+        <option value="">-- Select --</option>
+        <option value="no">No, I need one built from scratch</option>
+        <option value="yes">Yes, I want it redesigned</option>
+        <option value="update">Yes, I just need updates/improvements</option>
+      </select>
+    </div>
+    <div class="form-group" id="wc-current-url-group" style="display:none;">
+      <label class="form-label">Current Website URL</label>
+      <input type="url" id="wc-current-url" class="form-input" placeholder="https://yoursite.com">
+    </div>
+    <div class="form-group">
+      <label class="form-label">What type of website do you need? <span style="font-weight:400;font-size:12px;">(select all that apply)</span></label>
+      <div class="checkbox-group">
+        <div class="checkbox-item"><input type="checkbox" id="wt1" value="Informational / Brochure"><label for="wt1">Informational / Brochure (tells people who you are)</label></div>
+        <div class="checkbox-item"><input type="checkbox" id="wt2" value="Booking & Scheduling"><label for="wt2">Booking &amp; Scheduling</label></div>
+        <div class="checkbox-item"><input type="checkbox" id="wt3" value="E-Commerce / Online Store"><label for="wt3">E-Commerce / Online Store</label></div>
+        <div class="checkbox-item"><input type="checkbox" id="wt4" value="Portfolio / Gallery"><label for="wt4">Portfolio / Gallery</label></div>
+        <div class="checkbox-item"><input type="checkbox" id="wt5" value="Blog / News"><label for="wt5">Blog / News</label></div>
+        <div class="checkbox-item"><input type="checkbox" id="wt6" value="Other"><label for="wt6">Other</label></div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Which package are you considering?</label>
+      <select id="wc-package" class="form-input">
+        <option value="">-- Select --</option>
+        <option>Basic ($400&ndash;$800) &mdash; Up to 5 pages, informational</option>
+        <option>Standard ($900&ndash;$1,500) &mdash; Interactive, booking &amp; pricing</option>
+        <option>Premium ($2,000&ndash;$4,000+) &mdash; Fully custom, advanced features</option>
+        <option>Not sure yet &mdash; help me decide</option>
+      </select>
+    </div>
+
+    <div style="font-family:'Playfair Display',serif;font-size:18px;color:var(--navy);margin:2rem 0 1rem;border-bottom:2px solid var(--gold);padding-bottom:0.5rem;">Pages &amp; Features</div>
+    <div class="form-group">
+      <label class="form-label">How many pages do you need?</label>
+      <select id="wc-pages" class="form-input">
+        <option value="">-- Select --</option>
+        <option>1&ndash;3 pages</option>
+        <option>4&ndash;6 pages</option>
+        <option>7&ndash;10 pages</option>
+        <option>10+ pages</option>
+        <option>Not sure yet</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="form-label">What features do you need? <span style="font-weight:400;font-size:12px;">(select all that apply)</span></label>
+      <div class="checkbox-group">
+        <div class="checkbox-item"><input type="checkbox" id="wf1" value="Contact form"><label for="wf1">Contact form</label></div>
+        <div class="checkbox-item"><input type="checkbox" id="wf2" value="Online booking / scheduling"><label for="wf2">Online booking / scheduling</label></div>
+        <div class="checkbox-item"><input type="checkbox" id="wf3" value="Photo gallery"><label for="wf3">Photo gallery</label></div>
+        <div class="checkbox-item"><input type="checkbox" id="wf4" value="Blog or news section"><label for="wf4">Blog or news section</label></div>
+        <div class="checkbox-item"><input type="checkbox" id="wf5" value="Payment processing"><label for="wf5">Payment processing</label></div>
+        <div class="checkbox-item"><input type="checkbox" id="wf6" value="Pricing page"><label for="wf6">Pricing page</label></div>
+        <div class="checkbox-item"><input type="checkbox" id="wf7" value="FAQ page"><label for="wf7">FAQ page</label></div>
+        <div class="checkbox-item"><input type="checkbox" id="wf8" value="Social media links"><label for="wf8">Social media links</label></div>
+        <div class="checkbox-item"><input type="checkbox" id="wf9" value="Client login area"><label for="wf9">Client login / portal</label></div>
+        <div class="checkbox-item"><input type="checkbox" id="wf10" value="Other"><label for="wf10">Other</label></div>
+      </div>
+    </div>
+
+    <div style="font-family:'Playfair Display',serif;font-size:18px;color:var(--navy);margin:2rem 0 1rem;border-bottom:2px solid var(--gold);padding-bottom:0.5rem;">Branding &amp; Content</div>
+    <div class="form-group">
+      <label class="form-label">Do you have a logo?</label>
+      <select id="wc-logo" class="form-input">
+        <option value="">-- Select --</option>
+        <option>Yes, I have a logo ready</option>
+        <option>No, I need one designed</option>
+        <option>I have something rough, needs work</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Do you have brand colors or fonts picked out?</label>
+      <select id="wc-brand" class="form-input">
+        <option value="">-- Select --</option>
+        <option>Yes, I have brand guidelines</option>
+        <option>I have a general idea</option>
+        <option>No, I need help with this</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Do you have content ready? (text, photos, etc.)</label>
+      <select id="wc-content" class="form-input">
+        <option value="">-- Select --</option>
+        <option>Yes, everything is ready</option>
+        <option>Partially &mdash; I have some content</option>
+        <option>No &mdash; I need help writing and sourcing content</option>
+      </select>
+    </div>
+
+    <div style="font-family:'Playfair Display',serif;font-size:18px;color:var(--navy);margin:2rem 0 1rem;border-bottom:2px solid var(--gold);padding-bottom:0.5rem;">Timeline &amp; Budget</div>
+    <div class="form-group">
+      <label class="form-label">When do you want the site to launch?</label>
+      <select id="wc-timeline" class="form-input">
+        <option value="">-- Select --</option>
+        <option>ASAP &mdash; as soon as possible</option>
+        <option>Within 1&ndash;2 months</option>
+        <option>Within 3&ndash;6 months</option>
+        <option>No rush &mdash; flexible timeline</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="form-label">What is your budget range?</label>
+      <select id="wc-budget" class="form-input">
+        <option value="">-- Select --</option>
+        <option>Under $500</option>
+        <option>$500 &ndash; $1,000</option>
+        <option>$1,000 &ndash; $2,500</option>
+        <option>$2,500+</option>
+        <option>Not sure &mdash; open to discussion</option>
+      </select>
+    </div>
+
+    <div style="font-family:'Playfair Display',serif;font-size:18px;color:var(--navy);margin:2rem 0 1rem;border-bottom:2px solid var(--gold);padding-bottom:0.5rem;">Additional Details</div>
+    <div class="form-group">
+      <label class="form-label">Any websites you like or want yours to feel similar to?</label>
+      <textarea id="wc-inspiration" class="form-input" rows="2" placeholder="Share any URLs or describe the style you like..."></textarea>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Anything else you&rsquo;d like us to know?</label>
+      <textarea id="wc-notes" class="form-input" rows="3" placeholder="Tell us about your business, goals, or anything specific you have in mind..."></textarea>
+    </div>
+
+    <div id="wc-error" style="color:#c0392b;font-size:13px;display:none;margin-bottom:0.75rem;"></div>
+    <div id="wc-success" style="background:#f0f9f4;border:1px solid #1a6b3c;border-radius:6px;padding:1.25rem;display:none;margin-bottom:1rem;">
+      <strong style="color:#1a6b3c;">&#10003; Your consultation request has been submitted!</strong>
+      <p style="color:#1a6b3c;font-size:13px;margin-top:0.4rem;">We&rsquo;ll review your details and follow up within 1&ndash;3 business days. Thank you!</p>
+    </div>
+    <button class="btn-submit" onclick="handleWebsiteConsult()">Submit Consultation Request</button>
+    <p style="font-size:12px;color:var(--text-muted);margin-top:1rem;">* Required fields. All information is kept confidential.</p>
   </div>
 </div>
 <!-- CONTACT -->
@@ -2120,7 +2254,12 @@
         html += '<button onclick="deleteWebsiteRequest(' + i + ')" class="request-delete-btn" title="Delete">&#10005;</button>';
         html += '<div class="request-card-name">' + r.name + '</div>';
         html += '<div class="request-card-detail">' + r.email + (r.phone ? ' &bull; ' + r.phone : '') + '</div>';
+        if (r.business) html += '<div class="request-card-detail"><strong>Business:</strong> ' + r.business + '</div>';
         if (r.package) html += '<div class="request-card-detail"><strong>Package:</strong> ' + r.package + '</div>';
+        if (r.siteTypes) html += '<div class="request-card-detail"><strong>Site Type:</strong> ' + r.siteTypes + '</div>';
+        if (r.features) html += '<div class="request-card-detail"><strong>Features:</strong> ' + r.features + '</div>';
+        if (r.budget) html += '<div class="request-card-detail"><strong>Budget:</strong> ' + r.budget + '</div>';
+        if (r.timeline) html += '<div class="request-card-detail"><strong>Timeline:</strong> ' + r.timeline + '</div>';
         if (r.notes) html += '<div class="request-card-detail"><strong>Notes:</strong> ' + r.notes + '</div>';
         html += '<div class="request-card-date">' + r.date + '</div>';
         html += '</div>';
@@ -2136,6 +2275,68 @@
       localStorage.setItem('pf_website_requests', JSON.stringify(reqs));
       renderWebsiteRequests();
     } catch(e) { alert('deleteWebsiteRequest error: ' + e.message); }
+  }
+
+  function toggleCurrentSite(val) {
+    var g = document.getElementById('wc-current-url-group');
+    if (g) g.style.display = (val === 'yes' || val === 'update') ? 'block' : 'none';
+  }
+
+  function handleWebsiteConsult() {
+    var name = document.getElementById('wc-name').value.trim();
+    var business = document.getElementById('wc-business').value.trim();
+    var email = document.getElementById('wc-email').value.trim();
+    var phone = document.getElementById('wc-phone').value.trim();
+    var hasSite = document.getElementById('wc-has-site').value;
+    var currentUrl = document.getElementById('wc-current-url').value.trim();
+    var pkg = document.getElementById('wc-package').value;
+    var pages = document.getElementById('wc-pages').value;
+    var logo = document.getElementById('wc-logo').value;
+    var brand = document.getElementById('wc-brand').value;
+    var content = document.getElementById('wc-content').value;
+    var timeline = document.getElementById('wc-timeline').value;
+    var budget = document.getElementById('wc-budget').value;
+    var inspiration = document.getElementById('wc-inspiration').value.trim();
+    var notes = document.getElementById('wc-notes').value.trim();
+    var siteTypes = Array.from(document.querySelectorAll('[id^="wt"]:checked')).map(c => c.value);
+    var features = Array.from(document.querySelectorAll('[id^="wf"]:checked')).map(c => c.value);
+    var err = document.getElementById('wc-error');
+    var suc = document.getElementById('wc-success');
+    err.style.display = 'none'; suc.style.display = 'none';
+    if (!name || !business || !email) { err.textContent = 'Please fill in your name, business name, and email.'; err.style.display = 'block'; return; }
+    try {
+      var submission = {
+        id: Date.now(), date: new Date().toLocaleString(),
+        name: name, business: business, email: email, phone: phone,
+        hasSite: hasSite, currentUrl: currentUrl,
+        siteTypes: siteTypes.join(', '), package: pkg, pages: pages,
+        features: features.join(', '), logo: logo, brand: brand,
+        content: content, timeline: timeline, budget: budget,
+        inspiration: inspiration, notes: notes
+      };
+      var reqs = JSON.parse(localStorage.getItem('pf_website_requests') || '[]');
+      reqs.unshift(submission);
+      localStorage.setItem('pf_website_requests', JSON.stringify(reqs));
+    } catch(e) { err.textContent = 'Save error: ' + e.message; err.style.display = 'block'; return; }
+    document.getElementById('wc-name').value = '';
+    document.getElementById('wc-business').value = '';
+    document.getElementById('wc-email').value = '';
+    document.getElementById('wc-phone').value = '';
+    document.getElementById('wc-has-site').value = '';
+    document.getElementById('wc-current-url').value = '';
+    document.getElementById('wc-package').value = '';
+    document.getElementById('wc-pages').value = '';
+    document.getElementById('wc-logo').value = '';
+    document.getElementById('wc-brand').value = '';
+    document.getElementById('wc-content').value = '';
+    document.getElementById('wc-timeline').value = '';
+    document.getElementById('wc-budget').value = '';
+    document.getElementById('wc-inspiration').value = '';
+    document.getElementById('wc-notes').value = '';
+    document.querySelectorAll('[id^="wt"],[id^="wf"]').forEach(function(c){ c.checked = false; });
+    document.getElementById('wc-current-url-group').style.display = 'none';
+    suc.style.display = 'block';
+    window.scrollTo({top: 0, behavior: 'smooth'});
   }
 
   function handleWebsiteRequest() {
