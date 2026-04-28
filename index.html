@@ -2064,7 +2064,7 @@
   function adminLogin() {
     const pw = document.getElementById('admin-pw-input').value;
     if (pw === ADMIN_PASSWORD) {
-      localStorage.setItem('pf_admin_session', '1');
+      sessionStorage.setItem('pf_admin_session_temp', '1');
       document.getElementById('admin-login-box').style.display = 'none';
       document.getElementById('admin-dashboard-box').style.display = 'block';
       adminLoadLinks();
@@ -2221,7 +2221,7 @@
   }
 
   function adminLogout() {
-    localStorage.removeItem('pf_admin_session');
+    sessionStorage.removeItem('pf_admin_session_temp');
     document.getElementById('admin-overlay').classList.remove('open');
     document.getElementById('admin-login-box').style.display = 'block';
     document.getElementById('admin-dashboard-box').style.display = 'none';
@@ -2241,7 +2241,7 @@
   });
 
   // Restore admin session after refresh
-  if (localStorage.getItem('pf_admin_session') === '1') {
+  if (sessionStorage.getItem('pf_admin_session_temp') === '1') {
     document.getElementById('admin-overlay').classList.add('open');
     document.getElementById('admin-login-box').style.display = 'none';
     document.getElementById('admin-dashboard-box').style.display = 'block';
