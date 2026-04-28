@@ -996,6 +996,7 @@
     <a href="https://www.facebook.com/profile.php?id=61587159568032" target="_blank" class="social-bar-icon"><i class="fab fa-facebook-f"></i></a>
     <a href="https://www.instagram.com/pricesefinancials/" target="_blank" class="social-bar-icon"><i class="fab fa-instagram"></i></a>
     <a href="https://www.tiktok.com/@precise.financial?lang=en" target="_blank" class="social-bar-icon"><i class="fab fa-tiktok"></i></a>
+    <a href="https://www.linkedin.com/in/britteny-cooke-557439397" target="_blank" class="social-bar-icon"><i class="fab fa-linkedin-in"></i></a>
   </div>
 
   <div class="trust-bar">
@@ -1679,6 +1680,11 @@
       <a id="open-tiktok" href="#" target="_blank" class="social-open-btn">Open</a>
     </div>
     <div class="social-row">
+      <span class="social-icon-label">LinkedIn</span>
+      <input type="url" id="soc-linkedin" placeholder="https://linkedin.com/in/yourprofile" />
+      <a id="open-linkedin" href="#" target="_blank" class="social-open-btn">Open</a>
+    </div>
+    <div class="social-row">
       <span class="social-icon-label">YouTube</span>
       <input type="url" id="soc-youtube" placeholder="https://youtube.com/@yourchannel" />
       <a id="open-youtube" href="#" target="_blank" class="social-open-btn">Open</a>
@@ -1770,7 +1776,7 @@
   }
 
   function loadSocialIcons() {
-    ['facebook','instagram','tiktok'].forEach(s => {
+    ['facebook','instagram','tiktok','linkedin'].forEach(s => {
       const url = localStorage.getItem('social_' + s) || '';
       const el = document.getElementById('home-' + s);
       if (!el) return;
@@ -1793,7 +1799,7 @@
 
   // ADMIN
   const ADMIN_PASSWORD = 'Precise2026!';
-  const SOCIALS = ['facebook','instagram','tiktok'];
+  const SOCIALS = ['facebook','instagram','tiktok','linkedin'];
 
   function adminLogin() {
     const pw = document.getElementById('admin-pw-input').value;
