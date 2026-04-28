@@ -2463,6 +2463,8 @@
     var dates = {};
     try {
       var statuses = getApptStatuses();
+
+      // 30-Min Call bookings (pf_consultations) — use preferredDate
       var cons = JSON.parse(localStorage.getItem('pf_consultations') || '[]');
       cons.forEach(function(c) {
         var dateKey = c.preferredDate || '';
@@ -2472,10 +2474,26 @@
         dates[dateKey] = (dates[dateKey] || []).concat({
           time: c.preferredTime || '',
           name: c.name || 'Consultation booking',
-          notes: '30-Min Call — ' + statusLabel + (c.notes ? ' | ' + c.notes : ''),
+          notes: '30-Min Call — ' + statusLabel,
           fromBooking: true
         });
       });
+
+      // General Inquiries (pf_requests) — use prefDate
+      var reqs = JSON.parse(localStorage.getItem('pf_requests') || '[]');
+      reqs.forEach(function(r) {
+        var dateKey = r.prefDate || '';
+        if (!dateKey) return;
+        var s = statuses[r.id] || {};
+        var statusLabel = s.status === 'accepted' ? 'Confirmed' : s.status === 'reschedule' ? 'Reschedule Requested' : 'Pending';
+        dates[dateKey] = (dates[dateKey] || []).concat({
+          time: r.prefTime || '',
+          name: r.name || 'General Inquiry',
+          notes: 'General Inquiry — ' + statusLabel,
+          fromBooking: true
+        });
+      });
+
     } catch(e) {}
     return dates;
   }
