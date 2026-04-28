@@ -952,6 +952,7 @@
     <button data-page="about" onclick="showPage('about')">About</button>
     <button data-page="services" onclick="showPage('services')">Services</button>
     <button data-page="pricing" onclick="showPage('pricing')">Pricing</button>
+    <button data-page="website" onclick="showPage('website')">Website</button>
     <button data-page="contact" onclick="showPage('contact')">Contact</button>
     <button data-page="faq" onclick="showPage('faq')">FAQ</button>
     <button data-page="book" onclick="showPage('book')" style="background:var(--gold);color:var(--navy);border-radius:4px;font-weight:700;">Book Now</button>
@@ -962,7 +963,7 @@
 <!-- HOME -->
 <div id="home" class="page active">
   <div class="hero">
-    <div class="hero-web-card" onclick="showPage('pricing'); setTimeout(function(){ var el=document.getElementById('website-packages'); if(el) el.scrollIntoView({behavior:'smooth'}); }, 100);">
+    <div class="hero-web-card" onclick="showPage('website')">
       <div class="hwc-label">&#9998; Website Services</div>
       <div class="hwc-title">Custom Sites for Small Businesses</div>
       <ul class="hwc-items">
@@ -1353,6 +1354,20 @@
       </tbody>
     </table>
 
+    <div style="margin-top:3.5rem;background:var(--navy);border-radius:6px;padding:2.5rem;text-align:center;border-top:3px solid var(--gold);">
+      <div class="section-label" style="color:var(--gold);">Our Promise</div>
+      <p style="color:#fff;font-size:17px;line-height:1.8;max-width:600px;margin:0 auto;font-style:italic;">&ldquo;We don&rsquo;t just track your numbers &mdash; we help you understand them and grow your business with confidence.&rdquo;</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- WEBSITE SERVICES -->
+<div id="website" class="page">
+  <div class="section" style="max-width:960px">
+    <div class="section-label">What we build</div>
+    <div class="section-title">Website <em>Services</em></div>
+    <div class="divider"></div>
     <div id="website-packages" class="section-label" style="margin-top:3.5rem">Design &amp; Setup</div>
     <div class="section-title">Website <em>Packages</em></div>
     <div class="divider"></div>
@@ -1436,10 +1451,10 @@
     </table>
 
     <div style="margin-top:3.5rem;background:var(--navy);border-radius:6px;padding:2.5rem;text-align:center;border-top:3px solid var(--gold);">
-      <div class="section-label" style="color:var(--gold);">Our Promise</div>
-      <p style="color:#fff;font-size:17px;line-height:1.8;max-width:600px;margin:0 auto;font-style:italic;">&ldquo;We don&rsquo;t just track your numbers &mdash; we help you understand them and grow your business with confidence.&rdquo;</p>
+      <div class="section-label" style="color:var(--gold);">Ready to Get Online?</div>
+      <p style="color:#fff;font-size:17px;line-height:1.8;max-width:600px;margin:0 auto 1.5rem;font-style:italic;">&ldquo;A great website is your hardest working employee &mdash; it's open 24/7 and always making a great first impression.&rdquo;</p>
+      <button class="btn-gold" onclick="showPage('book')">Book a Free Consultation</button>
     </div>
-
   </div>
 </div>
 <!-- CONTACT -->
