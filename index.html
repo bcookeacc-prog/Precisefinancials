@@ -1916,6 +1916,7 @@
       <button class="admin-tab active" onclick="switchAdminTab('inquiries',this)">📋 Inquiries</button>
       <button class="admin-tab" onclick="switchAdminTab('consultations',this)">📅 30-Min Calls</button>
       <button class="admin-tab" onclick="switchAdminTab('website',this)">🌐 Website</button>
+      <button class="admin-tab" onclick="switchAdminTab('calendar',this)">🗓 Calendar</button>
       <button class="admin-tab" onclick="switchAdminTab('trash',this)">🗑 Trash</button>
     </div>
 
@@ -1941,6 +1942,39 @@
         <button onclick="renderWebsiteRequests()" style="font-size:12px;padding:4px 12px;background:var(--navy);color:#fff;border:none;border-radius:3px;cursor:pointer;">Refresh</button>
       </div>
       <div id="admin-website-list"></div>
+    </div>
+
+    <div id="admin-tab-calendar" class="admin-tab-content">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;">
+        <button onclick="calPrev()" style="background:var(--navy);color:#fff;border:none;border-radius:4px;padding:6px 14px;cursor:pointer;font-size:16px;">&#8592;</button>
+        <div id="cal-month-label" style="font-family:'Playfair Display',serif;font-size:18px;color:var(--navy);font-weight:700;"></div>
+        <button onclick="calNext()" style="background:var(--navy);color:#fff;border:none;border-radius:4px;padding:6px 14px;cursor:pointer;font-size:16px;">&#8594;</button>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px;margin-bottom:4px;">
+        <div style="text-align:center;font-size:11px;font-weight:700;color:var(--text-muted);padding:4px;">Sun</div>
+        <div style="text-align:center;font-size:11px;font-weight:700;color:var(--text-muted);padding:4px;">Mon</div>
+        <div style="text-align:center;font-size:11px;font-weight:700;color:var(--text-muted);padding:4px;">Tue</div>
+        <div style="text-align:center;font-size:11px;font-weight:700;color:var(--text-muted);padding:4px;">Wed</div>
+        <div style="text-align:center;font-size:11px;font-weight:700;color:var(--text-muted);padding:4px;">Thu</div>
+        <div style="text-align:center;font-size:11px;font-weight:700;color:var(--text-muted);padding:4px;">Fri</div>
+        <div style="text-align:center;font-size:11px;font-weight:700;color:var(--text-muted);padding:4px;">Sat</div>
+      </div>
+      <div id="cal-grid" style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px;"></div>
+
+      <div id="cal-day-panel" style="display:none;margin-top:1.25rem;background:#f7f9fc;border-radius:6px;padding:1.25rem;border:1px solid rgba(10,31,68,0.1);">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;">
+          <div id="cal-day-title" style="font-family:'Playfair Display',serif;font-size:16px;color:var(--navy);font-weight:700;"></div>
+          <button onclick="document.getElementById('cal-day-panel').style.display='none'" style="background:none;border:none;font-size:18px;cursor:pointer;color:var(--text-muted);">&#10005;</button>
+        </div>
+        <div id="cal-day-appts" style="margin-bottom:1rem;"></div>
+        <div style="border-top:1px solid rgba(10,31,68,0.1);padding-top:1rem;">
+          <div style="font-size:12px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.6rem;">Add Appointment</div>
+          <input id="cal-new-time" type="time" style="width:100%;padding:8px 10px;border:1px solid rgba(10,31,68,0.18);border-radius:4px;font-size:14px;margin-bottom:0.5rem;box-sizing:border-box;" />
+          <input id="cal-new-name" type="text" placeholder="Client name" style="width:100%;padding:8px 10px;border:1px solid rgba(10,31,68,0.18);border-radius:4px;font-size:14px;margin-bottom:0.5rem;box-sizing:border-box;" />
+          <input id="cal-new-notes" type="text" placeholder="Notes (optional)" style="width:100%;padding:8px 10px;border:1px solid rgba(10,31,68,0.18);border-radius:4px;font-size:14px;margin-bottom:0.75rem;box-sizing:border-box;" />
+          <button onclick="calAddAppt()" style="width:100%;background:var(--gold);color:var(--navy);border:none;border-radius:4px;padding:9px;font-weight:700;font-size:13px;cursor:pointer;">Add Appointment</button>
+        </div>
+      </div>
     </div>
 
     <div id="admin-tab-trash" class="admin-tab-content">
@@ -2256,7 +2290,139 @@
     if (tab === 'consultations') renderConsultations();
     if (tab === 'website') renderWebsiteRequests();
     if (tab === 'trash') renderTrash();
+    if (tab === 'calendar') renderCalendar();
   }
+
+  var calYear, calMonth, calSelectedDate;
+  (function() {
+    var now = new Date();
+    calYear = now.getFullYear();
+    calMonth = now.getMonth();
+  })();
+
+  function calKey(dateStr) { return 'pf_appts_' + dateStr; }
+
+  function calGetAppts(dateStr) {
+    try { return JSON.parse(localStorage.getItem(calKey(dateStr)) || '[]'); } catch(e) { return []; }
+  }
+
+  function calSaveAppts(dateStr, appts) {
+    localStorage.setItem(calKey(dateStr), JSON.stringify(appts));
+  }
+
+  function calGetConsultationDates() {
+    var dates = {};
+    try {
+      var cons = JSON.parse(localStorage.getItem('pf_consultations') || '[]');
+      cons.forEach(function(c) {
+        if (c.date) dates[c.date] = (dates[c.date] || []).concat({ time: c.time || '', name: c.name || 'Consultation booking', notes: 'Booked via website', fromBooking: true });
+      });
+    } catch(e) {}
+    return dates;
+  }
+
+  function renderCalendar() {
+    var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    document.getElementById('cal-month-label').textContent = months[calMonth] + ' ' + calYear;
+    var grid = document.getElementById('cal-grid');
+    grid.innerHTML = '';
+    var firstDay = new Date(calYear, calMonth, 1).getDay();
+    var daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+    var today = new Date();
+    var todayStr = today.getFullYear() + '-' + String(today.getMonth()+1).padStart(2,'0') + '-' + String(today.getDate()).padStart(2,'0');
+    var bookingDates = calGetConsultationDates();
+
+    for (var i = 0; i < firstDay; i++) {
+      var blank = document.createElement('div');
+      blank.style.cssText = 'min-height:44px;';
+      grid.appendChild(blank);
+    }
+
+    for (var d = 1; d <= daysInMonth; d++) {
+      var dateStr = calYear + '-' + String(calMonth+1).padStart(2,'0') + '-' + String(d).padStart(2,'0');
+      var manualAppts = calGetAppts(dateStr);
+      var bookedAppts = bookingDates[dateStr] || [];
+      var total = manualAppts.length + bookedAppts.length;
+      var isToday = dateStr === todayStr;
+      var isSelected = dateStr === calSelectedDate;
+
+      var cell = document.createElement('div');
+      cell.style.cssText = 'min-height:44px;border-radius:4px;padding:5px;cursor:pointer;text-align:center;position:relative;background:' + (isSelected ? 'var(--navy)' : isToday ? '#dce8f5' : '#f7f9fc') + ';border:1px solid ' + (isToday ? 'var(--gold)' : 'rgba(10,31,68,0.08)') + ';';
+      cell.innerHTML = '<div style="font-size:13px;font-weight:' + (isToday ? '700' : '400') + ';color:' + (isSelected ? '#fff' : 'var(--navy)') + ';">' + d + '</div>' +
+        (total > 0 ? '<div style="margin-top:3px;">' + (bookedAppts.length > 0 ? '<span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--gold);margin:1px;"></span>' : '') + (manualAppts.length > 0 ? '<span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--navy-light,#2a4a7f);margin:1px;' + (isSelected?'background:#fff;':'') + '"></span>' : '') + '</div>' : '');
+      (function(ds) {
+        cell.onclick = function() { calSelectedDate = ds; calOpenDay(ds); renderCalendar(); };
+      })(dateStr);
+      grid.appendChild(cell);
+    }
+    document.getElementById('cal-day-panel').style.display = calSelectedDate ? 'block' : 'none';
+    if (calSelectedDate) calOpenDay(calSelectedDate);
+  }
+
+  function calOpenDay(dateStr) {
+    var parts = dateStr.split('-');
+    var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    var label = months[parseInt(parts[1])-1] + ' ' + parseInt(parts[2]) + ', ' + parts[0];
+    document.getElementById('cal-day-title').textContent = label;
+    document.getElementById('cal-day-panel').style.display = 'block';
+
+    var manualAppts = calGetAppts(dateStr);
+    var bookingDates = calGetConsultationDates();
+    var bookedAppts = bookingDates[dateStr] || [];
+    var all = bookedAppts.map(function(a) { return Object.assign({}, a, {type:'booking'}); })
+                .concat(manualAppts.map(function(a,i) { return Object.assign({}, a, {type:'manual', idx:i}); }));
+    all.sort(function(a,b) { return (a.time||'').localeCompare(b.time||''); });
+
+    var html = '';
+    if (all.length === 0) {
+      html = '<p style="font-size:13px;color:var(--text-muted);margin:0;">No appointments on this day.</p>';
+    } else {
+      all.forEach(function(a) {
+        html += '<div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px;background:#fff;border-radius:4px;padding:10px 12px;margin-bottom:6px;border-left:3px solid ' + (a.type==='booking' ? 'var(--gold)' : 'var(--navy)') + ';">';
+        html += '<div>';
+        if (a.time) html += '<div style="font-size:12px;font-weight:700;color:var(--text-muted);">' + formatTime(a.time) + '</div>';
+        html += '<div style="font-size:14px;font-weight:600;color:var(--navy);">' + (a.name||'Appointment') + '</div>';
+        if (a.notes) html += '<div style="font-size:12px;color:var(--text-muted);">' + a.notes + '</div>';
+        if (a.type==='booking') html += '<div style="font-size:11px;color:var(--gold);font-weight:700;margin-top:2px;">WEBSITE BOOKING</div>';
+        html += '</div>';
+        if (a.type==='manual') html += '<button onclick="calDeleteAppt(\'' + dateStr + '\',' + a.idx + ')" style="background:none;border:none;color:#c0392b;cursor:pointer;font-size:16px;padding:0;flex-shrink:0;">&#10005;</button>';
+        html += '</div>';
+      });
+    }
+    document.getElementById('cal-day-appts').innerHTML = html;
+  }
+
+  function formatTime(t) {
+    if (!t) return '';
+    var parts = t.split(':');
+    var h = parseInt(parts[0]), m = parts[1];
+    return (h % 12 || 12) + ':' + m + ' ' + (h < 12 ? 'AM' : 'PM');
+  }
+
+  function calAddAppt() {
+    var time = document.getElementById('cal-new-time').value;
+    var name = document.getElementById('cal-new-name').value.trim();
+    var notes = document.getElementById('cal-new-notes').value.trim();
+    if (!name) { alert('Please enter a client name.'); return; }
+    var appts = calGetAppts(calSelectedDate);
+    appts.push({ time: time, name: name, notes: notes });
+    calSaveAppts(calSelectedDate, appts);
+    document.getElementById('cal-new-time').value = '';
+    document.getElementById('cal-new-name').value = '';
+    document.getElementById('cal-new-notes').value = '';
+    renderCalendar();
+  }
+
+  function calDeleteAppt(dateStr, idx) {
+    if (!confirm('Delete this appointment?')) return;
+    var appts = calGetAppts(dateStr);
+    appts.splice(idx, 1);
+    calSaveAppts(dateStr, appts);
+    renderCalendar();
+  }
+
+  function calPrev() { calMonth--; if (calMonth < 0) { calMonth = 11; calYear--; } calSelectedDate = null; renderCalendar(); }
+  function calNext() { calMonth++; if (calMonth > 11) { calMonth = 0; calYear++; } calSelectedDate = null; renderCalendar(); }
 
   function renderWebsiteRequests() {
     try {
