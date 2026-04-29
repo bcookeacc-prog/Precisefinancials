@@ -773,8 +773,8 @@
       margin-bottom: 0.25rem;
     }
     .admin-sub { font-size: 13px; color: var(--text-muted); margin-bottom: 1rem; }
-    .admin-tabs { display: flex; gap: 0; margin: 1rem 0 0; border-bottom: 2px solid rgba(10,31,68,0.1); }
-    .admin-tab { flex: 1; padding: 9px 4px; font-size: 11px; font-weight: 700; background: none; border: none; border-bottom: 3px solid transparent; margin-bottom: -2px; cursor: pointer; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.04em; transition: all 0.2s; }
+    .admin-tabs { display: flex; gap: 0; margin: 1rem 0 0; border-bottom: 2px solid rgba(10,31,68,0.1); overflow-x: auto; }
+    .admin-tab { flex-shrink: 0; padding: 9px 10px; font-size: 11px; font-weight: 700; background: none; border: none; border-bottom: 3px solid transparent; margin-bottom: -2px; cursor: pointer; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.04em; transition: all 0.2s; white-space: nowrap; }
     .admin-tab.active { color: var(--navy); border-bottom-color: var(--gold); }
     .admin-tab-content { display: none; padding-top: 1.25rem; }
     .admin-tab-content.active { display: block; }
@@ -1978,6 +1978,9 @@
       <button class="admin-tab" onclick="switchAdminTab('consultations',this)">📅 30-Min Calls</button>
       <button class="admin-tab" onclick="switchAdminTab('website',this)">🌐 Website</button>
       <button class="admin-tab" onclick="switchAdminTab('calendar',this)">🗓 Calendar</button>
+      <button class="admin-tab" onclick="switchAdminTab('clients',this)">👥 Clients</button>
+      <button class="admin-tab" onclick="switchAdminTab('revenue',this)">💰 Revenue</button>
+      <button class="admin-tab" onclick="switchAdminTab('tools',this)">🛠 Tools</button>
       <button class="admin-tab" onclick="switchAdminTab('trash',this)">🗑 Trash</button>
     </div>
 
@@ -2045,6 +2048,70 @@
         <button onclick="emptyTrash()" style="font-size:12px;padding:4px 12px;background:#c0392b;color:#fff;border:none;border-radius:3px;cursor:pointer;">Empty Trash</button>
       </div>
     <div id="admin-trash-list"></div>
+    </div>
+
+    <div id="admin-tab-clients" class="admin-tab-content">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;">
+        <p style="font-size:13px;color:var(--text-muted);margin:0;">Saved client contacts.</p>
+        <button onclick="showAddClientForm()" style="font-size:12px;padding:5px 14px;background:var(--navy);color:#fff;border:none;border-radius:3px;cursor:pointer;">+ Add Client</button>
+      </div>
+      <div id="client-add-form" style="display:none;background:#f7f9fc;border-radius:6px;padding:1rem;margin-bottom:1rem;border:1px solid rgba(10,31,68,0.1);">
+        <div style="font-size:12px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.75rem;">New Client</div>
+        <input id="cli-name" type="text" placeholder="Full Name *" style="width:100%;padding:8px 10px;border:1px solid rgba(10,31,68,0.18);border-radius:4px;font-size:13px;margin-bottom:6px;box-sizing:border-box;" />
+        <input id="cli-email" type="email" placeholder="Email" style="width:100%;padding:8px 10px;border:1px solid rgba(10,31,68,0.18);border-radius:4px;font-size:13px;margin-bottom:6px;box-sizing:border-box;" />
+        <input id="cli-phone" type="text" placeholder="Phone" style="width:100%;padding:8px 10px;border:1px solid rgba(10,31,68,0.18);border-radius:4px;font-size:13px;margin-bottom:6px;box-sizing:border-box;" />
+        <input id="cli-services" type="text" placeholder="Services (e.g. Bookkeeping, Payroll)" style="width:100%;padding:8px 10px;border:1px solid rgba(10,31,68,0.18);border-radius:4px;font-size:13px;margin-bottom:6px;box-sizing:border-box;" />
+        <input id="cli-notes" type="text" placeholder="Notes (optional)" style="width:100%;padding:8px 10px;border:1px solid rgba(10,31,68,0.18);border-radius:4px;font-size:13px;margin-bottom:10px;box-sizing:border-box;" />
+        <div style="display:flex;gap:8px;">
+          <button onclick="saveClient()" style="flex:1;background:var(--gold);color:var(--navy);border:none;border-radius:4px;padding:8px;font-weight:700;font-size:13px;cursor:pointer;">Save Client</button>
+          <button onclick="hideAddClientForm()" style="flex:1;background:none;border:1px solid rgba(10,31,68,0.2);border-radius:4px;padding:8px;font-size:13px;cursor:pointer;color:var(--text-muted);">Cancel</button>
+        </div>
+      </div>
+      <input id="client-search" type="text" placeholder="Search clients..." oninput="renderClients()" style="width:100%;padding:8px 10px;border:1px solid rgba(10,31,68,0.18);border-radius:4px;font-size:13px;margin-bottom:0.75rem;box-sizing:border-box;" />
+      <div id="client-list"></div>
+    </div>
+
+    <div id="admin-tab-revenue" class="admin-tab-content">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;">
+        <div>
+          <div style="font-size:13px;color:var(--text-muted);">Track what you invoice each month.</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <button onclick="revChangeYear(-1)" style="background:none;border:none;cursor:pointer;font-size:16px;color:var(--navy);">&#8249;</button>
+          <span id="rev-year-label" style="font-weight:700;font-size:14px;color:var(--navy);"></span>
+          <button onclick="revChangeYear(1)" style="background:none;border:none;cursor:pointer;font-size:16px;color:var(--navy);">&#8250;</button>
+        </div>
+      </div>
+      <div id="rev-month-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:1rem;"></div>
+      <div id="rev-detail" style="display:none;background:#f7f9fc;border-radius:6px;padding:1rem;border:1px solid rgba(10,31,68,0.1);">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.75rem;">
+          <div id="rev-detail-title" style="font-weight:700;color:var(--navy);font-size:14px;"></div>
+          <button onclick="document.getElementById('rev-detail').style.display='none'" style="background:none;border:none;font-size:18px;cursor:pointer;color:var(--text-muted);">&#10005;</button>
+        </div>
+        <div style="display:flex;gap:6px;margin-bottom:0.75rem;">
+          <input id="rev-desc" type="text" placeholder="Description (e.g. Bookkeeping — John Smith)" style="flex:2;padding:7px 10px;border:1px solid rgba(10,31,68,0.18);border-radius:4px;font-size:13px;" />
+          <input id="rev-amount" type="number" placeholder="Amount $" style="flex:1;padding:7px 10px;border:1px solid rgba(10,31,68,0.18);border-radius:4px;font-size:13px;" />
+          <button onclick="addRevEntry()" style="background:var(--gold);color:var(--navy);border:none;border-radius:4px;padding:7px 12px;font-weight:700;font-size:13px;cursor:pointer;">Add</button>
+        </div>
+        <div id="rev-entry-list"></div>
+        <div id="rev-month-total" style="text-align:right;font-weight:700;font-size:15px;color:var(--navy);margin-top:0.5rem;padding-top:0.5rem;border-top:1px solid rgba(10,31,68,0.1);"></div>
+      </div>
+      <div style="background:var(--navy);color:#fff;border-radius:6px;padding:1rem;margin-top:0.5rem;text-align:center;">
+        <div style="font-size:12px;opacity:0.7;text-transform:uppercase;letter-spacing:0.05em;">Year Total</div>
+        <div id="rev-year-total" style="font-size:22px;font-weight:700;color:var(--gold);margin-top:4px;"></div>
+      </div>
+    </div>
+
+    <div id="admin-tab-tools" class="admin-tab-content">
+      <div style="font-size:12px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.75rem;">Quick Notes &amp; Reminders</div>
+      <div id="notes-list" style="margin-bottom:0.75rem;"></div>
+      <div style="display:flex;gap:8px;margin-bottom:1.5rem;">
+        <input id="note-input" type="text" placeholder="Type a note or reminder..." onkeydown="if(event.key==='Enter')addNote()" style="flex:1;padding:8px 10px;border:1px solid rgba(10,31,68,0.18);border-radius:4px;font-size:13px;" />
+        <button onclick="addNote()" style="background:var(--gold);color:var(--navy);border:none;border-radius:4px;padding:8px 14px;font-weight:700;font-size:13px;cursor:pointer;">Add</button>
+      </div>
+      <div style="font-size:12px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.75rem;">Response Templates</div>
+      <p style="font-size:12px;color:var(--text-muted);margin:0 0 0.75rem;">Click Copy to copy a message, then paste it wherever you need it.</p>
+      <div id="templates-list"></div>
     </div>
 
     <div class="admin-logout" onclick="adminLogout()">Log Out</div>
@@ -2180,16 +2247,25 @@
         const status = s.status || 'pending';
         const statusColor = status === 'accepted' ? '#1a6b3c' : status === 'cancelled' ? '#c0392b' : status === 'reschedule' ? '#b8860b' : '#888';
         const statusLabel = status === 'accepted' ? '✅ Meeting Confirmed' : status === 'cancelled' ? '❌ Meeting Cancelled' : status === 'reschedule' ? '🔁 Time Requested' : '⏳ Pending';
-        html += '<div class="request-card">';
+        const age = requestAge(r.id);
+        const flags = getFlags(); const rf = flags[r.id] || {};
+        html += '<div class="request-card" style="border-left:3px solid ' + (rf.priority ? '#c0392b' : 'transparent') + ';">';
         html += '<button class="request-delete-btn" onclick="deleteRequest(' + i + ')" title="Move to Trash">&times;</button>';
-        html += '<div class="request-card-name">' + (r.name || '') + '</div>';
+        html += '<div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:4px;">';
+        html += '<div class="request-card-name" style="margin:0;">' + (r.name || '') + '</div>';
+        html += '<span style="font-size:11px;font-weight:700;color:' + age.color + ';">🕐 ' + age.label + '</span>';
+        html += '</div>';
         html += '<div class="request-card-meta">' + (r.email || '') + ' | ' + (r.phone || '') + '</div>';
         html += '<div class="request-card-services">' + (r.services && r.services.length ? r.services.join(', ') : 'No services selected') + '</div>';
         html += '<div class="request-card-message">' + (r.message || '') + '</div>';
         if (r.prefDate || r.prefTime) html += '<div style="font-size:13px;color:#1a6b3c;font-weight:600;margin-top:4px;">📅 Preferred: ' + (r.prefDate || '') + (r.prefDate && r.prefTime ? ' at ' : '') + (r.prefTime ? formatTime(r.prefTime) : '') + '</div>';
         html += '<div style="font-size:12px;font-weight:700;color:' + statusColor + ';margin:6px 0 2px;">' + statusLabel + '</div>';
         if (status === 'reschedule' && s.note) html += '<div style="font-size:12px;color:var(--text-muted);margin-bottom:4px;">Suggested: ' + s.note + '</div>';
-        html += '<div style="display:flex;gap:8px;margin-top:8px;">';
+        html += '<div style="display:flex;gap:6px;margin:6px 0;">';
+        html += '<button onclick="toggleFlag(' + r.id + ',\'priority\',\'inquiries\')" style="font-size:11px;padding:3px 8px;border-radius:3px;border:1px solid ' + (rf.priority ? '#c0392b' : 'rgba(10,31,68,0.15)') + ';background:' + (rf.priority ? '#fdf2f2' : 'none') + ';color:' + (rf.priority ? '#c0392b' : 'var(--text-muted)') + ';cursor:pointer;font-weight:600;">⚡ Priority</button>';
+        html += '<button onclick="toggleFlag(' + r.id + ',\'followup\',\'inquiries\')" style="font-size:11px;padding:3px 8px;border-radius:3px;border:1px solid ' + (rf.followup ? '#b8860b' : 'rgba(10,31,68,0.15)') + ';background:' + (rf.followup ? '#fffbf0' : 'none') + ';color:' + (rf.followup ? '#b8860b' : 'var(--text-muted)') + ';cursor:pointer;font-weight:600;">👁 Follow Up</button>';
+        html += '</div>';
+        html += '<div style="display:flex;gap:8px;margin-top:4px;">';
         if (status !== 'accepted' && status !== 'cancelled') html += '<button onclick="acceptRequest(' + r.id + ')" style="flex:1;background:#1a6b3c;color:#fff;border:none;border-radius:4px;padding:7px;font-size:12px;font-weight:700;cursor:pointer;">✅ Confirm Meeting</button>';
         html += '<button onclick="requestRescheduleInquiry(' + r.id + ')" style="flex:1;background:var(--gold);color:var(--navy);border:none;border-radius:4px;padding:7px;font-size:12px;font-weight:700;cursor:pointer;">📅 Set Date &amp; Time</button>';
         html += '</div>';
@@ -2399,15 +2475,24 @@
         const status = s.status || 'pending';
         const statusColor = status === 'accepted' ? '#1a6b3c' : status === 'cancelled' ? '#c0392b' : status === 'reschedule' ? '#b8860b' : '#888';
         const statusLabel = status === 'accepted' ? '✅ Confirmed' : status === 'cancelled' ? '❌ Meeting Cancelled' : status === 'reschedule' ? '🔁 Reschedule Requested' : '⏳ Pending';
-        html += '<div class="request-card" style="border-top-color:#1a6b3c;">';
+        const age2 = requestAge(r.id);
+        const flags2 = getFlags(); const rf2 = flags2[r.id] || {};
+        html += '<div class="request-card" style="border-top-color:#1a6b3c;border-left:3px solid ' + (rf2.priority ? '#c0392b' : 'transparent') + ';">';
         html += '<button class="request-delete-btn" onclick="deleteConsultation(' + i + ')" title="Delete">&times;</button>';
-        html += '<div class="request-card-name">' + (r.name || '') + '</div>';
+        html += '<div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:4px;">';
+        html += '<div class="request-card-name" style="margin:0;">' + (r.name || '') + '</div>';
+        html += '<span style="font-size:11px;font-weight:700;color:' + age2.color + ';">🕐 ' + age2.label + '</span>';
+        html += '</div>';
         html += '<div class="request-card-meta">' + (r.email || '') + ' | ' + (r.phone || '') + '</div>';
         html += '<div class="request-card-services" style="color:#1a6b3c;">Preferred: ' + (r.preferredDate || '') + ' at ' + (r.preferredTime || '') + '</div>';
         if (r.notes) html += '<div class="request-card-message">' + r.notes + '</div>';
         html += '<div style="font-size:12px;font-weight:700;color:' + statusColor + ';margin:6px 0 2px;">' + statusLabel + '</div>';
         if (status === 'reschedule' && s.note) html += '<div style="font-size:12px;color:var(--text-muted);margin-bottom:4px;">Suggested: ' + s.note + '</div>';
-        html += '<div style="display:flex;gap:8px;margin-top:8px;">';
+        html += '<div style="display:flex;gap:6px;margin:6px 0;">';
+        html += '<button onclick="toggleFlag(' + r.id + ',\'priority\',\'consultations\')" style="font-size:11px;padding:3px 8px;border-radius:3px;border:1px solid ' + (rf2.priority ? '#c0392b' : 'rgba(10,31,68,0.15)') + ';background:' + (rf2.priority ? '#fdf2f2' : 'none') + ';color:' + (rf2.priority ? '#c0392b' : 'var(--text-muted)') + ';cursor:pointer;font-weight:600;">⚡ Priority</button>';
+        html += '<button onclick="toggleFlag(' + r.id + ',\'followup\',\'consultations\')" style="font-size:11px;padding:3px 8px;border-radius:3px;border:1px solid ' + (rf2.followup ? '#b8860b' : 'rgba(10,31,68,0.15)') + ';background:' + (rf2.followup ? '#fffbf0' : 'none') + ';color:' + (rf2.followup ? '#b8860b' : 'var(--text-muted)') + ';cursor:pointer;font-weight:600;">👁 Follow Up</button>';
+        html += '</div>';
+        html += '<div style="display:flex;gap:8px;margin-top:4px;">';
         if (status !== 'accepted' && status !== 'cancelled') html += '<button onclick="acceptConsultation(' + r.id + ')" style="flex:1;background:#1a6b3c;color:#fff;border:none;border-radius:4px;padding:7px;font-size:12px;font-weight:700;cursor:pointer;">✅ Accept</button>';
         html += '<button onclick="requestReschedule(' + r.id + ')" style="flex:1;background:var(--gold);color:var(--navy);border:none;border-radius:4px;padding:7px;font-size:12px;font-weight:700;cursor:pointer;">🔁 Request New Time</button>';
         html += '</div>';
@@ -2441,6 +2526,9 @@
     if (tab === 'website') renderWebsiteRequests();
     if (tab === 'trash') renderTrash();
     if (tab === 'calendar') renderCalendar();
+    if (tab === 'clients') renderClients();
+    if (tab === 'revenue') renderRevenue();
+    if (tab === 'tools') renderTools();
   }
 
   var calYear, calMonth, calSelectedDate, calEditingIdx = null, calEditingBookingId = null;
@@ -2700,6 +2788,227 @@
   function calPrev() { calMonth--; if (calMonth < 0) { calMonth = 11; calYear--; } calSelectedDate = null; renderCalendar(); }
   function calNext() { calMonth++; if (calMonth > 11) { calMonth = 0; calYear++; } calSelectedDate = null; renderCalendar(); }
 
+  // ── AGE INDICATOR ──────────────────────────────────────────
+  function requestAge(id) {
+    var days = Math.floor((Date.now() - id) / 86400000);
+    if (days === 0) return { label: 'Today', color: '#1a6b3c' };
+    if (days === 1) return { label: '1 day ago', color: '#1a6b3c' };
+    if (days <= 3) return { label: days + ' days ago', color: '#b8860b' };
+    return { label: days + ' days ago', color: '#c0392b' };
+  }
+
+  // ── FLAGS ──────────────────────────────────────────────────
+  function getFlags() {
+    try { return JSON.parse(localStorage.getItem('pf_flags') || '{}'); } catch(e) { return {}; }
+  }
+  function toggleFlag(id, flag, tab) {
+    var flags = getFlags();
+    if (!flags[id]) flags[id] = {};
+    flags[id][flag] = !flags[id][flag];
+    if (!flags[id][flag]) delete flags[id][flag];
+    if (!Object.keys(flags[id]).length) delete flags[id];
+    localStorage.setItem('pf_flags', JSON.stringify(flags));
+    if (tab === 'inquiries') renderRequests();
+    else if (tab === 'consultations') renderConsultations();
+    else if (tab === 'website') renderWebsiteRequests();
+  }
+
+  // ── CLIENTS ────────────────────────────────────────────────
+  function getClients() {
+    try { return JSON.parse(localStorage.getItem('pf_clients') || '[]'); } catch(e) { return []; }
+  }
+  function saveClients(c) { localStorage.setItem('pf_clients', JSON.stringify(c)); }
+  function showAddClientForm() {
+    document.getElementById('client-add-form').style.display = 'block';
+    document.getElementById('cli-name').focus();
+  }
+  function hideAddClientForm() {
+    document.getElementById('client-add-form').style.display = 'none';
+    ['cli-name','cli-email','cli-phone','cli-services','cli-notes'].forEach(function(id){ document.getElementById(id).value = ''; });
+  }
+  function saveClient() {
+    var name = document.getElementById('cli-name').value.trim();
+    if (!name) { alert('Please enter a name.'); return; }
+    var clients = getClients();
+    clients.unshift({ id: Date.now(), name: name, email: document.getElementById('cli-email').value.trim(), phone: document.getElementById('cli-phone').value.trim(), services: document.getElementById('cli-services').value.trim(), notes: document.getElementById('cli-notes').value.trim(), added: new Date().toLocaleDateString() });
+    saveClients(clients);
+    hideAddClientForm();
+    renderClients();
+  }
+  function deleteClient(id) {
+    if (!confirm('Remove this client?')) return;
+    saveClients(getClients().filter(function(c){ return c.id !== id; }));
+    renderClients();
+  }
+  function renderClients() {
+    var list = document.getElementById('client-list');
+    if (!list) return;
+    var clients = getClients();
+    var q = (document.getElementById('client-search') ? document.getElementById('client-search').value.toLowerCase() : '');
+    if (q) clients = clients.filter(function(c){ return (c.name+c.email+c.phone+c.services).toLowerCase().includes(q); });
+    if (clients.length === 0) { list.innerHTML = '<div class="no-requests">' + (q ? 'No clients match your search.' : 'No clients saved yet. Click + Add Client to get started.') + '</div>'; return; }
+    var html = '';
+    clients.forEach(function(c) {
+      html += '<div class="request-card">';
+      html += '<button class="request-delete-btn" onclick="deleteClient(' + c.id + ')" title="Remove">&times;</button>';
+      html += '<div class="request-card-name">' + c.name + '</div>';
+      if (c.email || c.phone) html += '<div class="request-card-meta">' + [c.email, c.phone].filter(Boolean).join(' | ') + '</div>';
+      if (c.services) html += '<div class="request-card-services">' + c.services + '</div>';
+      if (c.notes) html += '<div class="request-card-message">' + c.notes + '</div>';
+      html += '<div class="request-card-date">Added: ' + c.added + '</div>';
+      html += '</div>';
+    });
+    list.innerHTML = html;
+  }
+
+  // ── REVENUE ────────────────────────────────────────────────
+  var revYear = new Date().getFullYear(), revSelectedMonth = null;
+  function revChangeYear(dir) { revYear += dir; revSelectedMonth = null; renderRevenue(); }
+  function getRevenue() { try { return JSON.parse(localStorage.getItem('pf_revenue') || '{}'); } catch(e) { return {}; } }
+  function saveRevenue(r) { localStorage.setItem('pf_revenue', JSON.stringify(r)); }
+  function revKey(y, m) { return y + '-' + String(m + 1).padStart(2, '0'); }
+  function revMonthTotal(entries) { return (entries || []).reduce(function(s, e) { return s + (parseFloat(e.amount) || 0); }, 0); }
+  function renderRevenue() {
+    var label = document.getElementById('rev-year-label');
+    if (label) label.textContent = revYear;
+    var rev = getRevenue();
+    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    var grid = document.getElementById('rev-month-grid');
+    if (!grid) return;
+    var yearTotal = 0; var html = '';
+    months.forEach(function(m, i) {
+      var key = revKey(revYear, i);
+      var entries = rev[key] || [];
+      var total = revMonthTotal(entries);
+      yearTotal += total;
+      var isSelected = revSelectedMonth === i;
+      html += '<div onclick="revSelectMonth(' + i + ')" style="cursor:pointer;background:' + (isSelected ? 'var(--navy)' : '#f7f9fc') + ';border:1px solid ' + (isSelected ? 'var(--navy)' : 'rgba(10,31,68,0.1)') + ';border-radius:6px;padding:10px 8px;text-align:center;">';
+      html += '<div style="font-size:12px;font-weight:700;color:' + (isSelected ? '#fff' : 'var(--navy)') + ';">' + m + '</div>';
+      html += '<div style="font-size:13px;font-weight:700;color:' + (isSelected ? 'var(--gold)' : (total > 0 ? '#1a6b3c' : 'var(--text-muted)')) + ';margin-top:3px;">' + (total > 0 ? '$' + total.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2}) : '—') + '</div>';
+      html += '</div>';
+    });
+    grid.innerHTML = html;
+    var yt = document.getElementById('rev-year-total');
+    if (yt) yt.textContent = '$' + yearTotal.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
+    if (revSelectedMonth !== null) revRenderDetail();
+  }
+  function revSelectMonth(m) {
+    revSelectedMonth = (revSelectedMonth === m) ? null : m;
+    var detail = document.getElementById('rev-detail');
+    if (detail) detail.style.display = revSelectedMonth !== null ? 'block' : 'none';
+    renderRevenue();
+  }
+  function revRenderDetail() {
+    var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    var title = document.getElementById('rev-detail-title');
+    if (title) title.textContent = months[revSelectedMonth] + ' ' + revYear;
+    var rev = getRevenue(); var key = revKey(revYear, revSelectedMonth);
+    var entries = rev[key] || [];
+    var html = '';
+    if (entries.length === 0) { html = '<p style="font-size:13px;color:var(--text-muted);margin:0 0 0.5rem;">No entries yet. Add one above.</p>'; }
+    else {
+      entries.forEach(function(e, i) {
+        html += '<div style="display:flex;align-items:center;justify-content:space-between;padding:7px 0;border-bottom:1px solid rgba(10,31,68,0.07);">';
+        html += '<div style="font-size:13px;color:var(--navy);">' + e.desc + '</div>';
+        html += '<div style="display:flex;align-items:center;gap:10px;">';
+        html += '<div style="font-size:13px;font-weight:700;color:#1a6b3c;">$' + parseFloat(e.amount).toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2}) + '</div>';
+        html += '<button onclick="deleteRevEntry(' + i + ')" style="background:none;border:none;color:#c0392b;cursor:pointer;font-size:15px;padding:0;">&#10005;</button>';
+        html += '</div></div>';
+      });
+    }
+    var total = revMonthTotal(entries);
+    var el = document.getElementById('rev-entry-list'); if (el) el.innerHTML = html;
+    var tot = document.getElementById('rev-month-total'); if (tot) tot.textContent = 'Total: $' + total.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
+  }
+  function addRevEntry() {
+    var desc = document.getElementById('rev-desc').value.trim();
+    var amount = document.getElementById('rev-amount').value.trim();
+    if (!desc || !amount) { alert('Please enter a description and amount.'); return; }
+    var rev = getRevenue(); var key = revKey(revYear, revSelectedMonth);
+    if (!rev[key]) rev[key] = [];
+    rev[key].push({ desc: desc, amount: parseFloat(amount) });
+    saveRevenue(rev);
+    document.getElementById('rev-desc').value = '';
+    document.getElementById('rev-amount').value = '';
+    renderRevenue();
+  }
+  function deleteRevEntry(i) {
+    if (!confirm('Remove this entry?')) return;
+    var rev = getRevenue(); var key = revKey(revYear, revSelectedMonth);
+    if (rev[key]) rev[key].splice(i, 1);
+    saveRevenue(rev);
+    renderRevenue();
+  }
+
+  // ── TOOLS: NOTES + TEMPLATES ───────────────────────────────
+  function getNotes() { try { return JSON.parse(localStorage.getItem('pf_notes') || '[]'); } catch(e) { return []; } }
+  function saveNotes(n) { localStorage.setItem('pf_notes', JSON.stringify(n)); }
+  function addNote() {
+    var input = document.getElementById('note-input');
+    var text = input.value.trim();
+    if (!text) return;
+    var notes = getNotes();
+    notes.unshift({ id: Date.now(), text: text, date: new Date().toLocaleDateString() });
+    saveNotes(notes);
+    input.value = '';
+    renderTools();
+  }
+  function deleteNote(id) {
+    saveNotes(getNotes().filter(function(n){ return n.id !== id; }));
+    renderTools();
+  }
+  function copyTemplate(btn, text) {
+    var orig = btn.textContent;
+    function showDone() {
+      btn.textContent = 'Copied!'; btn.style.background = '#1a6b3c'; btn.style.color = '#fff';
+      setTimeout(function(){ btn.textContent = orig; btn.style.background = 'var(--gold)'; btn.style.color = 'var(--navy)'; }, 1500);
+    }
+    function fallback() {
+      var ta = document.createElement('textarea');
+      ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.focus(); ta.select();
+      try { document.execCommand('copy'); } catch(e) {}
+      document.body.removeChild(ta); showDone();
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(showDone).catch(fallback);
+    } else { fallback(); }
+  }
+  function renderTools() {
+    var notesList = document.getElementById('notes-list');
+    if (notesList) {
+      var notes = getNotes();
+      if (notes.length === 0) { notesList.innerHTML = '<p style="font-size:13px;color:var(--text-muted);margin:0 0 0.5rem;">No notes yet.</p>'; }
+      else {
+        notesList.innerHTML = notes.map(function(n) {
+          return '<div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px;background:#fffbf0;border:1px solid rgba(184,134,11,0.2);border-radius:4px;padding:8px 10px;margin-bottom:6px;">' +
+            '<div><div style="font-size:13px;color:var(--navy);">' + n.text + '</div><div style="font-size:11px;color:var(--text-muted);margin-top:2px;">' + n.date + '</div></div>' +
+            '<button onclick="deleteNote(' + n.id + ')" style="background:none;border:none;color:#c0392b;cursor:pointer;font-size:15px;padding:0;flex-shrink:0;">&#10005;</button>' +
+            '</div>';
+        }).join('');
+      }
+    }
+    var tpl = document.getElementById('templates-list');
+    if (!tpl) return;
+    var templates = [
+      { label: 'Thank You — General Inquiry', text: 'Hi [Name],\n\nThank you so much for reaching out to Precise Financials! I appreciate your interest and will be in touch within 1–3 business days.\n\nLooking forward to connecting!\n\nBest,\nBritteny Cooke\nPrecise Financials, LLC\n435-817-7002' },
+      { label: 'Meeting Confirmed', text: 'Hi [Name],\n\nYour appointment with Precise Financials is confirmed for [Date] at [Time]. I look forward to speaking with you!\n\nIf you need to reschedule, please reply to this message or call me at 435-817-7002.\n\nBest,\nBritteny Cooke\nPrecise Financials, LLC' },
+      { label: 'Follow-Up — No Response', text: 'Hi [Name],\n\nI wanted to follow up on your recent inquiry with Precise Financials. I\'d love to help you get your finances organized!\n\nFeel free to reply here or call me at 435-817-7002 to set up a free 30-minute consultation.\n\nBest,\nBritteny Cooke\nPrecise Financials, LLC' },
+      { label: 'Reschedule Request', text: 'Hi [Name],\n\nI need to reschedule our upcoming appointment. Would [Date] at [Time] work for you? Please let me know and I\'ll get that confirmed right away.\n\nApologies for any inconvenience!\n\nBest,\nBritteny Cooke\nPrecise Financials, LLC\n435-817-7002' },
+      { label: 'Quote / Proposal Ready', text: 'Hi [Name],\n\nThank you for our conversation! Based on your needs, here is what I\'d recommend:\n\n[Service] — $[Amount]/month\n\nThis includes [brief description]. I\'d love to get started whenever you\'re ready. Reply here or call me at 435-817-7002.\n\nBest,\nBritteny Cooke\nPrecise Financials, LLC' },
+      { label: 'Missed Appointment', text: 'Hi [Name],\n\nI noticed we missed our appointment today. No worries — I\'d love to find a time that works better for you!\n\nPlease reply or call me at 435-817-7002 to reschedule your free 30-minute consultation.\n\nBest,\nBritteny Cooke\nPrecise Financials, LLC' }
+    ];
+    tpl.innerHTML = templates.map(function(t) {
+      return '<div style="background:#f7f9fc;border:1px solid rgba(10,31,68,0.1);border-radius:6px;padding:12px;margin-bottom:10px;">' +
+        '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">' +
+        '<div style="font-size:12px;font-weight:700;color:var(--navy);">' + t.label + '</div>' +
+        '<button onclick="copyTemplate(this,\'' + t.text.replace(/\\/g,'\\\\').replace(/'/g,"\\'").replace(/\n/g,'\\n') + '\')" style="font-size:11px;padding:4px 10px;background:var(--gold);color:var(--navy);border:none;border-radius:3px;cursor:pointer;font-weight:700;flex-shrink:0;">Copy</button>' +
+        '</div>' +
+        '<div style="font-size:12px;color:var(--text-muted);white-space:pre-line;line-height:1.5;">' + t.text + '</div>' +
+        '</div>';
+    }).join('');
+  }
+
   function acceptWebsiteRequest(id) {
     setApptStatus(id, 'accepted', '');
     renderWebsiteRequests();
@@ -2726,9 +3035,14 @@
         var status = s.status || 'pending';
         var statusColor = status === 'accepted' ? '#1a6b3c' : status === 'reschedule' ? '#b8860b' : '#888';
         var statusLabel = status === 'accepted' ? '✅ Consultation Confirmed' : status === 'reschedule' ? '🔁 Time Requested' : '⏳ Pending';
-        html += '<div class="request-card" style="position:relative;">';
+        var age3 = requestAge(r.id);
+        var flags3 = getFlags(); var rf3 = flags3[r.id] || {};
+        html += '<div class="request-card" style="position:relative;border-left:3px solid ' + (rf3.priority ? '#c0392b' : 'transparent') + ';">';
         html += '<button onclick="deleteWebsiteRequest(' + i + ')" class="request-delete-btn" title="Delete">&#10005;</button>';
-        html += '<div class="request-card-name">' + r.name + '</div>';
+        html += '<div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:4px;">';
+        html += '<div class="request-card-name" style="margin:0;">' + r.name + '</div>';
+        html += '<span style="font-size:11px;font-weight:700;color:' + age3.color + ';">🕐 ' + age3.label + '</span>';
+        html += '</div>';
         html += '<div class="request-card-detail">' + r.email + (r.phone ? ' &bull; ' + r.phone : '') + '</div>';
         if (r.business) html += '<div class="request-card-detail"><strong>Business:</strong> ' + r.business + '</div>';
         if (r.package) html += '<div class="request-card-detail"><strong>Package:</strong> ' + r.package + '</div>';
@@ -2739,7 +3053,11 @@
         if (r.notes) html += '<div class="request-card-detail"><strong>Notes:</strong> ' + r.notes + '</div>';
         html += '<div style="font-size:12px;font-weight:700;color:' + statusColor + ';margin:6px 0 2px;">' + statusLabel + '</div>';
         if (status === 'reschedule' && s.note) html += '<div style="font-size:12px;color:var(--text-muted);margin-bottom:4px;">Suggested: ' + s.note + '</div>';
-        html += '<div style="display:flex;gap:8px;margin-top:8px;">';
+        html += '<div style="display:flex;gap:6px;margin:6px 0;">';
+        html += '<button onclick="toggleFlag(' + r.id + ',\'priority\',\'website\')" style="font-size:11px;padding:3px 8px;border-radius:3px;border:1px solid ' + (rf3.priority ? '#c0392b' : 'rgba(10,31,68,0.15)') + ';background:' + (rf3.priority ? '#fdf2f2' : 'none') + ';color:' + (rf3.priority ? '#c0392b' : 'var(--text-muted)') + ';cursor:pointer;font-weight:600;">⚡ Priority</button>';
+        html += '<button onclick="toggleFlag(' + r.id + ',\'followup\',\'website\')" style="font-size:11px;padding:3px 8px;border-radius:3px;border:1px solid ' + (rf3.followup ? '#b8860b' : 'rgba(10,31,68,0.15)') + ';background:' + (rf3.followup ? '#fffbf0' : 'none') + ';color:' + (rf3.followup ? '#b8860b' : 'var(--text-muted)') + ';cursor:pointer;font-weight:600;">👁 Follow Up</button>';
+        html += '</div>';
+        html += '<div style="display:flex;gap:8px;margin-top:4px;">';
         if (status !== 'accepted') html += '<button onclick="acceptWebsiteRequest(' + r.id + ')" style="flex:1;background:#1a6b3c;color:#fff;border:none;border-radius:4px;padding:7px;font-size:12px;font-weight:700;cursor:pointer;">✅ Confirm Consultation</button>';
         html += '<button onclick="requestRescheduleWebsite(' + r.id + ')" style="flex:1;background:var(--gold);color:var(--navy);border:none;border-radius:4px;padding:7px;font-size:12px;font-weight:700;cursor:pointer;">📅 Set Date &amp; Time</button>';
         html += '</div>';
