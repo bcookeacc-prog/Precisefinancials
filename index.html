@@ -1614,7 +1614,7 @@
         <div class="contact-detail">
           <div class="contact-icon">&#128222;</div><div><div class="contact-label">Phone</div>
             <!-- REPLACE: Your phone number -->
-            <div class="contact-value">(435) 817-7002</div>
+            <div class="contact-value">(435)817-7002</div>
           </div>
         </div>
         <div class="contact-detail">
@@ -2152,7 +2152,7 @@
 <footer>
   <div class="footer-logo">Precise Financials, LLC</div>
   <div class="footer-contact">
-    <a href="tel:4358177002">&#128222; 435-817-7002</a>
+    <a href="tel:4358177002">&#128222; (435)817-7002</a>
     <a href="mailto:bcookeacc@gmail.com">&#9993; bcookeacc@gmail.com</a>
   </div>
   <div style="display:flex;justify-content:center;gap:1rem;margin-bottom:1rem;">
@@ -2285,7 +2285,7 @@
         html += '<div class="request-card-name" style="margin:0;">' + (r.name || '') + '</div>';
         html += '<span style="font-size:11px;font-weight:700;color:' + age.color + ';">🕐 ' + age.label + '</span>';
         html += '</div>';
-        html += '<div class="request-card-meta">' + (r.email || '') + ' | ' + (r.phone || '') + '</div>';
+        html += '<div class="request-card-meta">' + (r.email || '') + ' | ' + formatPhone(r.phone || '') + '</div>';
         html += '<div class="request-card-services">' + (r.services && r.services.length ? r.services.join(', ') : 'No services selected') + '</div>';
         html += '<div class="request-card-message">' + (r.message || '') + '</div>';
         if (r.prefDate || r.prefTime) html += '<div style="font-size:13px;color:#1a6b3c;font-weight:600;margin-top:4px;">📅 Preferred: ' + (r.prefDate || '') + (r.prefDate && r.prefTime ? ' at ' : '') + (r.prefTime ? formatTime(r.prefTime) : '') + '</div>';
@@ -2529,7 +2529,7 @@
         html += '<div class="request-card-name" style="margin:0;">' + (r.name || '') + '</div>';
         html += '<span style="font-size:11px;font-weight:700;color:' + age2.color + ';">🕐 ' + age2.label + '</span>';
         html += '</div>';
-        html += '<div class="request-card-meta">' + (r.email || '') + ' | ' + (r.phone || '') + '</div>';
+        html += '<div class="request-card-meta">' + (r.email || '') + ' | ' + formatPhone(r.phone || '') + '</div>';
         html += '<div class="request-card-services" style="color:#1a6b3c;">Preferred: ' + (r.preferredDate || '') + ' at ' + (r.preferredTime || '') + '</div>';
         if (r.notes) html += '<div class="request-card-message">' + r.notes + '</div>';
         html += '<div style="font-size:12px;font-weight:700;color:' + statusColor + ';margin:6px 0 2px;">' + statusLabel + '</div>';
@@ -2731,6 +2731,14 @@
     document.getElementById('cal-day-appts').innerHTML = html;
   }
 
+  function formatPhone(p) {
+    if (!p) return '';
+    var digits = p.replace(/\D/g, '');
+    if (digits.length === 10) return '(' + digits.slice(0,3) + ')' + digits.slice(3,6) + '-' + digits.slice(6);
+    if (digits.length === 11 && digits[0] === '1') return '(' + digits.slice(1,4) + ')' + digits.slice(4,7) + '-' + digits.slice(7);
+    return p;
+  }
+
   function formatTime(t) {
     if (!t) return '';
     var parts = t.split(':');
@@ -2895,7 +2903,7 @@
       html += '<div class="request-card">';
       html += '<button class="request-delete-btn" onclick="deleteClient(' + c.id + ')" title="Remove">&times;</button>';
       html += '<div class="request-card-name">' + c.name + '</div>';
-      if (c.email || c.phone) html += '<div class="request-card-meta">' + [c.email, c.phone].filter(Boolean).join(' | ') + '</div>';
+      if (c.email || c.phone) html += '<div class="request-card-meta">' + [c.email, c.phone ? formatPhone(c.phone) : ''].filter(Boolean).join(' | ') + '</div>';
       if (c.services) html += '<div class="request-card-services">' + c.services + '</div>';
       if (c.notes) html += '<div class="request-card-message">' + c.notes + '</div>';
       html += '<div class="request-card-date">Added: ' + c.added + '</div>';
@@ -3034,12 +3042,12 @@
     var tpl = document.getElementById('templates-list');
     if (!tpl) return;
     var templates = [
-      { label: 'Thank You — General Inquiry', text: 'Hi [Name],\n\nThank you so much for reaching out to Precise Financials! I appreciate your interest and will be in touch within 1–3 business days.\n\nLooking forward to connecting!\n\nBest,\nBritteny Cooke\nPrecise Financials, LLC\n435-817-7002' },
-      { label: 'Meeting Confirmed', text: 'Hi [Name],\n\nYour appointment with Precise Financials is confirmed for [Date] at [Time]. I look forward to speaking with you!\n\nIf you need to reschedule, please reply to this message or call me at 435-817-7002.\n\nBest,\nBritteny Cooke\nPrecise Financials, LLC' },
-      { label: 'Follow-Up — No Response', text: 'Hi [Name],\n\nI wanted to follow up on your recent inquiry with Precise Financials. I\'d love to help you get your finances organized!\n\nFeel free to reply here or call me at 435-817-7002 to set up a free 30-minute consultation.\n\nBest,\nBritteny Cooke\nPrecise Financials, LLC' },
-      { label: 'Reschedule Request', text: 'Hi [Name],\n\nI need to reschedule our upcoming appointment. Would [Date] at [Time] work for you? Please let me know and I\'ll get that confirmed right away.\n\nApologies for any inconvenience!\n\nBest,\nBritteny Cooke\nPrecise Financials, LLC\n435-817-7002' },
-      { label: 'Quote / Proposal Ready', text: 'Hi [Name],\n\nThank you for our conversation! Based on your needs, here is what I\'d recommend:\n\n[Service] — $[Amount]/month\n\nThis includes [brief description]. I\'d love to get started whenever you\'re ready. Reply here or call me at 435-817-7002.\n\nBest,\nBritteny Cooke\nPrecise Financials, LLC' },
-      { label: 'Missed Appointment', text: 'Hi [Name],\n\nI noticed we missed our appointment today. No worries — I\'d love to find a time that works better for you!\n\nPlease reply or call me at 435-817-7002 to reschedule your free 30-minute consultation.\n\nBest,\nBritteny Cooke\nPrecise Financials, LLC' }
+      { label: 'Thank You — General Inquiry', text: 'Hi [Name],\n\nThank you so much for reaching out to Precise Financials! I appreciate your interest and will be in touch within 1–3 business days.\n\nLooking forward to connecting!\n\nBest,\nBritteny Cooke\nPrecise Financials, LLC\n(435)817-7002' },
+      { label: 'Meeting Confirmed', text: 'Hi [Name],\n\nYour appointment with Precise Financials is confirmed for [Date] at [Time]. I look forward to speaking with you!\n\nIf you need to reschedule, please reply to this message or call me at (435)817-7002.\n\nBest,\nBritteny Cooke\nPrecise Financials, LLC' },
+      { label: 'Follow-Up — No Response', text: 'Hi [Name],\n\nI wanted to follow up on your recent inquiry with Precise Financials. I\'d love to help you get your finances organized!\n\nFeel free to reply here or call me at (435)817-7002 to set up a free 30-minute consultation.\n\nBest,\nBritteny Cooke\nPrecise Financials, LLC' },
+      { label: 'Reschedule Request', text: 'Hi [Name],\n\nI need to reschedule our upcoming appointment. Would [Date] at [Time] work for you? Please let me know and I\'ll get that confirmed right away.\n\nApologies for any inconvenience!\n\nBest,\nBritteny Cooke\nPrecise Financials, LLC\n(435)817-7002' },
+      { label: 'Quote / Proposal Ready', text: 'Hi [Name],\n\nThank you for our conversation! Based on your needs, here is what I\'d recommend:\n\n[Service] — $[Amount]/month\n\nThis includes [brief description]. I\'d love to get started whenever you\'re ready. Reply here or call me at (435)817-7002.\n\nBest,\nBritteny Cooke\nPrecise Financials, LLC' },
+      { label: 'Missed Appointment', text: 'Hi [Name],\n\nI noticed we missed our appointment today. No worries — I\'d love to find a time that works better for you!\n\nPlease reply or call me at (435)817-7002 to reschedule your free 30-minute consultation.\n\nBest,\nBritteny Cooke\nPrecise Financials, LLC' }
     ];
     tpl.innerHTML = templates.map(function(t) {
       return '<div style="background:#f7f9fc;border:1px solid rgba(10,31,68,0.1);border-radius:6px;padding:12px;margin-bottom:10px;">' +
@@ -3086,7 +3094,7 @@
         html += '<div class="request-card-name" style="margin:0;">' + r.name + '</div>';
         html += '<span style="font-size:11px;font-weight:700;color:' + age3.color + ';">🕐 ' + age3.label + '</span>';
         html += '</div>';
-        html += '<div class="request-card-detail">' + r.email + (r.phone ? ' &bull; ' + r.phone : '') + '</div>';
+        html += '<div class="request-card-detail">' + r.email + (r.phone ? ' &bull; ' + formatPhone(r.phone) : '') + '</div>';
         if (r.business) html += '<div class="request-card-detail"><strong>Business:</strong> ' + r.business + '</div>';
         if (r.package) html += '<div class="request-card-detail"><strong>Package:</strong> ' + r.package + '</div>';
         if (r.siteTypes) html += '<div class="request-card-detail"><strong>Site Type:</strong> ' + r.siteTypes + '</div>';
@@ -3130,7 +3138,7 @@
     var logoHtml = logo ? '<img src="' + logo.src + '" style="height:55px;margin-bottom:6px;">' : '';
     var year = new Date().getFullYear();
 
-    var header = '<div class="pf-header"><div class="pf-logo">' + logoHtml + '<div><div class="pf-name">Precise Financials, LLC</div><div class="pf-contact">435-817-7002 &nbsp;|&nbsp; bcookeacc@gmail.com</div></div></div></div>';
+    var header = '<div class="pf-header"><div class="pf-logo">' + logoHtml + '<div><div class="pf-name">Precise Financials, LLC</div><div class="pf-contact">(435)817-7002 &nbsp;|&nbsp; bcookeacc@gmail.com</div></div></div></div>';
 
     var baseStyle = '<style>*{margin:0;padding:0;box-sizing:border-box;}body{font-family:\'Segoe UI\',Arial,sans-serif;color:#1a1a2e;background:#fff;padding:24px;}' +
       '.pf-header{display:flex;align-items:center;justify-content:space-between;background:#dce8f5;color:#0a1f44;padding:16px 24px;border-radius:6px 6px 0 0;margin-bottom:0;border-bottom:3px solid #c9a84c;}' +
@@ -3418,7 +3426,7 @@
       clientBlock +
       '<div class="sheet-title">' + title + '</div>' +
       '<div style="padding:0 0 8px;">' + content + '</div>' +
-      '<div class="footer">Prepared by Precise Financials, LLC &nbsp;|&nbsp; 435-817-7002 &nbsp;|&nbsp; bcookeacc@gmail.com &nbsp;|&nbsp; &copy; ' + year + ' All rights reserved.</div>' +
+      '<div class="footer">Prepared by Precise Financials, LLC &nbsp;|&nbsp; (435)817-7002 &nbsp;|&nbsp; bcookeacc@gmail.com &nbsp;|&nbsp; &copy; ' + year + ' All rights reserved.</div>' +
       '<button class="print-btn" onclick="window.print()">🖨 Print / Save as PDF</button>' +
       '</body></html>';
 
