@@ -2443,7 +2443,7 @@
     if (tab === 'calendar') renderCalendar();
   }
 
-  var calYear, calMonth, calSelectedDate, calEditingIdx = null;
+  var calYear, calMonth, calSelectedDate, calEditingIdx = null, calEditingBookingId = null;
   (function() {
     var now = new Date();
     calYear = now.getFullYear();
@@ -2464,24 +2464,36 @@
     try { return JSON.parse(localStorage.getItem('pf_cal_cancelled') || '[]'); } catch(e) { return []; }
   }
 
+  function calGetOverrides() {
+    try { return JSON.parse(localStorage.getItem('pf_cal_overrides') || '{}'); } catch(e) { return {}; }
+  }
+
+  function calSaveOverride(id, data) {
+    var overrides = calGetOverrides();
+    overrides[String(id)] = data;
+    localStorage.setItem('pf_cal_overrides', JSON.stringify(overrides));
+  }
+
   function calGetConsultationDates() {
     var dates = {};
     try {
       var statuses = getApptStatuses();
       var cancelled = calGetCancelled();
+      var overrides = calGetOverrides();
 
       // 30-Min Call bookings (pf_consultations) — use preferredDate
       var cons = JSON.parse(localStorage.getItem('pf_consultations') || '[]');
       cons.forEach(function(c) {
         var dateKey = c.preferredDate || '';
-        if (!dateKey || cancelled.indexOf(c.id) !== -1) return;
+        if (!dateKey || cancelled.indexOf(String(c.id)) !== -1) return;
         var s = statuses[c.id] || {};
         var statusLabel = s.status === 'accepted' ? 'Confirmed' : s.status === 'reschedule' ? 'Reschedule Requested' : 'Pending';
+        var ov = overrides[String(c.id)] || {};
         dates[dateKey] = (dates[dateKey] || []).concat({
           id: c.id,
-          time: c.preferredTime || '',
-          name: c.name || 'Consultation booking',
-          notes: '30-Min Call — ' + statusLabel,
+          time: ov.time !== undefined ? ov.time : (c.preferredTime || ''),
+          name: ov.name !== undefined ? ov.name : (c.name || 'Consultation booking'),
+          notes: ov.notes !== undefined ? ov.notes : ('30-Min Call — ' + statusLabel),
           fromBooking: true
         });
       });
@@ -2490,14 +2502,15 @@
       var reqs = JSON.parse(localStorage.getItem('pf_requests') || '[]');
       reqs.forEach(function(r) {
         var dateKey = r.prefDate || '';
-        if (!dateKey || cancelled.indexOf(r.id) !== -1) return;
+        if (!dateKey || cancelled.indexOf(String(r.id)) !== -1) return;
         var s = statuses[r.id] || {};
         var statusLabel = s.status === 'accepted' ? 'Confirmed' : s.status === 'reschedule' ? 'Reschedule Requested' : 'Pending';
+        var ov = overrides[String(r.id)] || {};
         dates[dateKey] = (dates[dateKey] || []).concat({
           id: r.id,
-          time: r.prefTime || '',
-          name: r.name || 'General Inquiry',
-          notes: 'General Inquiry — ' + statusLabel,
+          time: ov.time !== undefined ? ov.time : (r.prefTime || ''),
+          name: ov.name !== undefined ? ov.name : (r.name || 'General Inquiry'),
+          notes: ov.notes !== undefined ? ov.notes : ('General Inquiry — ' + statusLabel),
           fromBooking: true
         });
       });
@@ -2576,7 +2589,10 @@
           html += '<button onclick="calDeleteAppt(\'' + dateStr + '\',' + a.idx + ')" style="background:none;border:none;color:#c0392b;cursor:pointer;font-size:16px;padding:0;" title="Delete">&#10005;</button>';
           html += '</div>';
         } else if (a.type==='booking') {
-          html += '<button onclick="calCancelBooking(\'' + a.id + '\')" style="background:none;border:none;color:#c0392b;cursor:pointer;font-size:16px;padding:0;flex-shrink:0;" title="Cancel appointment">&#10005;</button>';
+          html += '<div style="display:flex;gap:8px;flex-shrink:0;align-items:center;">';
+          html += '<button onclick="calEditBookingAppt(\'' + a.id + '\')" style="background:none;border:none;color:var(--navy);cursor:pointer;font-size:15px;padding:0;" title="Edit">&#9998;</button>';
+          html += '<button onclick="calCancelBooking(\'' + a.id + '\')" style="background:none;border:none;color:#c0392b;cursor:pointer;font-size:16px;padding:0;" title="Cancel appointment">&#10005;</button>';
+          html += '</div>';
         }
         html += '</div>';
       });
@@ -2596,16 +2612,23 @@
     var name = document.getElementById('cal-new-name').value.trim();
     var notes = document.getElementById('cal-new-notes').value.trim();
     if (!name) { alert('Please enter a client name.'); return; }
-    var appts = calGetAppts(calSelectedDate);
-    if (calEditingIdx !== null) {
-      appts[calEditingIdx] = { time: time, name: name, notes: notes };
-      calEditingIdx = null;
+    if (calEditingBookingId !== null) {
+      calSaveOverride(calEditingBookingId, { time: time, name: name, notes: notes });
+      calEditingBookingId = null;
       document.getElementById('cal-add-btn').textContent = 'Add Appointment';
       document.getElementById('cal-cancel-edit-btn').style.display = 'none';
     } else {
-      appts.push({ time: time, name: name, notes: notes });
+      var appts = calGetAppts(calSelectedDate);
+      if (calEditingIdx !== null) {
+        appts[calEditingIdx] = { time: time, name: name, notes: notes };
+        calEditingIdx = null;
+        document.getElementById('cal-add-btn').textContent = 'Add Appointment';
+        document.getElementById('cal-cancel-edit-btn').style.display = 'none';
+      } else {
+        appts.push({ time: time, name: name, notes: notes });
+      }
+      calSaveAppts(calSelectedDate, appts);
     }
-    calSaveAppts(calSelectedDate, appts);
     document.getElementById('cal-new-time').value = '';
     document.getElementById('cal-new-name').value = '';
     document.getElementById('cal-new-notes').value = '';
@@ -2617,6 +2640,7 @@
     var a = appts[idx];
     if (!a) return;
     calEditingIdx = idx;
+    calEditingBookingId = null;
     document.getElementById('cal-new-time').value = a.time || '';
     document.getElementById('cal-new-name').value = a.name || '';
     document.getElementById('cal-new-notes').value = a.notes || '';
@@ -2625,8 +2649,29 @@
     document.getElementById('cal-new-name').focus();
   }
 
+  function calEditBookingAppt(id) {
+    var overrides = calGetOverrides();
+    var bookingDates = calGetConsultationDates();
+    var existing = null;
+    Object.keys(bookingDates).forEach(function(d) {
+      bookingDates[d].forEach(function(a) {
+        if (String(a.id) === String(id)) existing = a;
+      });
+    });
+    if (!existing) return;
+    calEditingBookingId = id;
+    calEditingIdx = null;
+    document.getElementById('cal-new-time').value = existing.time || '';
+    document.getElementById('cal-new-name').value = existing.name || '';
+    document.getElementById('cal-new-notes').value = existing.notes || '';
+    document.getElementById('cal-add-btn').textContent = 'Update Appointment';
+    document.getElementById('cal-cancel-edit-btn').style.display = 'block';
+    document.getElementById('cal-new-name').focus();
+  }
+
   function calCancelEdit() {
     calEditingIdx = null;
+    calEditingBookingId = null;
     document.getElementById('cal-new-time').value = '';
     document.getElementById('cal-new-name').value = '';
     document.getElementById('cal-new-notes').value = '';
@@ -2646,7 +2691,7 @@
   function calCancelBooking(id) {
     if (!confirm('Cancel this appointment? It will be removed from the calendar. The original request will still be in your admin tabs.')) return;
     var cancelled = calGetCancelled();
-    if (cancelled.indexOf(id) === -1) cancelled.push(id);
+    if (cancelled.indexOf(String(id)) === -1) cancelled.push(String(id));
     localStorage.setItem('pf_cal_cancelled', JSON.stringify(cancelled));
     renderCalendar();
   }
