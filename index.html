@@ -2033,7 +2033,8 @@
           <input id="cal-new-time" type="time" style="width:100%;padding:8px 10px;border:1px solid rgba(10,31,68,0.18);border-radius:4px;font-size:14px;margin-bottom:0.5rem;box-sizing:border-box;" />
           <input id="cal-new-name" type="text" placeholder="Client name" style="width:100%;padding:8px 10px;border:1px solid rgba(10,31,68,0.18);border-radius:4px;font-size:14px;margin-bottom:0.5rem;box-sizing:border-box;" />
           <input id="cal-new-notes" type="text" placeholder="Notes (optional)" style="width:100%;padding:8px 10px;border:1px solid rgba(10,31,68,0.18);border-radius:4px;font-size:14px;margin-bottom:0.75rem;box-sizing:border-box;" />
-          <button onclick="calAddAppt()" style="width:100%;background:var(--gold);color:var(--navy);border:none;border-radius:4px;padding:9px;font-weight:700;font-size:13px;cursor:pointer;">Add Appointment</button>
+          <button id="cal-add-btn" onclick="calAddAppt()" style="width:100%;background:var(--gold);color:var(--navy);border:none;border-radius:4px;padding:9px;font-weight:700;font-size:13px;cursor:pointer;">Add Appointment</button>
+          <button id="cal-cancel-edit-btn" onclick="calCancelEdit()" style="display:none;width:100%;margin-top:6px;background:none;border:1px solid rgba(10,31,68,0.2);border-radius:4px;padding:7px;font-size:12px;color:var(--text-muted);cursor:pointer;">Cancel Edit</button>
         </div>
       </div>
     </div>
@@ -2442,7 +2443,7 @@
     if (tab === 'calendar') renderCalendar();
   }
 
-  var calYear, calMonth, calSelectedDate;
+  var calYear, calMonth, calSelectedDate, calEditingIdx = null;
   (function() {
     var now = new Date();
     calYear = now.getFullYear();
@@ -2459,19 +2460,25 @@
     localStorage.setItem(calKey(dateStr), JSON.stringify(appts));
   }
 
+  function calGetCancelled() {
+    try { return JSON.parse(localStorage.getItem('pf_cal_cancelled') || '[]'); } catch(e) { return []; }
+  }
+
   function calGetConsultationDates() {
     var dates = {};
     try {
       var statuses = getApptStatuses();
+      var cancelled = calGetCancelled();
 
       // 30-Min Call bookings (pf_consultations) — use preferredDate
       var cons = JSON.parse(localStorage.getItem('pf_consultations') || '[]');
       cons.forEach(function(c) {
         var dateKey = c.preferredDate || '';
-        if (!dateKey) return;
+        if (!dateKey || cancelled.indexOf(c.id) !== -1) return;
         var s = statuses[c.id] || {};
         var statusLabel = s.status === 'accepted' ? 'Confirmed' : s.status === 'reschedule' ? 'Reschedule Requested' : 'Pending';
         dates[dateKey] = (dates[dateKey] || []).concat({
+          id: c.id,
           time: c.preferredTime || '',
           name: c.name || 'Consultation booking',
           notes: '30-Min Call — ' + statusLabel,
@@ -2483,10 +2490,11 @@
       var reqs = JSON.parse(localStorage.getItem('pf_requests') || '[]');
       reqs.forEach(function(r) {
         var dateKey = r.prefDate || '';
-        if (!dateKey) return;
+        if (!dateKey || cancelled.indexOf(r.id) !== -1) return;
         var s = statuses[r.id] || {};
         var statusLabel = s.status === 'accepted' ? 'Confirmed' : s.status === 'reschedule' ? 'Reschedule Requested' : 'Pending';
         dates[dateKey] = (dates[dateKey] || []).concat({
+          id: r.id,
           time: r.prefTime || '',
           name: r.name || 'General Inquiry',
           notes: 'General Inquiry — ' + statusLabel,
@@ -2562,7 +2570,14 @@
         if (a.notes) html += '<div style="font-size:12px;color:var(--text-muted);">' + a.notes + '</div>';
         if (a.type==='booking') html += '<div style="font-size:11px;color:var(--gold);font-weight:700;margin-top:2px;">WEBSITE BOOKING</div>';
         html += '</div>';
-        if (a.type==='manual') html += '<button onclick="calDeleteAppt(\'' + dateStr + '\',' + a.idx + ')" style="background:none;border:none;color:#c0392b;cursor:pointer;font-size:16px;padding:0;flex-shrink:0;">&#10005;</button>';
+        if (a.type==='manual') {
+          html += '<div style="display:flex;gap:8px;flex-shrink:0;align-items:center;">';
+          html += '<button onclick="calEditAppt(\'' + dateStr + '\',' + a.idx + ')" style="background:none;border:none;color:var(--navy);cursor:pointer;font-size:15px;padding:0;" title="Edit">&#9998;</button>';
+          html += '<button onclick="calDeleteAppt(\'' + dateStr + '\',' + a.idx + ')" style="background:none;border:none;color:#c0392b;cursor:pointer;font-size:16px;padding:0;" title="Delete">&#10005;</button>';
+          html += '</div>';
+        } else if (a.type==='booking') {
+          html += '<button onclick="calCancelBooking(\'' + a.id + '\')" style="background:none;border:none;color:#c0392b;cursor:pointer;font-size:16px;padding:0;flex-shrink:0;" title="Cancel appointment">&#10005;</button>';
+        }
         html += '</div>';
       });
     }
@@ -2582,7 +2597,14 @@
     var notes = document.getElementById('cal-new-notes').value.trim();
     if (!name) { alert('Please enter a client name.'); return; }
     var appts = calGetAppts(calSelectedDate);
-    appts.push({ time: time, name: name, notes: notes });
+    if (calEditingIdx !== null) {
+      appts[calEditingIdx] = { time: time, name: name, notes: notes };
+      calEditingIdx = null;
+      document.getElementById('cal-add-btn').textContent = 'Add Appointment';
+      document.getElementById('cal-cancel-edit-btn').style.display = 'none';
+    } else {
+      appts.push({ time: time, name: name, notes: notes });
+    }
     calSaveAppts(calSelectedDate, appts);
     document.getElementById('cal-new-time').value = '';
     document.getElementById('cal-new-name').value = '';
@@ -2590,11 +2612,42 @@
     renderCalendar();
   }
 
+  function calEditAppt(dateStr, idx) {
+    var appts = calGetAppts(dateStr);
+    var a = appts[idx];
+    if (!a) return;
+    calEditingIdx = idx;
+    document.getElementById('cal-new-time').value = a.time || '';
+    document.getElementById('cal-new-name').value = a.name || '';
+    document.getElementById('cal-new-notes').value = a.notes || '';
+    document.getElementById('cal-add-btn').textContent = 'Update Appointment';
+    document.getElementById('cal-cancel-edit-btn').style.display = 'block';
+    document.getElementById('cal-new-name').focus();
+  }
+
+  function calCancelEdit() {
+    calEditingIdx = null;
+    document.getElementById('cal-new-time').value = '';
+    document.getElementById('cal-new-name').value = '';
+    document.getElementById('cal-new-notes').value = '';
+    document.getElementById('cal-add-btn').textContent = 'Add Appointment';
+    document.getElementById('cal-cancel-edit-btn').style.display = 'none';
+  }
+
   function calDeleteAppt(dateStr, idx) {
     if (!confirm('Delete this appointment?')) return;
+    if (calEditingIdx === idx) calCancelEdit();
     var appts = calGetAppts(dateStr);
     appts.splice(idx, 1);
     calSaveAppts(dateStr, appts);
+    renderCalendar();
+  }
+
+  function calCancelBooking(id) {
+    if (!confirm('Cancel this appointment? It will be removed from the calendar. The original request will still be in your admin tabs.')) return;
+    var cancelled = calGetCancelled();
+    if (cancelled.indexOf(id) === -1) cancelled.push(id);
+    localStorage.setItem('pf_cal_cancelled', JSON.stringify(cancelled));
     renderCalendar();
   }
 
