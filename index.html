@@ -1456,7 +1456,7 @@
     <div class="form-group"><label class="form-label">Full Name *</label><input type="text" id="wc-name" class="form-input" placeholder="Your full name"></div>
     <div class="form-group"><label class="form-label">Business Name *</label><input type="text" id="wc-business" class="form-input" placeholder="Your business name"></div>
     <div class="form-group"><label class="form-label">Email Address *</label><input type="email" id="wc-email" class="form-input" placeholder="you@email.com"></div>
-    <div class="form-group"><label class="form-label">Phone Number</label><input type="tel" id="wc-phone" class="form-input" placeholder="(555) 000-0000"></div>
+    <div class="form-group"><label class="form-label">Phone Number</label><input type="tel" id="wc-phone" class="form-input" placeholder="(555)000-0000" oninput="phoneInput(this)"></div>
 
     <div style="font-family:'Playfair Display',serif;font-size:18px;color:var(--navy);margin:2rem 0 1rem;border-bottom:2px solid var(--gold);padding-bottom:0.5rem;">About Your Website</div>
     <div class="form-group">
@@ -1642,7 +1642,7 @@
         </div>
         <div class="form-group">
           <label>Phone Number</label>
-          <input type="tel" id="contact-phone" placeholder="(555) 555-5555" />
+          <input type="tel" id="contact-phone" placeholder="(555)555-5555" oninput="phoneInput(this)" />
         </div>
         <div class="service-check-group">
           <div class="service-check-title">Services Needed <span>(select all that apply)</span></div>
@@ -1698,7 +1698,7 @@
       </div>
       <div class="form-group">
         <label>Phone Number</label>
-        <input type="tel" id="book-phone" placeholder="(555) 555-5555" />
+        <input type="tel" id="book-phone" placeholder="(555)555-5555" oninput="phoneInput(this)" />
       </div>
       <div class="form-group">
         <label>Preferred Date</label>
@@ -2083,7 +2083,7 @@
       <div style="font-size:12px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.75rem;">New Client</div>
       <input id="cli-name" type="text" placeholder="Full Name *" style="width:100%;padding:8px 10px;border:1px solid rgba(10,31,68,0.18);border-radius:4px;font-size:13px;margin-bottom:6px;box-sizing:border-box;" />
       <input id="cli-email" type="email" placeholder="Email" style="width:100%;padding:8px 10px;border:1px solid rgba(10,31,68,0.18);border-radius:4px;font-size:13px;margin-bottom:6px;box-sizing:border-box;" />
-      <input id="cli-phone" type="text" placeholder="Phone" style="width:100%;padding:8px 10px;border:1px solid rgba(10,31,68,0.18);border-radius:4px;font-size:13px;margin-bottom:6px;box-sizing:border-box;" />
+      <input id="cli-phone" type="tel" placeholder="(555)555-5555" oninput="phoneInput(this)" style="width:100%;padding:8px 10px;border:1px solid rgba(10,31,68,0.18);border-radius:4px;font-size:13px;margin-bottom:6px;box-sizing:border-box;" />
       <input id="cli-services" type="text" placeholder="Services (e.g. Bookkeeping, Payroll)" style="width:100%;padding:8px 10px;border:1px solid rgba(10,31,68,0.18);border-radius:4px;font-size:13px;margin-bottom:6px;box-sizing:border-box;" />
       <input id="cli-notes" type="text" placeholder="Notes (optional)" style="width:100%;padding:8px 10px;border:1px solid rgba(10,31,68,0.18);border-radius:4px;font-size:13px;margin-bottom:10px;box-sizing:border-box;" />
       <div style="display:flex;gap:8px;">
@@ -2372,7 +2372,7 @@
         html += '</div>';
         html += '<div style="font-size:11px;font-weight:700;color:' + typeColor + ';text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px;">' + typeLabel + '</div>';
         html += '<div class="request-card-name">' + (r.name || '') + '</div>';
-        html += '<div class="request-card-meta">' + (r.email || '') + (r.phone ? ' | ' + r.phone : '') + '</div>';
+        html += '<div class="request-card-meta">' + (r.email || '') + (r.phone ? ' | ' + formatPhone(r.phone) : '') + '</div>';
         if (type === 'consultation') {
           html += '<div class="request-card-services" style="color:#1a6b3c;">Preferred: ' + (r.preferredDate || '') + ' at ' + (r.preferredTime || '') + '</div>';
         } else if (type === 'website') {
@@ -2729,6 +2729,15 @@
       });
     }
     document.getElementById('cal-day-appts').innerHTML = html;
+  }
+
+  function phoneInput(el) {
+    var digits = el.value.replace(/\D/g, '').slice(0, 10);
+    var v = '';
+    if (digits.length > 0) v = '(' + digits.slice(0, 3);
+    if (digits.length > 3) v += ')' + digits.slice(3, 6);
+    if (digits.length > 6) v += '-' + digits.slice(6, 10);
+    el.value = v;
   }
 
   function formatPhone(p) {
