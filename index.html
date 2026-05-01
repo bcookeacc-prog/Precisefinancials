@@ -952,7 +952,7 @@
     <button data-page="about" onclick="showPage('about')">About</button>
     <button data-page="services" onclick="showPage('services')">Services</button>
     <button data-page="pricing" onclick="showPage('pricing')">Financials</button>
-    <button data-page="website" onclick="showPage('website')">Website</button>
+    <button data-page="website" onclick="showPage('website')" style="display:none;">Website</button>
     <button data-page="contact" onclick="showPage('contact')">General Inquiry</button>
     <button data-page="faq" onclick="showPage('faq')">FAQ</button>
     <button data-page="book" onclick="showPage('book')" style="background:var(--gold);color:var(--navy);border-radius:4px;font-weight:700;">Book Now</button>
@@ -963,7 +963,7 @@
 <!-- HOME -->
 <div id="home" class="page active">
   <div class="hero">
-    <div class="hero-web-card" onclick="showPage('website')">
+    <div class="hero-web-card" onclick="showPage('website')" style="display:none;">
       <div class="hwc-label">&#9998; Website Services</div>
       <div class="hwc-title">Custom Sites for Small Businesses</div>
       <ul class="hwc-items">
@@ -1044,7 +1044,7 @@
         <div class="home-card-icon">&#128187;</div><h3>QuickBooks Setup &amp; Training</h3>
         <p>Get your QuickBooks up and running correctly, plus the know-how to use it with confidence.</p>
       </div>
-      <div class="home-card">
+      <div class="home-card" style="display:none;">
         <div class="home-card-icon">&#127760;</div><h3>Website Services</h3>
         <p>Professional, mobile-friendly websites built for small businesses &mdash; clean, fast, and designed to bring in clients.</p>
       </div>
@@ -1232,7 +1232,7 @@
         </ul>
       <button class="btn-outline" onclick="showPage('book')" style="margin-top:1.25rem;width:100%;">Book a Consultation</button>
       </div>
-      <div class="service-card">
+      <div class="service-card" style="display:none;">
         <span class="service-num">07</span>
         <h3>Website Design &amp; Setup</h3>
         <p>Professional, mobile-friendly websites built for small businesses &mdash; clean, fast, and designed to bring in clients.</p>
@@ -1627,7 +1627,7 @@
     <div class="section-title">General <em>Inquiry</em></div>
     <div class="divider"></div>
     <div style="background:#f0f5fb;border-left:4px solid var(--gold);border-radius:4px;padding:1rem 1.25rem;margin-bottom:2rem;font-size:14px;color:var(--text-muted);line-height:1.7;">
-      <strong style="color:var(--navy);">Have a quick question?</strong> Send us a message below and we&rsquo;ll get back to you soon. If you&rsquo;re ready to book a free 30-minute consultation, <button onclick="showPage('book')" style="background:none;border:none;color:var(--gold);font-weight:700;cursor:pointer;font-size:14px;padding:0;font-family:inherit;">click here to Book Now</button>. For website projects, <button onclick="showPage('website-consult')" style="background:none;border:none;color:var(--gold);font-weight:700;cursor:pointer;font-size:14px;padding:0;font-family:inherit;">Get a Custom Quote</button>.
+      <strong style="color:var(--navy);">Have a quick question?</strong> Send us a message below and we&rsquo;ll get back to you soon. If you&rsquo;re ready to book a free 30-minute consultation, <button onclick="showPage('book')" style="background:none;border:none;color:var(--gold);font-weight:700;cursor:pointer;font-size:14px;padding:0;font-family:inherit;">click here to Book Now</button>.
     </div>
     <div class="contact-layout">
       <div class="contact-info">
@@ -1713,7 +1713,7 @@
     <div class="section-title">Book a <em>Free Consultation</em></div>
     <div class="divider"></div>
     <p style="text-align:center;color:var(--text-muted);max-width:560px;margin:0 auto 0.75rem;font-size:15px;line-height:1.8;">Schedule your free 30-minute consultation for bookkeeping, tax, payroll, financial strategy, or QuickBooks services. Fill out the form below and we will confirm your appointment within 1&ndash;3 business days.</p>
-    <p style="text-align:center;font-size:13px;color:var(--text-muted);max-width:560px;margin:0 auto 2.5rem;">Need a website? <button onclick="showPage('website-consult')" style="background:none;border:none;color:var(--gold);cursor:pointer;font-size:13px;text-decoration:underline;padding:0;font-family:inherit;">Use our website consultation form instead.</button></p>
+    <p style="text-align:center;font-size:13px;color:var(--text-muted);max-width:560px;margin:0 auto 2.5rem;display:none;">Need a website? <button onclick="showPage('website-consult')" style="background:none;border:none;color:var(--gold);cursor:pointer;font-size:13px;text-decoration:underline;padding:0;font-family:inherit;">Use our website consultation form instead.</button></p>
     <div style="max-width:560px;margin:0 auto;background:#fff;border-radius:6px;padding:2.5rem;border:1px solid rgba(10,31,68,0.08);box-shadow:0 4px 20px rgba(10,31,68,0.06);">
       <div class="form-group">
         <label>Full Name</label>
@@ -1843,7 +1843,7 @@
         </div>
       </div>
 
-      <div class="faq-item">
+      <div class="faq-item" style="display:none;">
         <button class="faq-question" onclick="toggleFaq(this)">
           Do you build websites for any type of business? <span class="faq-arrow">&#9660;</span>
         </button>
