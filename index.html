@@ -1969,6 +1969,22 @@
         <div><div style="font-size:14px;font-weight:700;color:var(--navy);">✍️ Form 8879 — IRS E-File Signature Authorization</div><div style="font-size:12px;color:var(--text-muted);">Client authorization to electronically file their tax return</div></div>
         <button onclick="downloadForm('form-8879')" style="background:var(--gold);color:var(--navy);border:none;border-radius:4px;padding:8px 16px;font-size:12px;font-weight:700;cursor:pointer;flex-shrink:0;">Download</button>
       </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;background:#fff;border-radius:5px;padding:12px 16px;border:1px solid rgba(10,31,68,0.1);">
+        <div><div style="font-size:14px;font-weight:700;color:var(--navy);">📋 Website Design &amp; Development Contract</div><div style="font-size:12px;color:var(--text-muted);">Service agreement for website design clients</div></div>
+        <button onclick="downloadForm('web-contract')" style="background:var(--gold);color:var(--navy);border:none;border-radius:4px;padding:8px 16px;font-size:12px;font-weight:700;cursor:pointer;flex-shrink:0;">Download</button>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;background:#fff;border-radius:5px;padding:12px 16px;border:1px solid rgba(10,31,68,0.1);">
+        <div><div style="font-size:14px;font-weight:700;color:var(--navy);">📋 LLC Setup Service Agreement</div><div style="font-size:12px;color:var(--text-muted);">Service agreement for LLC formation clients</div></div>
+        <button onclick="downloadForm('llc-contract')" style="background:var(--gold);color:var(--navy);border:none;border-radius:4px;padding:8px 16px;font-size:12px;font-weight:700;cursor:pointer;flex-shrink:0;">Download</button>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;background:#fff;border-radius:5px;padding:12px 16px;border:1px solid rgba(10,31,68,0.1);">
+        <div><div style="font-size:14px;font-weight:700;color:var(--navy);">📋 Payroll Services Agreement</div><div style="font-size:12px;color:var(--text-muted);">Service agreement for payroll processing clients</div></div>
+        <button onclick="downloadForm('payroll-contract')" style="background:var(--gold);color:var(--navy);border:none;border-radius:4px;padding:8px 16px;font-size:12px;font-weight:700;cursor:pointer;flex-shrink:0;">Download</button>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;background:#fff;border-radius:5px;padding:12px 16px;border:1px solid rgba(10,31,68,0.1);">
+        <div><div style="font-size:14px;font-weight:700;color:var(--navy);">📋 QuickBooks Setup &amp; Training Agreement</div><div style="font-size:12px;color:var(--text-muted);">Service agreement for QuickBooks setup and training clients</div></div>
+        <button onclick="downloadForm('qb-contract')" style="background:var(--gold);color:var(--navy);border:none;border-radius:4px;padding:8px 16px;font-size:12px;font-weight:700;cursor:pointer;flex-shrink:0;">Download</button>
+      </div>
     </div>
 
     <div class="admin-section-title" style="margin-top:1.5rem;">Client Templates</div>
@@ -3439,6 +3455,134 @@
         '<div class="field-row field-row-2"><div class="field">ERO Firm Name<div class="field-line">Precise Financials, LLC</div></div><div class="field">EFIN / PIN<div class="field-line"></div></div></div>' +
         '<div class="field-row field-row-2"><div class="field">ERO Signature<div class="field-line"></div></div><div class="field">Date<div class="field-line"></div></div></div>' +
 
+        ftr + '</div>';
+    }
+
+    if (type === 'web-contract') {
+      title = 'Website Design & Development Contract';
+      filename = 'PF-Website-Contract-' + year + '.html';
+      content = hdr('Website Design & Development Contract') + '<div class="body">' +
+        '<p>This Website Design & Development Agreement ("Agreement") is entered into as of the date signed below between <strong>Precise Financials, LLC</strong> ("Designer") and the client identified below ("Client").</p>' +
+        '<h2>1. Parties</h2>' +
+        '<div class="field-row field-row-2"><div class="field">Client Name<div class="field-line"></div></div><div class="field">Business Name<div class="field-line"></div></div></div>' +
+        '<div class="field-row field-row-2"><div class="field">Address<div class="field-line"></div></div><div class="field">Phone / Email<div class="field-line"></div></div></div>' +
+        '<h2>2. Project Scope</h2>' +
+        '<div class="check-row"><span class="check-item"><span class="check-box"></span>Basic Package ($400–$800)</span><span class="check-item"><span class="check-box"></span>Standard Package ($900–$1,500)</span><span class="check-item"><span class="check-box"></span>Premium Package ($2,000–$4,000+)</span></div>' +
+        '<div class="field-row field-row-2"><div class="field">Number of Pages<div class="field-line"></div></div><div class="field">Domain / Hosting Provided By<div class="field-line"></div></div></div>' +
+        '<div class="field-row"><div class="field">Features &amp; deliverables agreed upon<div class="field-box"></div></div></div>' +
+        '<h2>3. Timeline</h2>' +
+        '<div class="field-row field-row-2"><div class="field">Estimated Start Date<div class="field-line"></div></div><div class="field">Estimated Completion Date<div class="field-line"></div></div></div>' +
+        '<div class="notice">Timeline is contingent upon timely receipt of all content, images, and feedback from the Client. Delays caused by the Client may extend the timeline accordingly.</div>' +
+        '<h2>4. Fees &amp; Payment</h2>' +
+        '<div class="field-row field-row-2"><div class="field">Total Project Fee<div class="field-line"></div></div><div class="field">Deposit Due at Signing (50%)<div class="field-line"></div></div></div>' +
+        '<div class="field-row field-row-2"><div class="field">Balance Due at Launch<div class="field-line"></div></div><div class="field">Monthly Maintenance Plan (if any)<div class="field-line"></div></div></div>' +
+        '<p>Work will not begin until the deposit is received. The remaining balance is due upon site launch. Maintenance plans are billed monthly.</p>' +
+        '<h2>5. Revisions</h2>' +
+        '<div class="field-row field-row-2"><div class="field">Revision Rounds Included<div class="field-line"></div></div><div class="field">Additional Revision Rate<div class="field-line"></div></div></div>' +
+        '<p>Revisions outside the agreed scope will be billed at the additional revision rate. Major scope changes require a written amendment to this Agreement.</p>' +
+        '<h2>6. Client Responsibilities</h2>' +
+        '<p>Client agrees to provide all content (text, images, logos, branding) in a timely manner. Precise Financials, LLC is not responsible for sourcing content unless explicitly agreed upon. Client is responsible for any third-party fees (domain registration, hosting, plugins).</p>' +
+        '<h2>7. Ownership &amp; Rights</h2>' +
+        '<p>Upon receipt of final payment, Client owns the completed website. Precise Financials, LLC retains the right to display the work in its portfolio. Any stock photos or third-party assets remain subject to their respective licenses.</p>' +
+        '<h2>8. Termination</h2>' +
+        '<p>Either party may terminate this Agreement with 14 days written notice. The deposit is non-refundable. Work completed to date will be billed at an hourly rate of $75/hr if termination occurs mid-project.</p>' +
+        '<h2>9. Signatures</h2>' +
+        '<div class="sig-block">' +
+        '<div><div class="sig-field">Client Signature<div class="sig-line"></div></div><div class="sig-field" style="margin-top:10px;">Printed Name<div class="sig-date"></div></div><div class="sig-field" style="margin-top:10px;">Date<div class="sig-date"></div></div></div>' +
+        '<div><div class="sig-field">Precise Financials, LLC — Britteny Cooke<div class="sig-line"></div></div><div class="sig-field" style="margin-top:10px;">Date<div class="sig-date"></div></div></div>' +
+        '</div>' +
+        ftr + '</div>';
+    }
+
+    if (type === 'llc-contract') {
+      title = 'LLC Setup Service Agreement';
+      filename = 'PF-LLC-Setup-Agreement-' + year + '.html';
+      content = hdr('LLC Setup Service Agreement') + '<div class="body">' +
+        '<p>This LLC Setup Service Agreement ("Agreement") is entered into as of the date signed below between <strong>Precise Financials, LLC</strong> ("Service Provider") and the client identified below ("Client").</p>' +
+        '<h2>1. Parties</h2>' +
+        '<div class="field-row field-row-2"><div class="field">Client Full Name<div class="field-line"></div></div><div class="field">Proposed LLC Name<div class="field-line"></div></div></div>' +
+        '<div class="field-row field-row-2"><div class="field">Address<div class="field-line"></div></div><div class="field">Phone / Email<div class="field-line"></div></div></div>' +
+        '<div class="field-row field-row-2"><div class="field">State of Formation<div class="field-line"></div></div><div class="field">Business Type / Industry<div class="field-line"></div></div></div>' +
+        '<h2>2. Services Included</h2>' +
+        '<div class="check-row"><span class="check-item"><span class="check-box"></span>Name availability search</span><span class="check-item"><span class="check-box"></span>Articles of Organization filing</span><span class="check-item"><span class="check-box"></span>Operating Agreement (basic)</span></div>' +
+        '<div class="check-row"><span class="check-item"><span class="check-box"></span>EIN application (IRS)</span><span class="check-item"><span class="check-box"></span>Registered agent guidance</span><span class="check-item"><span class="check-box"></span>Business bank account guidance</span></div>' +
+        '<div class="check-row"><span class="check-item"><span class="check-box"></span>Initial bookkeeping setup</span><span class="check-item"><span class="check-box"></span>QuickBooks setup (add-on)</span><span class="check-item"><span class="check-box"></span>Other: <div class="field-line" style="width:120px;display:inline-block;"></div></span></div>' +
+        '<h2>3. Fees &amp; Payment</h2>' +
+        '<div class="field-row field-row-2"><div class="field">Service Fee<div class="field-line"></div></div><div class="field">State Filing Fee (paid by client)<div class="field-line"></div></div></div>' +
+        '<div class="field-row field-row-2"><div class="field">Payment Due<div class="field-line"></div></div><div class="field">Payment Method<div class="field-line"></div></div></div>' +
+        '<p>State filing fees are paid directly by the Client and are separate from the service fee. Service fee is due prior to filing.</p>' +
+        '<h2>4. Timeline &amp; Client Responsibilities</h2>' +
+        '<div class="field-row field-row-2"><div class="field">Estimated Completion<div class="field-line"></div></div><div class="field">Documents Needed from Client<div class="field-line"></div></div></div>' +
+        '<p>Client agrees to provide all required personal information and identification documents promptly. Precise Financials, LLC is not responsible for state processing delays.</p>' +
+        '<h2>5. Limitations</h2>' +
+        '<p>Precise Financials, LLC provides document preparation and filing assistance only. This service does not constitute legal advice. Client is encouraged to consult a licensed attorney for legal questions regarding their LLC structure.</p>' +
+        '<h2>6. Signatures</h2>' +
+        '<div class="sig-block">' +
+        '<div><div class="sig-field">Client Signature<div class="sig-line"></div></div><div class="sig-field" style="margin-top:10px;">Printed Name<div class="sig-date"></div></div><div class="sig-field" style="margin-top:10px;">Date<div class="sig-date"></div></div></div>' +
+        '<div><div class="sig-field">Precise Financials, LLC — Britteny Cooke<div class="sig-line"></div></div><div class="sig-field" style="margin-top:10px;">Date<div class="sig-date"></div></div></div>' +
+        '</div>' +
+        ftr + '</div>';
+    }
+
+    if (type === 'payroll-contract') {
+      title = 'Payroll Services Agreement';
+      filename = 'PF-Payroll-Agreement-' + year + '.html';
+      content = hdr('Payroll Services Agreement') + '<div class="body">' +
+        '<p>This Payroll Services Agreement ("Agreement") is entered into as of the date signed below between <strong>Precise Financials, LLC</strong> ("Service Provider") and the client identified below ("Client").</p>' +
+        '<h2>1. Parties</h2>' +
+        '<div class="field-row field-row-2"><div class="field">Business Name<div class="field-line"></div></div><div class="field">Owner / Contact Name<div class="field-line"></div></div></div>' +
+        '<div class="field-row field-row-2"><div class="field">Address<div class="field-line"></div></div><div class="field">Phone / Email<div class="field-line"></div></div></div>' +
+        '<div class="field-row field-row-2"><div class="field">EIN<div class="field-line"></div></div><div class="field">State<div class="field-line"></div></div></div>' +
+        '<h2>2. Payroll Details</h2>' +
+        '<div class="field-row field-row-3"><div class="field">Number of Employees<div class="field-line"></div></div><div class="field">Pay Frequency<div class="field-line"></div></div><div class="field">Next Pay Date<div class="field-line"></div></div></div>' +
+        '<div class="check-row"><span class="check-item"><span class="check-box"></span>Direct deposit</span><span class="check-item"><span class="check-box"></span>Paper checks</span><span class="check-item"><span class="check-box"></span>W-2 employees</span><span class="check-item"><span class="check-box"></span>1099 contractors</span></div>' +
+        '<h2>3. Services Included</h2>' +
+        '<div class="check-row"><span class="check-item"><span class="check-box"></span>Payroll processing each pay period</span><span class="check-item"><span class="check-box"></span>Federal &amp; state tax withholding</span><span class="check-item"><span class="check-box"></span>Direct deposit setup</span></div>' +
+        '<div class="check-row"><span class="check-item"><span class="check-box"></span>Quarterly payroll tax filings (941)</span><span class="check-item"><span class="check-box"></span>Annual W-2 / 1099 preparation</span><span class="check-item"><span class="check-box"></span>Year-end reconciliation</span></div>' +
+        '<div class="field-row"><div class="field">Additional services agreed upon<div class="field-box"></div></div></div>' +
+        '<h2>4. Fees &amp; Payment</h2>' +
+        '<div class="field-row field-row-2"><div class="field">Monthly Fee<div class="field-line"></div></div><div class="field">Per-Employee Fee (if applicable)<div class="field-line"></div></div></div>' +
+        '<div class="field-row field-row-2"><div class="field">Invoice Date<div class="field-line"></div></div><div class="field">Payment Method<div class="field-line"></div></div></div>' +
+        '<p>Client is responsible for ensuring sufficient funds are available for payroll and tax payments on all due dates. Precise Financials, LLC is not liable for penalties resulting from insufficient funds or late information from the Client.</p>' +
+        '<h2>5. Client Responsibilities</h2>' +
+        '<p>Client agrees to provide accurate employee hours, salary changes, and any other payroll data no later than 3 business days before each pay date. Changes submitted late may delay payroll processing.</p>' +
+        '<h2>6. Termination</h2>' +
+        '<p>Either party may terminate this Agreement with 30 days written notice. Client remains responsible for all fees incurred through the termination date, including any outstanding filings.</p>' +
+        '<h2>7. Signatures</h2>' +
+        '<div class="sig-block">' +
+        '<div><div class="sig-field">Client Signature<div class="sig-line"></div></div><div class="sig-field" style="margin-top:10px;">Printed Name<div class="sig-date"></div></div><div class="sig-field" style="margin-top:10px;">Date<div class="sig-date"></div></div></div>' +
+        '<div><div class="sig-field">Precise Financials, LLC — Britteny Cooke<div class="sig-line"></div></div><div class="sig-field" style="margin-top:10px;">Date<div class="sig-date"></div></div></div>' +
+        '</div>' +
+        ftr + '</div>';
+    }
+
+    if (type === 'qb-contract') {
+      title = 'QuickBooks Setup & Training Agreement';
+      filename = 'PF-QuickBooks-Agreement-' + year + '.html';
+      content = hdr('QuickBooks Setup & Training Agreement') + '<div class="body">' +
+        '<p>This QuickBooks Setup & Training Agreement ("Agreement") is entered into as of the date signed below between <strong>Precise Financials, LLC</strong> ("Service Provider") and the client identified below ("Client").</p>' +
+        '<h2>1. Parties</h2>' +
+        '<div class="field-row field-row-2"><div class="field">Client / Business Name<div class="field-line"></div></div><div class="field">Owner / Contact Name<div class="field-line"></div></div></div>' +
+        '<div class="field-row field-row-2"><div class="field">Phone<div class="field-line"></div></div><div class="field">Email<div class="field-line"></div></div></div>' +
+        '<h2>2. Services</h2>' +
+        '<div class="check-row"><span class="check-item"><span class="check-box"></span>QuickBooks Online setup</span><span class="check-item"><span class="check-box"></span>QuickBooks Desktop setup</span><span class="check-item"><span class="check-box"></span>Chart of accounts configuration</span></div>' +
+        '<div class="check-row"><span class="check-item"><span class="check-box"></span>Bank &amp; credit card connections</span><span class="check-item"><span class="check-box"></span>Opening balance entry</span><span class="check-item"><span class="check-box"></span>Vendor / customer setup</span></div>' +
+        '<div class="check-row"><span class="check-item"><span class="check-box"></span>1-on-1 training session</span><span class="check-item"><span class="check-box"></span>Custom reports setup</span><span class="check-item"><span class="check-box"></span>Ongoing support (add-on)</span></div>' +
+        '<div class="field-row"><div class="field">Additional details<div class="field-box"></div></div></div>' +
+        '<h2>3. Fees &amp; Payment</h2>' +
+        '<div class="check-row"><span class="check-item"><span class="check-box"></span>Setup Only ($200–$350)</span><span class="check-item"><span class="check-box"></span>Training Only ($150 flat)</span><span class="check-item"><span class="check-box"></span>Setup + Training Bundle ($300–$450)</span></div>' +
+        '<div class="field-row field-row-2"><div class="field">Agreed Fee<div class="field-line"></div></div><div class="field">Payment Due<div class="field-line"></div></div></div>' +
+        '<p>Payment is due prior to the first session. QuickBooks subscription fees are the Client\'s responsibility and are separate from this Agreement.</p>' +
+        '<h2>4. Scheduling &amp; Cancellations</h2>' +
+        '<div class="field-row field-row-2"><div class="field">Scheduled Session Date<div class="field-line"></div></div><div class="field">Session Format (in-person / virtual)<div class="field-line"></div></div></div>' +
+        '<p>Client must provide at least 24 hours notice to reschedule. No-shows without notice forfeit the session fee.</p>' +
+        '<h2>5. Client Responsibilities</h2>' +
+        '<p>Client agrees to have an active QuickBooks subscription prior to the setup session and to provide access credentials as needed. Precise Financials, LLC is not responsible for data loss caused by third-party software errors.</p>' +
+        '<h2>6. Signatures</h2>' +
+        '<div class="sig-block">' +
+        '<div><div class="sig-field">Client Signature<div class="sig-line"></div></div><div class="sig-field" style="margin-top:10px;">Printed Name<div class="sig-date"></div></div><div class="sig-field" style="margin-top:10px;">Date<div class="sig-date"></div></div></div>' +
+        '<div><div class="sig-field">Precise Financials, LLC — Britteny Cooke<div class="sig-line"></div></div><div class="sig-field" style="margin-top:10px;">Date<div class="sig-date"></div></div></div>' +
+        '</div>' +
         ftr + '</div>';
     }
 
