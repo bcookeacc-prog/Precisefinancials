@@ -3648,11 +3648,14 @@
     var url = URL.createObjectURL(blob);
     if (preview) {
       document.getElementById('form-preview-title').textContent = title;
-      document.getElementById('form-preview-iframe').src = url;
+      var iframe = document.getElementById('form-preview-iframe');
+      iframe.contentDocument.open();
+      iframe.contentDocument.write(html);
+      iframe.contentDocument.close();
       document.getElementById('form-preview-modal').style.display = 'flex';
     } else {
       var a = document.createElement('a');
-      a.href = url;
+      a.href = URL.createObjectURL(blob);
       a.download = filename;
       a.click();
     }
