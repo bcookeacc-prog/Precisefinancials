@@ -3268,8 +3268,9 @@
       'p{font-size:12px;line-height:1.7;color:#333;margin-bottom:8px;}' +
       '.field-row{display:grid;gap:12px;margin-bottom:10px;}' +
       '.field-row-2{grid-template-columns:1fr 1fr;}.field-row-3{grid-template-columns:1fr 1fr 1fr;}.field-row-4{grid-template-columns:1fr 1fr 1fr 1fr;}' +
-      '.field{font-size:11px;color:#555;font-weight:600;text-transform:uppercase;letter-spacing:0.4px;}' +
-      '.field-line{border-bottom:1px solid #c9a84c;min-height:22px;margin-top:4px;font-size:13px;}' +
+      '.field{font-size:11px;}' +
+      '.field-line{border-bottom:1px solid #c9a84c;min-height:26px;margin-bottom:3px;}' +
+      '.field-label{font-size:10px;color:#555;font-weight:600;text-transform:uppercase;letter-spacing:0.4px;}' +
       '.field-box{border:1px solid #c9a84c;border-radius:3px;min-height:60px;margin-top:4px;padding:6px;}' +
       '.check-row{display:flex;flex-wrap:wrap;gap:12px;margin:6px 0;}' +
       '.check-item{display:flex;align-items:center;gap:6px;font-size:12px;}' +
@@ -3299,8 +3300,8 @@
       content = hdr('Bookkeeping Service Agreement') + '<div class="body">' +
         '<h2>1. Parties</h2>' +
         '<p>This Bookkeeping Service Agreement ("Agreement") is entered into as of the date signed below between <strong>Precise Financials, LLC</strong> ("Service Provider") and the client identified below ("Client").</p>' +
-        '<div class="field-row field-row-2"><div class="field">Client Name<div class="field-line"></div></div><div class="field">Business Name<div class="field-line"></div></div></div>' +
-        '<div class="field-row field-row-2"><div class="field">Address<div class="field-line"></div></div><div class="field">Phone / Email<div class="field-line"></div></div></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Client Name</span></div><div class="field"><div class="field-line"></div><span class="field-label">Business Name</span></div></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Address</span></div><div class="field"><div class="field-line"></div><span class="field-label">Phone / Email</span></div></div>' +
 
         '<h2>2. Services</h2>' +
         '<p>Precise Financials, LLC agrees to provide the following bookkeeping services:</p>' +
@@ -3309,15 +3310,15 @@
         '<div class="field-row" style="margin-top:8px;"><div class="field">Additional services agreed upon<div class="field-box"></div></div></div>' +
 
         '<h2>3. Fees &amp; Payment Terms</h2>' +
-        '<div class="field-row field-row-2"><div class="field">Monthly Fee<div class="field-line"></div></div><div class="field">Due Date Each Month<div class="field-line"></div></div></div>' +
-        '<div class="field-row field-row-2"><div class="field">Accepted Payment Methods<div class="field-line"></div></div><div class="field">Late Fee (after grace period)<div class="field-line"></div></div></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Monthly Fee</span></div><div class="field"><div class="field-line"></div><span class="field-label">Due Date Each Month</span></div></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Accepted Payment Methods</span></div><div class="field"><div class="field-line"></div><span class="field-label">Late Fee (after grace period)</span></div></div>' +
         '<p>Invoices are issued on the 1st of each month. A grace period of 5 days applies. Accounts past due by more than 15 days may result in a pause of services.</p>' +
 
         '<h2>4. Client Responsibilities</h2>' +
         '<p>The Client agrees to provide all necessary financial documents, bank statements, receipts, and login access in a timely manner. Delays in providing information may result in delayed deliverables. The Client is responsible for the accuracy of all source documents provided.</p>' +
 
         '<h2>5. Term &amp; Termination</h2>' +
-        '<div class="field-row field-row-2"><div class="field">Start Date<div class="field-line"></div></div><div class="field">Initial Term<div class="field-line"></div></div></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Start Date</span></div><div class="field"><div class="field-line"></div><span class="field-label">Initial Term</span></div></div>' +
         '<p>Either party may terminate this Agreement with <strong>30 days written notice</strong>. All outstanding fees are due upon termination. Precise Financials, LLC reserves the right to terminate immediately for non-payment.</p>' +
 
         '<h2>6. Confidentiality</h2>' +
@@ -3341,11 +3342,11 @@
         '<p class="notice">Please complete this form as thoroughly as possible. The information you provide helps us set up your books accurately and efficiently from day one.</p>' +
 
         '<h2>1. Business Information</h2>' +
-        '<div class="field-row field-row-2"><div class="field">Business Name<div class="field-line"></div></div><div class="field">Owner / Contact Name<div class="field-line"></div></div></div>' +
-        '<div class="field-row field-row-2"><div class="field">Business Address<div class="field-line"></div></div><div class="field">City / State / ZIP<div class="field-line"></div></div></div>' +
-        '<div class="field-row field-row-3"><div class="field">Phone<div class="field-line"></div></div><div class="field">Email<div class="field-line"></div></div><div class="field">Website<div class="field-line"></div></div></div>' +
-        '<div class="field-row field-row-2"><div class="field">Business Type<div class="field-line"></div></div><div class="field">EIN / Tax ID<div class="field-line"></div></div></div>' +
-        '<div class="field-row field-row-2"><div class="field">Date Business Started<div class="field-line"></div></div><div class="field">Industry / Type of Business<div class="field-line"></div></div></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Business Name</span></div><div class="field"><div class="field-line"></div><span class="field-label">Owner / Contact Name</span></div></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Business Address</span></div><div class="field"><div class="field-line"></div><span class="field-label">City / State / ZIP</span></div></div>' +
+        '<div class="field-row field-row-3"><div class="field"><div class="field-line"></div><span class="field-label">Phone</span></div><div class="field"><div class="field-line"></div><span class="field-label">Email</span></div><div class="field"><div class="field-line"></div><span class="field-label">Website</span></div></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Business Type</span></div><div class="field"><div class="field-line"></div><span class="field-label">EIN / Tax ID</span></div></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Date Business Started</span></div><div class="field"><div class="field-line"></div><span class="field-label">Industry / Type of Business</span></div></div>' +
 
         '<h2>2. Current Bookkeeping Situation</h2>' +
         '<h3>Do you currently use accounting software?</h3>' +
@@ -3355,7 +3356,7 @@
 
         '<h2>3. Bank &amp; Financial Accounts</h2>' +
         '<p>Please list all business bank accounts, credit cards, and loans we will need access to:</p>' +
-        '<div class="field-row field-row-3"><div class="field">Bank / Institution<div class="field-line"></div></div><div class="field">Account Type<div class="field-line"></div></div><div class="field">Last 4 Digits<div class="field-line"></div></div></div>' +
+        '<div class="field-row field-row-3"><div class="field"><div class="field-line"></div><span class="field-label">Bank / Institution</span></div><div class="field"><div class="field-line"></div><span class="field-label">Account Type</span></div><div class="field"><div class="field-line"></div><span class="field-label">Last 4 Digits</span></div></div>' +
         '<div class="field-row field-row-3"><div class="field"><div class="field-line"></div></div><div class="field"><div class="field-line"></div></div><div class="field"><div class="field-line"></div></div></div>' +
         '<div class="field-row field-row-3"><div class="field"><div class="field-line"></div></div><div class="field"><div class="field-line"></div></div><div class="field"><div class="field-line"></div></div></div>' +
 
@@ -3386,16 +3387,16 @@
       content = hdr('Tax Preparation Service Agreement') + '<div class="body">' +
         '<h2>1. Parties</h2>' +
         '<p>This Tax Preparation Agreement ("Agreement") is entered into between <strong>Precise Financials, LLC</strong> ("Preparer") and the client identified below ("Client") for tax year services.</p>' +
-        '<div class="field-row field-row-2"><div class="field">Client Name<div class="field-line"></div></div><div class="field">Date of Birth<div class="field-line"></div></div></div>' +
-        '<div class="field-row field-row-2"><div class="field">Address<div class="field-line"></div></div><div class="field">Phone / Email<div class="field-line"></div></div></div>' +
-        '<div class="field-row field-row-2"><div class="field">Tax Year Being Prepared<div class="field-line"></div></div><div class="field">Filing Status<div class="field-line"></div></div></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Client Name</span></div><div class="field"><div class="field-line"></div><span class="field-label">Date of Birth</span></div></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Address</span></div><div class="field"><div class="field-line"></div><span class="field-label">Phone / Email</span></div></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Tax Year Being Prepared</span></div><div class="field"><div class="field-line"></div><span class="field-label">Filing Status</span></div></div>' +
 
         '<h2>2. Services</h2>' +
         '<div class="check-row"><span class="check-item"><span class="check-box"></span>Federal individual return (1040)</span><span class="check-item"><span class="check-box"></span>State return</span><span class="check-item"><span class="check-box"></span>Business return (Schedule C/S-Corp/LLC)</span></div>' +
         '<div class="check-row"><span class="check-item"><span class="check-box"></span>Prior year amendment</span><span class="check-item"><span class="check-box"></span>Quarterly estimated taxes</span><span class="check-item"><span class="check-box"></span>Other: <div class="field-line" style="width:100px;display:inline-block;"></div></span></div>' +
 
         '<h2>3. Fees</h2>' +
-        '<div class="field-row field-row-2"><div class="field">Estimated Fee<div class="field-line"></div></div><div class="field">Final Fee (upon completion)<div class="field-line"></div></div></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Estimated Fee</span></div><div class="field"><div class="field-line"></div><span class="field-label">Final Fee (upon completion)</span></div></div>' +
         '<p>Payment is due upon completion and before filing. Accepted methods: Venmo @PreciseFinancials &nbsp;|&nbsp; Cash App $PreciseFinancialsAZ &nbsp;|&nbsp; ACH &nbsp;|&nbsp; Card.</p>' +
 
         '<h2>4. Client Responsibilities</h2>' +
@@ -3426,18 +3427,18 @@
         '<p class="notice">Please complete this form before your appointment. Bring all applicable documents. The more complete your information, the faster we can file your return.</p>' +
 
         '<h2>1. Personal Information</h2>' +
-        '<div class="field-row field-row-2"><div class="field">Full Legal Name<div class="field-line"></div></div><div class="field">Social Security Number (last 4 only)<div class="field-line"></div></div></div>' +
-        '<div class="field-row field-row-2"><div class="field">Date of Birth<div class="field-line"></div></div><div class="field">Occupation<div class="field-line"></div></div></div>' +
-        '<div class="field-row field-row-2"><div class="field">Address<div class="field-line"></div></div><div class="field">City / State / ZIP<div class="field-line"></div></div></div>' +
-        '<div class="field-row field-row-3"><div class="field">Phone<div class="field-line"></div></div><div class="field">Email<div class="field-line"></div></div><div class="field">Tax Year<div class="field-line"></div></div></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Full Legal Name</span></div><div class="field"><div class="field-line"></div><span class="field-label">Social Security Number (last 4 only)</span></div></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Date of Birth</span></div><div class="field"><div class="field-line"></div><span class="field-label">Occupation</span></div></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Address</span></div><div class="field"><div class="field-line"></div><span class="field-label">City / State / ZIP</span></div></div>' +
+        '<div class="field-row field-row-3"><div class="field"><div class="field-line"></div><span class="field-label">Phone</span></div><div class="field"><div class="field-line"></div><span class="field-label">Email</span></div><div class="field"><div class="field-line"></div><span class="field-label">Tax Year</span></div></div>' +
 
         '<h2>2. Filing Status</h2>' +
         '<div class="check-row"><span class="check-item"><span class="check-box"></span>Single</span><span class="check-item"><span class="check-box"></span>Married Filing Jointly</span><span class="check-item"><span class="check-box"></span>Married Filing Separately</span><span class="check-item"><span class="check-box"></span>Head of Household</span><span class="check-item"><span class="check-box"></span>Qualifying Widow(er)</span></div>' +
         '<h3>If Married Filing Jointly — Spouse Information</h3>' +
-        '<div class="field-row field-row-3"><div class="field">Spouse Full Name<div class="field-line"></div></div><div class="field">Spouse Date of Birth<div class="field-line"></div></div><div class="field">Spouse SSN (last 4)<div class="field-line"></div></div></div>' +
+        '<div class="field-row field-row-3"><div class="field"><div class="field-line"></div><span class="field-label">Spouse Full Name</span></div><div class="field"><div class="field-line"></div><span class="field-label">Spouse Date of Birth</span></div><div class="field"><div class="field-line"></div><span class="field-label">Spouse SSN (last 4)</span></div></div>' +
 
         '<h2>3. Dependents</h2>' +
-        '<div class="field-row field-row-4"><div class="field">Full Name<div class="field-line"></div></div><div class="field">Date of Birth<div class="field-line"></div></div><div class="field">Relationship<div class="field-line"></div></div><div class="field">SSN (last 4)<div class="field-line"></div></div></div>' +
+        '<div class="field-row field-row-4"><div class="field"><div class="field-line"></div><span class="field-label">Full Name</span></div><div class="field"><div class="field-line"></div><span class="field-label">Date of Birth</span></div><div class="field"><div class="field-line"></div><span class="field-label">Relationship</span></div><div class="field"><div class="field-line"></div><span class="field-label">SSN (last 4)</span></div></div>' +
         '<div class="field-row field-row-4"><div class="field"><div class="field-line"></div></div><div class="field"><div class="field-line"></div></div><div class="field"><div class="field-line"></div></div><div class="field"><div class="field-line"></div></div></div>' +
         '<div class="field-row field-row-4"><div class="field"><div class="field-line"></div></div><div class="field"><div class="field-line"></div></div><div class="field"><div class="field-line"></div></div><div class="field"><div class="field-line"></div></div></div>' +
 
@@ -3454,9 +3455,9 @@
         '<div class="field-row" style="margin-top:8px;"><div class="field">Other deductions or notes<div class="field-box" style="min-height:40px;"></div></div></div>' +
 
         '<h2>6. Prior Year &amp; Other</h2>' +
-        '<div class="field-row field-row-2"><div class="field">Did you file a return last year?<div class="field-line"></div></div><div class="field">Prior year AGI (if known)<div class="field-line"></div></div></div>' +
-        '<div class="field-row field-row-2"><div class="field">Did you receive any IRS notices?<div class="field-line"></div></div><div class="field">Bank name for direct deposit<div class="field-line"></div></div></div>' +
-        '<div class="field-row field-row-2"><div class="field">Routing number<div class="field-line"></div></div><div class="field">Account number<div class="field-line"></div></div></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Did you file a return last year?</span></div><div class="field"><div class="field-line"></div><span class="field-label">Prior year AGI (if known)</span></div></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Did you receive any IRS notices?</span></div><div class="field"><div class="field-line"></div><span class="field-label">Bank name for direct deposit</span></div></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Routing number</span></div><div class="field"><div class="field-line"></div><span class="field-label">Account number</span></div></div>' +
 
         '<h2>7. Signature &amp; Authorization</h2>' +
         '<p>By signing below, I confirm that the information provided is accurate and complete to the best of my knowledge. I authorize Precise Financials, LLC to prepare my tax return based on the documents I have provided.</p>' +
@@ -3474,18 +3475,18 @@
         '<div class="notice">This form authorizes Precise Financials, LLC (ERO) to electronically file your federal income tax return. Please review all information carefully before signing. Keep a copy for your records &mdash; do <strong>not</strong> mail this form to the IRS.</div>' +
 
         '<h2>Part I — Tax Return Information (Whole Dollars Only)</h2>' +
-        '<div class="field-row field-row-2"><div class="field">Tax Year<div class="field-line"></div></div><div class="field">Filing Status<div class="field-line"></div></div></div>' +
-        '<div class="field-row field-row-2"><div class="field">Taxpayer Full Name<div class="field-line"></div></div><div class="field">Taxpayer SSN<div class="field-line"></div></div></div>' +
-        '<div class="field-row field-row-2"><div class="field">Spouse Full Name (if MFJ)<div class="field-line"></div></div><div class="field">Spouse SSN (if MFJ)<div class="field-line"></div></div></div>' +
-        '<div class="field-row field-row-2"><div class="field">1 &nbsp; Adjusted Gross Income<div class="field-line"></div></div><div class="field">2 &nbsp; Total Tax<div class="field-line"></div></div></div>' +
-        '<div class="field-row field-row-2"><div class="field">3 &nbsp; Federal Income Tax Withheld<div class="field-line"></div></div><div class="field">4 &nbsp; Amount Owed (if applicable)<div class="field-line"></div></div></div>' +
-        '<div class="field-row field-row-2"><div class="field">5 &nbsp; Refund (if applicable)<div class="field-line"></div></div><div class="field">Refund Method<div class="field-line"></div></div></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Tax Year</span></div><div class="field"><div class="field-line"></div><span class="field-label">Filing Status</span></div></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Taxpayer Full Name</span></div><div class="field"><div class="field-line"></div><span class="field-label">Taxpayer SSN</span></div></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Spouse Full Name (if MFJ)</span></div><div class="field"><div class="field-line"></div><span class="field-label">Spouse SSN (if MFJ)</span></div></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">1 &nbsp; Adjusted Gross Income</span></div><div class="field"><div class="field-line"></div><span class="field-label">2 &nbsp; Total Tax</span></div></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">3 &nbsp; Federal Income Tax Withheld</span></div><div class="field"><div class="field-line"></div><span class="field-label">4 &nbsp; Amount Owed (if applicable)</span></div></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">5 &nbsp; Refund (if applicable)</span></div><div class="field"><div class="field-line"></div><span class="field-label">Refund Method</span></div></div>' +
 
         '<h2>Part II — Taxpayer Declaration &amp; Signature Authorization</h2>' +
         '<p>Under penalties of perjury, I declare that the information I have provided to my ERO and the amounts shown in Part I above agree with the amounts on the corresponding lines of my federal income tax return. To the best of my knowledge and belief, my return is true, correct, and complete. I further declare that the amounts in Part I are the amounts from my return (originally or as amended).</p>' +
         '<p><strong>I authorize my ERO to enter or generate my PIN as my signature on my tax return.</strong></p>' +
         '<div class="check-row"><span class="check-item"><span class="check-box"></span>I authorize the ERO to enter my PIN below</span><span class="check-item"><span class="check-box"></span>I will enter my own PIN</span></div>' +
-        '<div class="field-row field-row-2" style="margin-top:10px;"><div class="field">Taxpayer PIN (5 digits)<div class="field-line"></div></div><div class="field">Spouse PIN — if MFJ (5 digits)<div class="field-line"></div></div></div>' +
+        '<div class="field-row field-row-2" style="margin-top:10px;"><div class="field"><div class="field-line"></div><span class="field-label">Taxpayer PIN (5 digits)</span></div><div class="field"><div class="field-line"></div><span class="field-label">Spouse PIN — if MFJ (5 digits)</span></div></div>' +
 
         '<h2>Part III — Taxpayer Signatures</h2>' +
         '<div class="sig-block">' +
@@ -3495,8 +3496,8 @@
 
         '<h2>Part IV — ERO Declaration &amp; Signature (Completed by Precise Financials, LLC)</h2>' +
         '<p>I declare that I have reviewed the above taxpayer\'s return and that the entries on this form are complete and correct to the best of my knowledge. If I am only a signing tax return preparer and not an ERO, I understand I must still complete this section.</p>' +
-        '<div class="field-row field-row-2"><div class="field">ERO Firm Name<div class="field-line">Precise Financials, LLC</div></div><div class="field">EFIN / PIN<div class="field-line"></div></div></div>' +
-        '<div class="field-row field-row-2"><div class="field">ERO Signature<div class="field-line"></div></div><div class="field">Date<div class="field-line"></div></div></div>' +
+        '<div class="field-row field-row-2"><div class="field">ERO Firm Name<div class="field-line">Precise Financials, LLC</div></div><div class="field"><div class="field-line"></div><span class="field-label">EFIN / PIN</span></div></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">ERO Signature</span></div><div class="field"><div class="field-line"></div><span class="field-label">Date</span></div></div>' +
 
         ftr + '</div>';
     }
@@ -3507,21 +3508,21 @@
       content = hdr('Website Design & Development Contract') + '<div class="body">' +
         '<p>This Website Design & Development Agreement ("Agreement") is entered into as of the date signed below between <strong>Precise Financials, LLC</strong> ("Designer") and the client identified below ("Client").</p>' +
         '<h2>1. Parties</h2>' +
-        '<div class="field-row field-row-2"><div class="field">Client Name<div class="field-line"></div></div><div class="field">Business Name<div class="field-line"></div></div></div>' +
-        '<div class="field-row field-row-2"><div class="field">Address<div class="field-line"></div></div><div class="field">Phone / Email<div class="field-line"></div></div></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Client Name</span></div><div class="field"><div class="field-line"></div><span class="field-label">Business Name</span></div></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Address</span></div><div class="field"><div class="field-line"></div><span class="field-label">Phone / Email</span></div></div>' +
         '<h2>2. Project Scope</h2>' +
         '<div class="check-row"><span class="check-item"><span class="check-box"></span>Basic Package ($400–$800)</span><span class="check-item"><span class="check-box"></span>Standard Package ($900–$1,500)</span><span class="check-item"><span class="check-box"></span>Premium Package ($2,000–$4,000+)</span></div>' +
-        '<div class="field-row field-row-2"><div class="field">Number of Pages<div class="field-line"></div></div><div class="field">Domain / Hosting Provided By<div class="field-line"></div></div></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Number of Pages</span></div><div class="field"><div class="field-line"></div><span class="field-label">Domain / Hosting Provided By</span></div></div>' +
         '<div class="field-row"><div class="field">Features &amp; deliverables agreed upon<div class="field-box"></div></div></div>' +
         '<h2>3. Timeline</h2>' +
-        '<div class="field-row field-row-2"><div class="field">Estimated Start Date<div class="field-line"></div></div><div class="field">Estimated Completion Date<div class="field-line"></div></div></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Estimated Start Date</span></div><div class="field"><div class="field-line"></div><span class="field-label">Estimated Completion Date</span></div></div>' +
         '<div class="notice">Timeline is contingent upon timely receipt of all content, images, and feedback from the Client. Delays caused by the Client may extend the timeline accordingly.</div>' +
         '<h2>4. Fees &amp; Payment</h2>' +
-        '<div class="field-row field-row-2"><div class="field">Total Project Fee<div class="field-line"></div></div><div class="field">Deposit Due at Signing (50%)<div class="field-line"></div></div></div>' +
-        '<div class="field-row field-row-2"><div class="field">Balance Due at Launch<div class="field-line"></div></div><div class="field">Monthly Maintenance Plan (if any)<div class="field-line"></div></div></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Total Project Fee</span></div><div class="field"><div class="field-line"></div><span class="field-label">Deposit Due at Signing (50%)</span></div></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Balance Due at Launch</span></div><div class="field"><div class="field-line"></div><span class="field-label">Monthly Maintenance Plan (if any)</span></div></div>' +
         '<p>Work will not begin until the deposit is received. The remaining balance is due upon site launch. Maintenance plans are billed monthly.</p>' +
         '<h2>5. Revisions</h2>' +
-        '<div class="field-row field-row-2"><div class="field">Revision Rounds Included<div class="field-line"></div></div><div class="field">Additional Revision Rate<div class="field-line"></div></div></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Revision Rounds Included</span></div><div class="field"><div class="field-line"></div><span class="field-label">Additional Revision Rate</span></div></div>' +
         '<p>Revisions outside the agreed scope will be billed at the additional revision rate. Major scope changes require a written amendment to this Agreement.</p>' +
         '<h2>6. Client Responsibilities</h2>' +
         '<p>Client agrees to provide all content (text, images, logos, branding) in a timely manner. Precise Financials, LLC is not responsible for sourcing content unless explicitly agreed upon. Client is responsible for any third-party fees (domain registration, hosting, plugins).</p>' +
@@ -3543,19 +3544,19 @@
       content = hdr('LLC Setup Service Agreement') + '<div class="body">' +
         '<p>This LLC Setup Service Agreement ("Agreement") is entered into as of the date signed below between <strong>Precise Financials, LLC</strong> ("Service Provider") and the client identified below ("Client").</p>' +
         '<h2>1. Parties</h2>' +
-        '<div class="field-row field-row-2"><div class="field">Client Full Name<div class="field-line"></div></div><div class="field">Proposed LLC Name<div class="field-line"></div></div></div>' +
-        '<div class="field-row field-row-2"><div class="field">Address<div class="field-line"></div></div><div class="field">Phone / Email<div class="field-line"></div></div></div>' +
-        '<div class="field-row field-row-2"><div class="field">State of Formation<div class="field-line"></div></div><div class="field">Business Type / Industry<div class="field-line"></div></div></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Client Full Name</span></div><div class="field"><div class="field-line"></div><span class="field-label">Proposed LLC Name</span></div></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Address</span></div><div class="field"><div class="field-line"></div><span class="field-label">Phone / Email</span></div></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">State of Formation</span></div><div class="field"><div class="field-line"></div><span class="field-label">Business Type / Industry</span></div></div>' +
         '<h2>2. Services Included</h2>' +
         '<div class="check-row"><span class="check-item"><span class="check-box"></span>Name availability search</span><span class="check-item"><span class="check-box"></span>Articles of Organization filing</span><span class="check-item"><span class="check-box"></span>Operating Agreement (basic)</span></div>' +
         '<div class="check-row"><span class="check-item"><span class="check-box"></span>EIN application (IRS)</span><span class="check-item"><span class="check-box"></span>Registered agent guidance</span><span class="check-item"><span class="check-box"></span>Business bank account guidance</span></div>' +
         '<div class="check-row"><span class="check-item"><span class="check-box"></span>Initial bookkeeping setup</span><span class="check-item"><span class="check-box"></span>QuickBooks setup (add-on)</span><span class="check-item"><span class="check-box"></span>Other: <div class="field-line" style="width:120px;display:inline-block;"></div></span></div>' +
         '<h2>3. Fees &amp; Payment</h2>' +
-        '<div class="field-row field-row-2"><div class="field">Service Fee<div class="field-line"></div></div><div class="field">State Filing Fee (paid by client)<div class="field-line"></div></div></div>' +
-        '<div class="field-row field-row-2"><div class="field">Payment Due<div class="field-line"></div></div><div class="field">Payment Method<div class="field-line"></div></div></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Service Fee</span></div><div class="field"><div class="field-line"></div><span class="field-label">State Filing Fee (paid by client)</span></div></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Payment Due</span></div><div class="field"><div class="field-line"></div><span class="field-label">Payment Method</span></div></div>' +
         '<p>State filing fees are paid directly by the Client and are separate from the service fee. Service fee is due prior to filing.</p>' +
         '<h2>4. Timeline &amp; Client Responsibilities</h2>' +
-        '<div class="field-row field-row-2"><div class="field">Estimated Completion<div class="field-line"></div></div><div class="field">Documents Needed from Client<div class="field-line"></div></div></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Estimated Completion</span></div><div class="field"><div class="field-line"></div><span class="field-label">Documents Needed from Client</span></div></div>' +
         '<p>Client agrees to provide all required personal information and identification documents promptly. Precise Financials, LLC is not responsible for state processing delays.</p>' +
         '<h2>5. Limitations</h2>' +
         '<p>Precise Financials, LLC provides document preparation and filing assistance only. This service does not constitute legal advice. Client is encouraged to consult a licensed attorney for legal questions regarding their LLC structure.</p>' +
@@ -3573,19 +3574,19 @@
       content = hdr('Payroll Services Agreement') + '<div class="body">' +
         '<p>This Payroll Services Agreement ("Agreement") is entered into as of the date signed below between <strong>Precise Financials, LLC</strong> ("Service Provider") and the client identified below ("Client").</p>' +
         '<h2>1. Parties</h2>' +
-        '<div class="field-row field-row-2"><div class="field">Business Name<div class="field-line"></div></div><div class="field">Owner / Contact Name<div class="field-line"></div></div></div>' +
-        '<div class="field-row field-row-2"><div class="field">Address<div class="field-line"></div></div><div class="field">Phone / Email<div class="field-line"></div></div></div>' +
-        '<div class="field-row field-row-2"><div class="field">EIN<div class="field-line"></div></div><div class="field">State<div class="field-line"></div></div></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Business Name</span></div><div class="field"><div class="field-line"></div><span class="field-label">Owner / Contact Name</span></div></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Address</span></div><div class="field"><div class="field-line"></div><span class="field-label">Phone / Email</span></div></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">EIN</span></div><div class="field"><div class="field-line"></div><span class="field-label">State</span></div></div>' +
         '<h2>2. Payroll Details</h2>' +
-        '<div class="field-row field-row-3"><div class="field">Number of Employees<div class="field-line"></div></div><div class="field">Pay Frequency<div class="field-line"></div></div><div class="field">Next Pay Date<div class="field-line"></div></div></div>' +
+        '<div class="field-row field-row-3"><div class="field"><div class="field-line"></div><span class="field-label">Number of Employees</span></div><div class="field"><div class="field-line"></div><span class="field-label">Pay Frequency</span></div><div class="field"><div class="field-line"></div><span class="field-label">Next Pay Date</span></div></div>' +
         '<div class="check-row"><span class="check-item"><span class="check-box"></span>Direct deposit</span><span class="check-item"><span class="check-box"></span>Paper checks</span><span class="check-item"><span class="check-box"></span>W-2 employees</span><span class="check-item"><span class="check-box"></span>1099 contractors</span></div>' +
         '<h2>3. Services Included</h2>' +
         '<div class="check-row"><span class="check-item"><span class="check-box"></span>Payroll processing each pay period</span><span class="check-item"><span class="check-box"></span>Federal &amp; state tax withholding</span><span class="check-item"><span class="check-box"></span>Direct deposit setup</span></div>' +
         '<div class="check-row"><span class="check-item"><span class="check-box"></span>Quarterly payroll tax filings (941)</span><span class="check-item"><span class="check-box"></span>Annual W-2 / 1099 preparation</span><span class="check-item"><span class="check-box"></span>Year-end reconciliation</span></div>' +
         '<div class="field-row"><div class="field">Additional services agreed upon<div class="field-box"></div></div></div>' +
         '<h2>4. Fees &amp; Payment</h2>' +
-        '<div class="field-row field-row-2"><div class="field">Monthly Fee<div class="field-line"></div></div><div class="field">Per-Employee Fee (if applicable)<div class="field-line"></div></div></div>' +
-        '<div class="field-row field-row-2"><div class="field">Invoice Date<div class="field-line"></div></div><div class="field">Payment Method<div class="field-line"></div></div></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Monthly Fee</span></div><div class="field"><div class="field-line"></div><span class="field-label">Per-Employee Fee (if applicable)</span></div></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Invoice Date</span></div><div class="field"><div class="field-line"></div><span class="field-label">Payment Method</span></div></div>' +
         '<p>Client is responsible for ensuring sufficient funds are available for payroll and tax payments on all due dates. Precise Financials, LLC is not liable for penalties resulting from insufficient funds or late information from the Client.</p>' +
         '<h2>5. Client Responsibilities</h2>' +
         '<p>Client agrees to provide accurate employee hours, salary changes, and any other payroll data no later than 3 business days before each pay date. Changes submitted late may delay payroll processing.</p>' +
@@ -3605,8 +3606,8 @@
       content = hdr('QuickBooks Setup & Training Agreement') + '<div class="body">' +
         '<p>This QuickBooks Setup & Training Agreement ("Agreement") is entered into as of the date signed below between <strong>Precise Financials, LLC</strong> ("Service Provider") and the client identified below ("Client").</p>' +
         '<h2>1. Parties</h2>' +
-        '<div class="field-row field-row-2"><div class="field">Client / Business Name<div class="field-line"></div></div><div class="field">Owner / Contact Name<div class="field-line"></div></div></div>' +
-        '<div class="field-row field-row-2"><div class="field">Phone<div class="field-line"></div></div><div class="field">Email<div class="field-line"></div></div></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Client / Business Name</span></div><div class="field"><div class="field-line"></div><span class="field-label">Owner / Contact Name</span></div></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Phone</span></div><div class="field"><div class="field-line"></div><span class="field-label">Email</span></div></div>' +
         '<h2>2. Services</h2>' +
         '<div class="check-row"><span class="check-item"><span class="check-box"></span>QuickBooks Online setup</span><span class="check-item"><span class="check-box"></span>QuickBooks Desktop setup</span><span class="check-item"><span class="check-box"></span>Chart of accounts configuration</span></div>' +
         '<div class="check-row"><span class="check-item"><span class="check-box"></span>Bank &amp; credit card connections</span><span class="check-item"><span class="check-box"></span>Opening balance entry</span><span class="check-item"><span class="check-box"></span>Vendor / customer setup</span></div>' +
@@ -3614,10 +3615,10 @@
         '<div class="field-row"><div class="field">Additional details<div class="field-box"></div></div></div>' +
         '<h2>3. Fees &amp; Payment</h2>' +
         '<div class="check-row"><span class="check-item"><span class="check-box"></span>Setup Only ($200–$350)</span><span class="check-item"><span class="check-box"></span>Training Only ($150 flat)</span><span class="check-item"><span class="check-box"></span>Setup + Training Bundle ($300–$450)</span></div>' +
-        '<div class="field-row field-row-2"><div class="field">Agreed Fee<div class="field-line"></div></div><div class="field">Payment Due<div class="field-line"></div></div></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Agreed Fee</span></div><div class="field"><div class="field-line"></div><span class="field-label">Payment Due</span></div></div>' +
         '<p>Payment is due prior to the first session. QuickBooks subscription fees are the Client\'s responsibility and are separate from this Agreement.</p>' +
         '<h2>4. Scheduling &amp; Cancellations</h2>' +
-        '<div class="field-row field-row-2"><div class="field">Scheduled Session Date<div class="field-line"></div></div><div class="field">Session Format (in-person / virtual)<div class="field-line"></div></div></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Scheduled Session Date</span></div><div class="field"><div class="field-line"></div><span class="field-label">Session Format (in-person / virtual)</span></div></div>' +
         '<p>Client must provide at least 24 hours notice to reschedule. No-shows without notice forfeit the session fee.</p>' +
         '<h2>5. Client Responsibilities</h2>' +
         '<p>Client agrees to have an active QuickBooks subscription prior to the setup session and to provide access credentials as needed. Precise Financials, LLC is not responsible for data loss caused by third-party software errors.</p>' +
