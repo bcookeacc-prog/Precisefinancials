@@ -1879,20 +1879,6 @@
   </div>
 </div>
 <!-- ADMIN OVERLAY -->
-<!-- FORM PREVIEW MODAL -->
-<div id="form-preview-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:9999;flex-direction:column;align-items:center;justify-content:center;padding:16px;">
-  <div style="background:#fff;border-radius:8px;width:100%;max-width:860px;max-height:90vh;display:flex;flex-direction:column;box-shadow:0 8px 40px rgba(0,0,0,0.3);">
-    <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:2px solid var(--gold);background:#0a1f44;border-radius:8px 8px 0 0;">
-      <div id="form-preview-title" style="font-weight:700;font-size:15px;color:#fff;"></div>
-      <div style="display:flex;gap:10px;">
-        <button onclick="window.frames['form-preview-iframe'].print()" style="background:var(--gold);color:var(--navy);border:none;border-radius:4px;padding:7px 16px;font-size:12px;font-weight:700;cursor:pointer;">🖨 Print</button>
-        <button onclick="closeFormPreview()" style="background:rgba(255,255,255,0.15);color:#fff;border:none;border-radius:4px;padding:7px 16px;font-size:12px;font-weight:700;cursor:pointer;">✕ Close</button>
-      </div>
-    </div>
-    <iframe id="form-preview-iframe" name="form-preview-iframe" style="flex:1;border:none;border-radius:0 0 8px 8px;min-height:70vh;"></iframe>
-  </div>
-</div>
-
 <div id="admin-overlay">
   <!-- LOGIN -->
   <div class="admin-box" id="admin-login-box">
@@ -2017,51 +2003,51 @@
     <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:1.5rem;">
       <div style="display:flex;align-items:center;justify-content:space-between;background:#fff;border-radius:5px;padding:12px 16px;border:1px solid rgba(10,31,68,0.1);">
         <div><div style="font-size:14px;font-weight:700;color:var(--navy);">📊 Monthly Budget Tracker</div><div style="font-size:12px;color:var(--text-muted);">Track income vs. expenses across all 12 months</div></div>
-        <button onclick="downloadTemplate('monthly-budget')" style="background:var(--gold);color:var(--navy);border:none;border-radius:4px;padding:8px 16px;font-size:12px;font-weight:700;cursor:pointer;flex-shrink:0;">Download</button>
+        <div style="display:flex;gap:8px;flex-shrink:0;"><button onclick="downloadTemplate('monthly-budget',true)" style="background:var(--navy);color:#fff;border:none;border-radius:4px;padding:8px 14px;font-size:12px;font-weight:700;cursor:pointer;">Preview</button><button onclick="downloadTemplate('monthly-budget')" style="background:var(--gold);color:var(--navy);border:none;border-radius:4px;padding:8px 14px;font-size:12px;font-weight:700;cursor:pointer;">Download</button></div>
       </div>
       <div style="display:flex;align-items:center;justify-content:space-between;background:#fff;border-radius:5px;padding:12px 16px;border:1px solid rgba(10,31,68,0.1);">
         <div><div style="font-size:14px;font-weight:700;color:var(--navy);">📒 Bookkeeping Ledger</div><div style="font-size:12px;color:var(--text-muted);">Transaction log with categories and running balance</div></div>
-        <button onclick="downloadTemplate('bookkeeping-ledger')" style="background:var(--gold);color:var(--navy);border:none;border-radius:4px;padding:8px 16px;font-size:12px;font-weight:700;cursor:pointer;flex-shrink:0;">Download</button>
+        <div style="display:flex;gap:8px;flex-shrink:0;"><button onclick="downloadTemplate('bookkeeping-ledger',true)" style="background:var(--navy);color:#fff;border:none;border-radius:4px;padding:8px 14px;font-size:12px;font-weight:700;cursor:pointer;">Preview</button><button onclick="downloadTemplate('bookkeeping-ledger')" style="background:var(--gold);color:var(--navy);border:none;border-radius:4px;padding:8px 14px;font-size:12px;font-weight:700;cursor:pointer;">Download</button></div>
       </div>
       <div style="display:flex;align-items:center;justify-content:space-between;background:#fff;border-radius:5px;padding:12px 16px;border:1px solid rgba(10,31,68,0.1);">
         <div><div style="font-size:14px;font-weight:700;color:var(--navy);">📈 Profit & Loss Tracker</div><div style="font-size:12px;color:var(--text-muted);">Monthly revenue, expenses, and net profit</div></div>
-        <button onclick="downloadTemplate('profit-loss')" style="background:var(--gold);color:var(--navy);border:none;border-radius:4px;padding:8px 16px;font-size:12px;font-weight:700;cursor:pointer;flex-shrink:0;">Download</button>
+        <div style="display:flex;gap:8px;flex-shrink:0;"><button onclick="downloadTemplate('profit-loss',true)" style="background:var(--navy);color:#fff;border:none;border-radius:4px;padding:8px 14px;font-size:12px;font-weight:700;cursor:pointer;">Preview</button><button onclick="downloadTemplate('profit-loss')" style="background:var(--gold);color:var(--navy);border:none;border-radius:4px;padding:8px 14px;font-size:12px;font-weight:700;cursor:pointer;">Download</button></div>
       </div>
       <div style="display:flex;align-items:center;justify-content:space-between;background:#fff;border-radius:5px;padding:12px 16px;border:1px solid rgba(10,31,68,0.1);">
         <div><div style="font-size:14px;font-weight:700;color:var(--navy);">🧾 Invoice Tracker</div><div style="font-size:12px;color:var(--text-muted);">Log invoices, due dates, and payment status</div></div>
-        <button onclick="downloadTemplate('invoice-tracker')" style="background:var(--gold);color:var(--navy);border:none;border-radius:4px;padding:8px 16px;font-size:12px;font-weight:700;cursor:pointer;flex-shrink:0;">Download</button>
+        <div style="display:flex;gap:8px;flex-shrink:0;"><button onclick="downloadTemplate('invoice-tracker',true)" style="background:var(--navy);color:#fff;border:none;border-radius:4px;padding:8px 14px;font-size:12px;font-weight:700;cursor:pointer;">Preview</button><button onclick="downloadTemplate('invoice-tracker')" style="background:var(--gold);color:var(--navy);border:none;border-radius:4px;padding:8px 14px;font-size:12px;font-weight:700;cursor:pointer;">Download</button></div>
       </div>
       <div style="display:flex;align-items:center;justify-content:space-between;background:#fff;border-radius:5px;padding:12px 16px;border:1px solid rgba(10,31,68,0.1);">
         <div><div style="font-size:14px;font-weight:700;color:var(--navy);">🚗 Mileage Log</div><div style="font-size:12px;color:var(--text-muted);">Track business miles for tax deductions</div></div>
-        <button onclick="downloadTemplate('mileage-log')" style="background:var(--gold);color:var(--navy);border:none;border-radius:4px;padding:8px 16px;font-size:12px;font-weight:700;cursor:pointer;flex-shrink:0;">Download</button>
+        <div style="display:flex;gap:8px;flex-shrink:0;"><button onclick="downloadTemplate('mileage-log',true)" style="background:var(--navy);color:#fff;border:none;border-radius:4px;padding:8px 14px;font-size:12px;font-weight:700;cursor:pointer;">Preview</button><button onclick="downloadTemplate('mileage-log')" style="background:var(--gold);color:var(--navy);border:none;border-radius:4px;padding:8px 14px;font-size:12px;font-weight:700;cursor:pointer;">Download</button></div>
       </div>
       <div style="display:flex;align-items:center;justify-content:space-between;background:#fff;border-radius:5px;padding:12px 16px;border:1px solid rgba(10,31,68,0.1);">
         <div><div style="font-size:14px;font-weight:700;color:var(--navy);">💰 Accounts Receivable Tracker</div><div style="font-size:12px;color:var(--text-muted);">Track who owes you money and how long it's been outstanding</div></div>
-        <button onclick="downloadTemplate('accounts-receivable')" style="background:var(--gold);color:var(--navy);border:none;border-radius:4px;padding:8px 16px;font-size:12px;font-weight:700;cursor:pointer;flex-shrink:0;">Download</button>
+        <div style="display:flex;gap:8px;flex-shrink:0;"><button onclick="downloadTemplate('accounts-receivable',true)" style="background:var(--navy);color:#fff;border:none;border-radius:4px;padding:8px 14px;font-size:12px;font-weight:700;cursor:pointer;">Preview</button><button onclick="downloadTemplate('accounts-receivable')" style="background:var(--gold);color:var(--navy);border:none;border-radius:4px;padding:8px 14px;font-size:12px;font-weight:700;cursor:pointer;">Download</button></div>
       </div>
       <div style="display:flex;align-items:center;justify-content:space-between;background:#fff;border-radius:5px;padding:12px 16px;border:1px solid rgba(10,31,68,0.1);">
         <div><div style="font-size:14px;font-weight:700;color:var(--navy);">💳 Accounts Payable Tracker</div><div style="font-size:12px;color:var(--text-muted);">Track bills and vendor payments so nothing gets missed</div></div>
-        <button onclick="downloadTemplate('accounts-payable')" style="background:var(--gold);color:var(--navy);border:none;border-radius:4px;padding:8px 16px;font-size:12px;font-weight:700;cursor:pointer;flex-shrink:0;">Download</button>
+        <div style="display:flex;gap:8px;flex-shrink:0;"><button onclick="downloadTemplate('accounts-payable',true)" style="background:var(--navy);color:#fff;border:none;border-radius:4px;padding:8px 14px;font-size:12px;font-weight:700;cursor:pointer;">Preview</button><button onclick="downloadTemplate('accounts-payable')" style="background:var(--gold);color:var(--navy);border:none;border-radius:4px;padding:8px 14px;font-size:12px;font-weight:700;cursor:pointer;">Download</button></div>
       </div>
       <div style="display:flex;align-items:center;justify-content:space-between;background:#fff;border-radius:5px;padding:12px 16px;border:1px solid rgba(10,31,68,0.1);">
         <div><div style="font-size:14px;font-weight:700;color:var(--navy);">📅 Weekly Cash Flow Tracker</div><div style="font-size:12px;color:var(--text-muted);">Monitor money in vs. out week by week</div></div>
-        <button onclick="downloadTemplate('cash-flow')" style="background:var(--gold);color:var(--navy);border:none;border-radius:4px;padding:8px 16px;font-size:12px;font-weight:700;cursor:pointer;flex-shrink:0;">Download</button>
+        <div style="display:flex;gap:8px;flex-shrink:0;"><button onclick="downloadTemplate('cash-flow',true)" style="background:var(--navy);color:#fff;border:none;border-radius:4px;padding:8px 14px;font-size:12px;font-weight:700;cursor:pointer;">Preview</button><button onclick="downloadTemplate('cash-flow')" style="background:var(--gold);color:var(--navy);border:none;border-radius:4px;padding:8px 14px;font-size:12px;font-weight:700;cursor:pointer;">Download</button></div>
       </div>
       <div style="display:flex;align-items:center;justify-content:space-between;background:#fff;border-radius:5px;padding:12px 16px;border:1px solid rgba(10,31,68,0.1);">
         <div><div style="font-size:14px;font-weight:700;color:var(--navy);">🧮 Sales Tax Tracker</div><div style="font-size:12px;color:var(--text-muted);">Log taxable sales and calculate quarterly tax owed</div></div>
-        <button onclick="downloadTemplate('sales-tax')" style="background:var(--gold);color:var(--navy);border:none;border-radius:4px;padding:8px 16px;font-size:12px;font-weight:700;cursor:pointer;flex-shrink:0;">Download</button>
+        <div style="display:flex;gap:8px;flex-shrink:0;"><button onclick="downloadTemplate('sales-tax',true)" style="background:var(--navy);color:#fff;border:none;border-radius:4px;padding:8px 14px;font-size:12px;font-weight:700;cursor:pointer;">Preview</button><button onclick="downloadTemplate('sales-tax')" style="background:var(--gold);color:var(--navy);border:none;border-radius:4px;padding:8px 14px;font-size:12px;font-weight:700;cursor:pointer;">Download</button></div>
       </div>
       <div style="display:flex;align-items:center;justify-content:space-between;background:#fff;border-radius:5px;padding:12px 16px;border:1px solid rgba(10,31,68,0.1);">
         <div><div style="font-size:14px;font-weight:700;color:var(--navy);">✅ Tax Deduction Checklist</div><div style="font-size:12px;color:var(--text-muted);">Commonly missed deductions — fill in before your tax appointment</div></div>
-        <button onclick="downloadTemplate('tax-deductions')" style="background:var(--gold);color:var(--navy);border:none;border-radius:4px;padding:8px 16px;font-size:12px;font-weight:700;cursor:pointer;flex-shrink:0;">Download</button>
+        <div style="display:flex;gap:8px;flex-shrink:0;"><button onclick="downloadTemplate('tax-deductions',true)" style="background:var(--navy);color:#fff;border:none;border-radius:4px;padding:8px 14px;font-size:12px;font-weight:700;cursor:pointer;">Preview</button><button onclick="downloadTemplate('tax-deductions')" style="background:var(--gold);color:var(--navy);border:none;border-radius:4px;padding:8px 14px;font-size:12px;font-weight:700;cursor:pointer;">Download</button></div>
       </div>
       <div style="display:flex;align-items:center;justify-content:space-between;background:#fff;border-radius:5px;padding:12px 16px;border:1px solid rgba(10,31,68,0.1);">
         <div><div style="font-size:14px;font-weight:700;color:var(--navy);">📆 Quarterly Estimated Tax Tracker</div><div style="font-size:12px;color:var(--text-muted);">Track quarterly IRS payments and avoid penalties</div></div>
-        <button onclick="downloadTemplate('quarterly-tax')" style="background:var(--gold);color:var(--navy);border:none;border-radius:4px;padding:8px 16px;font-size:12px;font-weight:700;cursor:pointer;flex-shrink:0;">Download</button>
+        <div style="display:flex;gap:8px;flex-shrink:0;"><button onclick="downloadTemplate('quarterly-tax',true)" style="background:var(--navy);color:#fff;border:none;border-radius:4px;padding:8px 14px;font-size:12px;font-weight:700;cursor:pointer;">Preview</button><button onclick="downloadTemplate('quarterly-tax')" style="background:var(--gold);color:var(--navy);border:none;border-radius:4px;padding:8px 14px;font-size:12px;font-weight:700;cursor:pointer;">Download</button></div>
       </div>
       <div style="display:flex;align-items:center;justify-content:space-between;background:#fff;border-radius:5px;padding:12px 16px;border:1px solid rgba(10,31,68,0.1);">
         <div><div style="font-size:14px;font-weight:700;color:var(--navy);">🚀 Startup Cost Tracker</div><div style="font-size:12px;color:var(--text-muted);">Log every expense from formation through launch</div></div>
-        <button onclick="downloadTemplate('startup-costs')" style="background:var(--gold);color:var(--navy);border:none;border-radius:4px;padding:8px 16px;font-size:12px;font-weight:700;cursor:pointer;flex-shrink:0;">Download</button>
+        <div style="display:flex;gap:8px;flex-shrink:0;"><button onclick="downloadTemplate('startup-costs',true)" style="background:var(--navy);color:#fff;border:none;border-radius:4px;padding:8px 14px;font-size:12px;font-weight:700;cursor:pointer;">Preview</button><button onclick="downloadTemplate('startup-costs')" style="background:var(--gold);color:var(--navy);border:none;border-radius:4px;padding:8px 14px;font-size:12px;font-weight:700;cursor:pointer;">Download</button></div>
       </div>
     </div>
 
@@ -3647,12 +3633,9 @@
     var blob = new Blob([html], {type:'text/html'});
     var url = URL.createObjectURL(blob);
     if (preview) {
-      document.getElementById('form-preview-title').textContent = title;
-      var iframe = document.getElementById('form-preview-iframe');
-      iframe.contentDocument.open();
-      iframe.contentDocument.write(html);
-      iframe.contentDocument.close();
-      document.getElementById('form-preview-modal').style.display = 'flex';
+      var win = window.open('', '_blank');
+      win.document.write(html);
+      win.document.close();
     } else {
       var a = document.createElement('a');
       a.href = URL.createObjectURL(blob);
@@ -3661,12 +3644,8 @@
     }
   }
 
-  function closeFormPreview() {
-    document.getElementById('form-preview-modal').style.display = 'none';
-    document.getElementById('form-preview-iframe').src = '';
-  }
 
-  function downloadTemplate(type) {
+  function downloadTemplate(type, preview) {
     var logo = document.querySelector('img[src^="data:image"]');
     var logoHtml = logo ? '<img src="' + logo.src + '" style="height:55px;margin-bottom:6px;">' : '';
     var year = new Date().getFullYear();
@@ -3963,14 +3942,20 @@
       '<button class="print-btn" onclick="window.print()">🖨 Print / Save as PDF</button>' +
       '</body></html>';
 
-    var blob = new Blob([html], { type: 'text/html' });
-    var a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = filename;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(a.href);
+    if (preview) {
+      var win = window.open('', '_blank');
+      win.document.write(html);
+      win.document.close();
+    } else {
+      var blob = new Blob([html], { type: 'text/html' });
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(a.href);
+    }
   }
 
   function toggleCurrentSite(val) {
