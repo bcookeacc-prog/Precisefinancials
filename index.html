@@ -3471,32 +3471,38 @@
     if (type === 'form-8879') {
       title = 'Form 8879 — IRS E-File Signature Authorization';
       filename = 'PF-Form-8879-' + year + '.html';
+      var taxYear = year - 1;
       content = hdr('IRS E-File Signature Authorization') + '<div class="body">' +
-        '<div class="notice">This form authorizes Precise Financials, LLC (ERO) to electronically file your federal income tax return. Please review all information carefully before signing. Keep a copy for your records &mdash; do <strong>not</strong> mail this form to the IRS.</div>' +
+        '<div class="notice">This form authorizes Precise Financials, LLC (ERO) to electronically file your federal income tax return. Please review all information carefully before signing. Keep a copy for your records &mdash; do <strong>not</strong> mail this form to the IRS. <strong>Tax Year of Return: ' + taxYear + '</strong> &nbsp;|&nbsp; <strong>Date Prepared: ' + year + '</strong></div>' +
 
-        '<h2>Part I — Tax Return Information (Whole Dollars Only)</h2>' +
-        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Tax Year</span></div><div class="field"><div class="field-line"></div><span class="field-label">Filing Status</span></div></div>' +
-        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Taxpayer Full Name</span></div><div class="field"><div class="field-line"></div><span class="field-label">Taxpayer SSN</span></div></div>' +
-        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Spouse Full Name (if MFJ)</span></div><div class="field"><div class="field-line"></div><span class="field-label">Spouse SSN (if MFJ)</span></div></div>' +
+        '<h2>Part I — Taxpayer Information</h2>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Taxpayer Full Legal Name</span></div><div class="field"><div class="field-line"></div><span class="field-label">Taxpayer SSN</span></div></div>' +
+        '<div class="field-row field-row-3"><div class="field"><div class="field-line"></div><span class="field-label">Tax Year of Return</span></div><div class="field"><div class="field-line"></div><span class="field-label">Filing Status</span></div><div class="field"><div class="field-line"></div><span class="field-label">Date of Birth</span></div></div>' +
+
+        '<h3>Spouse Information (Complete only if Married Filing Jointly)</h3>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Spouse Full Legal Name</span></div><div class="field"><div class="field-line"></div><span class="field-label">Spouse SSN</span></div></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Spouse Date of Birth</span></div><div class="field"><div class="field-line"></div><span class="field-label">Spouse Date of Birth</span></div></div>' +
+
+        '<h2>Part II — Tax Return Information (Whole Dollars Only)</h2>' +
         '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">1 &nbsp; Adjusted Gross Income</span></div><div class="field"><div class="field-line"></div><span class="field-label">2 &nbsp; Total Tax</span></div></div>' +
         '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">3 &nbsp; Federal Income Tax Withheld</span></div><div class="field"><div class="field-line"></div><span class="field-label">4 &nbsp; Amount Owed (if applicable)</span></div></div>' +
-        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">5 &nbsp; Refund (if applicable)</span></div><div class="field"><div class="field-line"></div><span class="field-label">Refund Method</span></div></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">5 &nbsp; Refund Amount (if applicable)</span></div><div class="field"><div class="field-line"></div><span class="field-label">Refund Method (direct deposit / check)</span></div></div>' +
 
-        '<h2>Part II — Taxpayer Declaration &amp; Signature Authorization</h2>' +
-        '<p>Under penalties of perjury, I declare that the information I have provided to my ERO and the amounts shown in Part I above agree with the amounts on the corresponding lines of my federal income tax return. To the best of my knowledge and belief, my return is true, correct, and complete. I further declare that the amounts in Part I are the amounts from my return (originally or as amended).</p>' +
-        '<p><strong>I authorize my ERO to enter or generate my PIN as my signature on my tax return.</strong></p>' +
-        '<div class="check-row"><span class="check-item"><span class="check-box"></span>I authorize the ERO to enter my PIN below</span><span class="check-item"><span class="check-box"></span>I will enter my own PIN</span></div>' +
-        '<div class="field-row field-row-2" style="margin-top:10px;"><div class="field"><div class="field-line"></div><span class="field-label">Taxpayer PIN (5 digits)</span></div><div class="field"><div class="field-line"></div><span class="field-label">Spouse PIN — if MFJ (5 digits)</span></div></div>' +
+        '<h2>Part III — Taxpayer Declaration &amp; Signature Authorization</h2>' +
+        '<p>Under penalties of perjury, I declare that the information I have provided to my ERO and the amounts shown in Part II above agree with the amounts on the corresponding lines of my federal income tax return for the tax year identified above. To the best of my knowledge and belief, my return is true, correct, and complete.</p>' +
+        '<p><strong>PIN Authorization — select one:</strong></p>' +
+        '<div class="check-row"><span class="check-item"><span class="check-box"></span>I authorize Precise Financials, LLC (ERO) to enter my PIN below as my signature</span><span class="check-item"><span class="check-box"></span>I will enter my own PIN</span></div>' +
+        '<div class="field-row field-row-2" style="margin-top:10px;"><div class="field"><div class="field-line"></div><span class="field-label">Taxpayer PIN (5 digits, cannot begin with zero)</span></div><div class="field"><div class="field-line"></div><span class="field-label">Spouse PIN (5 digits — MFJ only, cannot begin with zero)</span></div></div>' +
 
-        '<h2>Part III — Taxpayer Signatures</h2>' +
+        '<h2>Part IV — Taxpayer Signatures</h2>' +
         '<div class="sig-block">' +
-        '<div><div class="sig-field">Taxpayer Signature<div class="sig-line"></div></div><div class="sig-field" style="margin-top:10px;">Date<div class="sig-date"></div></div></div>' +
-        '<div><div class="sig-field">Spouse Signature (if MFJ)<div class="sig-line"></div></div><div class="sig-field" style="margin-top:10px;">Date<div class="sig-date"></div></div></div>' +
+        '<div><div class="sig-field">Taxpayer Signature<div class="sig-line"></div></div><div class="sig-field" style="margin-top:10px;">Printed Name<div class="sig-date"></div></div><div class="sig-field" style="margin-top:10px;">Date<div class="sig-date"></div></div></div>' +
+        '<div><div class="sig-field">Spouse Signature (MFJ only)<div class="sig-line"></div></div><div class="sig-field" style="margin-top:10px;">Printed Name<div class="sig-date"></div></div><div class="sig-field" style="margin-top:10px;">Date<div class="sig-date"></div></div></div>' +
         '</div>' +
 
-        '<h2>Part IV — ERO Declaration &amp; Signature (Completed by Precise Financials, LLC)</h2>' +
-        '<p>I declare that I have reviewed the above taxpayer\'s return and that the entries on this form are complete and correct to the best of my knowledge. If I am only a signing tax return preparer and not an ERO, I understand I must still complete this section.</p>' +
-        '<div class="field-row field-row-2"><div class="field">ERO Firm Name<div class="field-line">Precise Financials, LLC</div></div><div class="field"><div class="field-line"></div><span class="field-label">EFIN / PIN</span></div></div>' +
+        '<h2>Part V — ERO Declaration &amp; Signature (Completed by Precise Financials, LLC)</h2>' +
+        '<p>I declare that I have reviewed the above taxpayer\'s return for tax year <strong>' + taxYear + '</strong> and that the entries on this form are complete and correct to the best of my knowledge.</p>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line">Precise Financials, LLC</div><span class="field-label">ERO Firm Name</span></div><div class="field"><div class="field-line"></div><span class="field-label">EFIN / PIN</span></div></div>' +
         '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">ERO Signature</span></div><div class="field"><div class="field-line"></div><span class="field-label">Date</span></div></div>' +
 
         ftr + '</div>';
