@@ -2554,6 +2554,9 @@
     if (!isOpen) item.classList.add('open');
   }
 
+  function validEmail(e) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e); }
+  function validPhone(p) { return p.replace(/\D/g,'').length === 10; }
+
   function handleBookSubmit() {
     const name = document.getElementById('book-name').value.trim();
     const email = document.getElementById('book-email').value.trim();
@@ -2562,8 +2565,19 @@
     const time = document.getElementById('book-time').value;
     const notes = document.getElementById('book-notes').value.trim();
     if (!name || !email || !phone || !date || !time) {
+      document.getElementById('book-error').textContent = 'Please fill out all required fields.';
       document.getElementById('book-error').style.display = 'block';
       setTimeout(() => document.getElementById('book-error').style.display = 'none', 3000);
+      return;
+    }
+    if (!validEmail(email)) {
+      document.getElementById('book-error').textContent = 'Please enter a valid email address.';
+      document.getElementById('book-error').style.display = 'block';
+      return;
+    }
+    if (!validPhone(phone)) {
+      document.getElementById('book-error').textContent = 'Please enter a valid 10-digit phone number.';
+      document.getElementById('book-error').style.display = 'block';
       return;
     }
     try {
@@ -3957,6 +3971,8 @@
     var suc = document.getElementById('wc-success');
     err.style.display = 'none'; suc.style.display = 'none';
     if (!name || !business || !email) { err.textContent = 'Please fill in your name, business name, and email.'; err.style.display = 'block'; return; }
+    if (!validEmail(email)) { err.textContent = 'Please enter a valid email address.'; err.style.display = 'block'; return; }
+    if (phone && !validPhone(phone)) { err.textContent = 'Please enter a valid 10-digit phone number.'; err.style.display = 'block'; return; }
     try {
       var submission = {
         id: Date.now(), date: new Date().toLocaleString(),
@@ -4002,6 +4018,8 @@
     var suc = document.getElementById('web-success');
     err.style.display = 'none'; suc.style.display = 'none';
     if (!name || !email) { err.textContent = 'Please enter your name and email.'; err.style.display = 'block'; return; }
+    if (!validEmail(email)) { err.textContent = 'Please enter a valid email address.'; err.style.display = 'block'; return; }
+    if (phone && !validPhone(phone)) { err.textContent = 'Please enter a valid 10-digit phone number.'; err.style.display = 'block'; return; }
     try {
       var submission = { id: Date.now(), date: new Date().toLocaleString(), name: name, email: email, phone: phone, package: pkg, notes: notes };
       var reqs = JSON.parse(localStorage.getItem('pf_website_requests') || '[]');
@@ -4024,10 +4042,20 @@
     const prefDate = document.getElementById('contact-date').value;
     const prefTime = document.getElementById('contact-time').value;
     const services = Array.from(document.querySelectorAll('.checkbox-group input:checked')).map(c => c.value);
+    const err = document.getElementById('form-error');
     if (!name || !email || !phone || !message) {
-      const err = document.getElementById('form-error');
+      err.textContent = 'Please fill out all required fields.';
       err.style.display = 'block';
-      setTimeout(() => err.style.display = 'none', 3000);
+      return;
+    }
+    if (!validEmail(email)) {
+      err.textContent = 'Please enter a valid email address.';
+      err.style.display = 'block';
+      return;
+    }
+    if (!validPhone(phone)) {
+      err.textContent = 'Please enter a valid 10-digit phone number.';
+      err.style.display = 'block';
       return;
     }
     try {
