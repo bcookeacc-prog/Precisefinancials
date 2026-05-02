@@ -1946,7 +1946,18 @@
     <button class="admin-save-btn" onclick="adminSave()">Save Settings</button>
     <div class="admin-saved" id="admin-saved">Settings saved successfully!</div>
 
-    <div class="admin-section-title" style="margin-top:1.5rem;">Forms &amp; Agreements</div>
+    <div class="admin-section-title" style="margin-top:1.5rem;">Change Password</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:1rem;">Update your admin portal login password.</p>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:1rem;">
+      <div class="form-group" style="margin:0;"><label class="admin-field-label">Current Password</label><input type="password" id="pw-current" placeholder="Current password" style="width:100%;padding:0.6rem 0.85rem;border:1.5px solid #dce3ec;border-radius:4px;font-size:14px;box-sizing:border-box;" /></div>
+      <div class="form-group" style="margin:0;"><label class="admin-field-label">New Password</label><input type="password" id="pw-new" placeholder="New password" style="width:100%;padding:0.6rem 0.85rem;border:1.5px solid #dce3ec;border-radius:4px;font-size:14px;box-sizing:border-box;" /></div>
+      <div class="form-group" style="margin:0;"><label class="admin-field-label">Confirm New Password</label><input type="password" id="pw-confirm" placeholder="Confirm new password" style="width:100%;padding:0.6rem 0.85rem;border:1.5px solid #dce3ec;border-radius:4px;font-size:14px;box-sizing:border-box;" /></div>
+    </div>
+    <div id="pw-error" style="display:none;color:#c0392b;font-size:13px;margin-bottom:8px;"></div>
+    <div id="pw-success" style="display:none;color:#1a6b3c;font-size:13px;margin-bottom:8px;">Password updated successfully!</div>
+    <button class="admin-save-btn" onclick="changeAdminPassword()" style="margin-bottom:1.5rem;">Update Password</button>
+
+    <div class="admin-section-title" style="margin-top:0.5rem;">Forms &amp; Agreements</div>
     <p style="font-size:13px;color:var(--text-muted);margin-bottom:1rem;">Branded contracts and intake forms. Download, print, or save as PDF to send to clients.</p>
     <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:1.5rem;">
       <div style="display:flex;align-items:center;justify-content:space-between;background:#fff;border-radius:5px;padding:12px 16px;border:1px solid rgba(10,31,68,0.1);">
@@ -2285,12 +2296,30 @@
   document.getElementById('stat-contact').addEventListener('click', function() { showPage('book'); });
 
   // ADMIN
-  const ADMIN_PASSWORD = 'Precise2026!';
+  function getAdminPassword() { return localStorage.getItem('pf_admin_password') || 'Precise2026!'; }
   const SOCIALS = ['facebook','instagram','tiktok','linkedin'];
+
+  function changeAdminPassword() {
+    var cur = document.getElementById('pw-current').value;
+    var nw = document.getElementById('pw-new').value;
+    var conf = document.getElementById('pw-confirm').value;
+    var err = document.getElementById('pw-error');
+    var suc = document.getElementById('pw-success');
+    err.style.display = 'none'; suc.style.display = 'none';
+    if (cur !== getAdminPassword()) { err.textContent = 'Current password is incorrect.'; err.style.display = 'block'; return; }
+    if (nw.length < 6) { err.textContent = 'New password must be at least 6 characters.'; err.style.display = 'block'; return; }
+    if (nw !== conf) { err.textContent = 'New passwords do not match.'; err.style.display = 'block'; return; }
+    localStorage.setItem('pf_admin_password', nw);
+    document.getElementById('pw-current').value = '';
+    document.getElementById('pw-new').value = '';
+    document.getElementById('pw-confirm').value = '';
+    suc.style.display = 'block';
+    setTimeout(function(){ suc.style.display = 'none'; }, 3000);
+  }
 
   function adminLogin() {
     const pw = document.getElementById('admin-pw-input').value;
-    if (pw === ADMIN_PASSWORD) {
+    if (pw === getAdminPassword()) {
       sessionStorage.setItem('pf_admin_session_temp', '1');
       document.getElementById('admin-login-box').style.display = 'none';
       document.getElementById('admin-dashboard-box').style.display = 'block';
