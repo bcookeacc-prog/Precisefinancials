@@ -483,6 +483,13 @@
     .values-list li:last-child { border-bottom: none; }
     .check { color: var(--gold); font-weight: 700; font-size: 16px; }
 
+    .service-area-section { background: var(--navy); border-radius: 10px; padding: 2.2rem 2rem; margin-top: 2.5rem; }
+    .service-area-section h3 { font-family: 'Playfair Display', serif; color: #fff; font-size: 1.35rem; margin: 0 0 0.4rem; }
+    .service-area-section p { color: rgba(255,255,255,0.75); font-size: 14px; margin: 0 0 1.4rem; }
+    .service-area-tags { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    .service-area-tag { background: rgba(255,255,255,0.07); border: 1px solid rgba(201,168,76,0.45); border-left: 3px solid var(--gold); border-radius: 4px; padding: 0.45rem 0.85rem; color: #fff; font-size: 13px; font-weight: 600; }
+    .service-area-tag.nationwide { border-left-color: var(--gold); background: rgba(201,168,76,0.12); color: var(--gold); }
+
     .stats-row {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -1143,6 +1150,18 @@
       <div class="stat-box">
         <span class="stat-num">LLC</span>
         <span class="stat-label">Licensed &amp; Insured</span>
+      </div>
+    </div>
+    <div class="service-area-section">
+      <h3>Our Service Area</h3>
+      <p>Precise Financials LLC proudly serves clients locally and remotely across the country.</p>
+      <div class="service-area-tags">
+        <div class="service-area-tag">&#128205; Colorado City, AZ</div>
+        <div class="service-area-tag">&#128205; Hildale, UT</div>
+        <div class="service-area-tag">&#128205; St. George, UT</div>
+        <div class="service-area-tag">&#128205; Mohave County, AZ</div>
+        <div class="service-area-tag">&#128205; Washington County, UT</div>
+        <div class="service-area-tag nationwide">&#127758; Remote Clients Nationwide</div>
       </div>
     </div>
   </div>
