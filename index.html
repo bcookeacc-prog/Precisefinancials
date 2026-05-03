@@ -1688,14 +1688,6 @@
           <label>Message <span style="color:#c0392b;">*</span></label>
           <textarea id="contact-message" placeholder="Tell us how we can help your business..."></textarea>
         </div>
-        <div class="form-group">
-          <label>Preferred Meeting Date <span style="font-weight:400;font-size:11px;color:var(--text-muted);">(optional)</span></label>
-          <input type="date" id="contact-date" />
-        </div>
-        <div class="form-group">
-          <label>Preferred Meeting Time <span style="font-weight:400;font-size:11px;color:var(--text-muted);">(optional)</span></label>
-          <input type="time" id="contact-time" />
-        </div>
         <div id="form-error" style="display:none;color:#c0392b;font-size:13px;margin-bottom:0.75rem;">Please fill out all fields before submitting.</div>
         <div id="form-success" style="display:none;background:#eaf4ec;border:1px solid #a8d5b0;border-radius:4px;padding:1.25rem 1.5rem;margin-bottom:0.75rem;text-align:center;">
           <p style="font-size:16px;font-weight:700;color:#1a6b3c;margin-bottom:0.4rem;">Thank You for Reaching Out!</p>
@@ -1747,8 +1739,20 @@
           <option>Hawaii (HT)</option>
         </select>
       </div>
+      <div class="service-check-group">
+        <div class="service-check-title">What would you like to discuss? <span>(select all that apply)</span></div>
+        <div class="checkbox-group">
+          <div class="checkbox-item"><input type="checkbox" id="bsvc1" value="Bookkeeping"><label for="bsvc1">Bookkeeping</label></div>
+          <div class="checkbox-item"><input type="checkbox" id="bsvc2" value="Tax Preparation"><label for="bsvc2">Tax Preparation</label></div>
+          <div class="checkbox-item"><input type="checkbox" id="bsvc3" value="Financial Strategy"><label for="bsvc3">Financial Strategy</label></div>
+          <div class="checkbox-item"><input type="checkbox" id="bsvc4" value="Payroll Services"><label for="bsvc4">Payroll Services</label></div>
+          <div class="checkbox-item"><input type="checkbox" id="bsvc5" value="LLC Setup"><label for="bsvc5">LLC Setup</label></div>
+          <div class="checkbox-item"><input type="checkbox" id="bsvc6" value="QuickBooks Setup &amp; Training"><label for="bsvc6">QuickBooks Setup &amp; Training</label></div>
+          <div class="checkbox-item"><input type="checkbox" id="bsvc7" value="Not sure yet"><label for="bsvc7">Not sure yet — I need guidance</label></div>
+        </div>
+      </div>
       <div class="form-group">
-        <label>What would you like to discuss? <span style="font-weight:400;text-transform:none;font-size:12px;">(optional)</span></label>
+        <label>Anything else you'd like us to know? <span style="font-weight:400;text-transform:none;font-size:12px;">(optional)</span></label>
         <textarea id="book-notes" placeholder="Brief description of your business needs..." style="height:100px;resize:vertical;"></textarea>
       </div>
       <div id="book-error" style="display:none;color:#c0392b;font-size:13px;margin-bottom:0.75rem;">Please fill out all required fields.</div>
@@ -1870,6 +1874,42 @@
         </div>
       </div>
 
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          What states do you serve? <span class="faq-arrow">&#9660;</span>
+        </button>
+        <div class="faq-answer">
+          <p>We are based in Colorado City, Arizona, but we work with clients remotely across all 50 states. Everything is handled online &mdash; document sharing, reporting, and communication &mdash; so your location is never a barrier to getting great service.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Do you handle payroll taxes? <span class="faq-arrow">&#9660;</span>
+        </button>
+        <div class="faq-answer">
+          <p>Yes. Our payroll services include federal and state tax withholding, quarterly payroll tax filings (Form 941), annual W-2 and 1099 preparation, and FUTA and SUTA filings. We make sure your payroll stays compliant so you do not have to worry about penalties or missed deadlines.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          What happens if I get audited? <span class="faq-arrow">&#9660;</span>
+        </button>
+        <div class="faq-answer">
+          <p>If you are audited by the IRS, Precise Financials, LLC will provide copies of your prepared tax returns and all supporting source documents upon request. We will do our best to assist you through the process. Please note that formal audit representation is not included in standard tax preparation services unless separately agreed upon in writing. We recommend keeping organized records of all documents you provide to us each year.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          How do I send you my documents? <span class="faq-arrow">&#9660;</span>
+        </button>
+        <div class="faq-answer">
+          <p>We keep it simple. You can share documents securely via email, a shared Google Drive or Dropbox folder, or by granting us read-only access to your bank or accounting software. We will walk you through the best method for your situation during onboarding. We never ask you to mail original documents.</p>
+        </div>
+      </div>
+
     </div>
 
     <div style="text-align:center;margin-top:3rem;">
@@ -1981,6 +2021,10 @@
         <div style="display:flex;gap:8px;flex-shrink:0;"><button onclick="downloadForm('form-8879',true)" style="background:var(--navy);color:#fff;border:none;border-radius:4px;padding:8px 14px;font-size:12px;font-weight:700;cursor:pointer;">Preview</button><button onclick="downloadForm('form-8879')" style="background:var(--gold);color:var(--navy);border:none;border-radius:4px;padding:8px 14px;font-size:12px;font-weight:700;cursor:pointer;">Download</button></div>
       </div>
       <div style="display:flex;align-items:center;justify-content:space-between;background:#fff;border-radius:5px;padding:12px 16px;border:1px solid rgba(10,31,68,0.1);">
+        <div><div style="font-size:14px;font-weight:700;color:var(--navy);">📋 Financial Strategy Service Agreement</div><div style="font-size:12px;color:var(--text-muted);">Service agreement for financial strategy and advisory clients</div></div>
+        <div style="display:flex;gap:8px;flex-shrink:0;"><button onclick="downloadForm('strategy-contract',true)" style="background:var(--navy);color:#fff;border:none;border-radius:4px;padding:8px 14px;font-size:12px;font-weight:700;cursor:pointer;">Preview</button><button onclick="downloadForm('strategy-contract')" style="background:var(--gold);color:var(--navy);border:none;border-radius:4px;padding:8px 14px;font-size:12px;font-weight:700;cursor:pointer;">Download</button></div>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;background:#fff;border-radius:5px;padding:12px 16px;border:1px solid rgba(10,31,68,0.1);">
         <div><div style="font-size:14px;font-weight:700;color:var(--navy);">📋 Website Design &amp; Development Contract</div><div style="font-size:12px;color:var(--text-muted);">Service agreement for website design clients</div></div>
         <div style="display:flex;gap:8px;flex-shrink:0;"><button onclick="downloadForm('web-contract',true)" style="background:var(--navy);color:#fff;border:none;border-radius:4px;padding:8px 14px;font-size:12px;font-weight:700;cursor:pointer;">Preview</button><button onclick="downloadForm('web-contract')" style="background:var(--gold);color:var(--navy);border:none;border-radius:4px;padding:8px 14px;font-size:12px;font-weight:700;cursor:pointer;">Download</button></div>
       </div>
@@ -1991,6 +2035,14 @@
       <div style="display:flex;align-items:center;justify-content:space-between;background:#fff;border-radius:5px;padding:12px 16px;border:1px solid rgba(10,31,68,0.1);">
         <div><div style="font-size:14px;font-weight:700;color:var(--navy);">📋 Payroll Services Agreement</div><div style="font-size:12px;color:var(--text-muted);">Service agreement for payroll processing clients</div></div>
         <div style="display:flex;gap:8px;flex-shrink:0;"><button onclick="downloadForm('payroll-contract',true)" style="background:var(--navy);color:#fff;border:none;border-radius:4px;padding:8px 14px;font-size:12px;font-weight:700;cursor:pointer;">Preview</button><button onclick="downloadForm('payroll-contract')" style="background:var(--gold);color:var(--navy);border:none;border-radius:4px;padding:8px 14px;font-size:12px;font-weight:700;cursor:pointer;">Download</button></div>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;background:#fff;border-radius:5px;padding:12px 16px;border:1px solid rgba(10,31,68,0.1);">
+        <div><div style="font-size:14px;font-weight:700;color:var(--navy);">📝 Payroll Client Intake Form</div><div style="font-size:12px;color:var(--text-muted);">Collect employee, tax, and schedule details for new payroll clients</div></div>
+        <div style="display:flex;gap:8px;flex-shrink:0;"><button onclick="downloadForm('payroll-intake',true)" style="background:var(--navy);color:#fff;border:none;border-radius:4px;padding:8px 14px;font-size:12px;font-weight:700;cursor:pointer;">Preview</button><button onclick="downloadForm('payroll-intake')" style="background:var(--gold);color:var(--navy);border:none;border-radius:4px;padding:8px 14px;font-size:12px;font-weight:700;cursor:pointer;">Download</button></div>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;background:#fff;border-radius:5px;padding:12px 16px;border:1px solid rgba(10,31,68,0.1);">
+        <div><div style="font-size:14px;font-weight:700;color:var(--navy);">📝 LLC Setup Client Intake Form</div><div style="font-size:12px;color:var(--text-muted);">Gather ownership, naming, and registration details for LLC formation clients</div></div>
+        <div style="display:flex;gap:8px;flex-shrink:0;"><button onclick="downloadForm('llc-intake',true)" style="background:var(--navy);color:#fff;border:none;border-radius:4px;padding:8px 14px;font-size:12px;font-weight:700;cursor:pointer;">Preview</button><button onclick="downloadForm('llc-intake')" style="background:var(--gold);color:var(--navy);border:none;border-radius:4px;padding:8px 14px;font-size:12px;font-weight:700;cursor:pointer;">Download</button></div>
       </div>
       <div style="display:flex;align-items:center;justify-content:space-between;background:#fff;border-radius:5px;padding:12px 16px;border:1px solid rgba(10,31,68,0.1);">
         <div><div style="font-size:14px;font-weight:700;color:var(--navy);">📋 QuickBooks Setup &amp; Training Agreement</div><div style="font-size:12px;color:var(--text-muted);">Service agreement for QuickBooks setup and training clients</div></div>
@@ -2580,8 +2632,9 @@
       document.getElementById('book-error').style.display = 'block';
       return;
     }
+    const services = Array.from(document.querySelectorAll('#bsvc1,#bsvc2,#bsvc3,#bsvc4,#bsvc5,#bsvc6,#bsvc7')).filter(c=>c.checked).map(c=>c.value);
     try {
-      const submission = { id: Date.now(), date: new Date().toLocaleString(), name, email, phone, preferredDate: date, preferredTime: time, notes };
+      const submission = { id: Date.now(), date: new Date().toLocaleString(), name, email, phone, preferredDate: date, preferredTime: time, services: services.join(', '), notes };
       const consultations = JSON.parse(localStorage.getItem('pf_consultations') || '[]');
       consultations.unshift(submission);
       localStorage.setItem('pf_consultations', JSON.stringify(consultations));
@@ -2591,6 +2644,7 @@
     document.getElementById('book-phone').value = '';
     document.getElementById('book-date').value = '';
     document.getElementById('book-time').value = '';
+    ['bsvc1','bsvc2','bsvc3','bsvc4','bsvc5','bsvc6','bsvc7'].forEach(id=>{ var el=document.getElementById(id); if(el) el.checked=false; });
     document.getElementById('book-notes').value = '';
     document.getElementById('book-error').style.display = 'none';
     document.getElementById('book-success').style.display = 'block';
@@ -2642,6 +2696,7 @@
         html += '</div>';
         html += '<div class="request-card-meta">' + (r.email || '') + ' | ' + formatPhone(r.phone || '') + '</div>';
         html += '<div class="request-card-services" style="color:#1a6b3c;">Preferred: ' + (r.preferredDate || '') + ' at ' + (r.preferredTime || '') + '</div>';
+        if (r.services) html += '<div class="request-card-services">Services: ' + r.services + '</div>';
         if (r.notes) html += '<div class="request-card-message">' + r.notes + '</div>';
         html += '<div style="font-size:12px;font-weight:700;color:' + statusColor + ';margin:6px 0 2px;">' + statusLabel + '</div>';
         if (status === 'reschedule' && s.note) html += '<div style="font-size:12px;color:var(--text-muted);margin-bottom:4px;">Suggested: ' + s.note + '</div>';
@@ -3310,22 +3365,34 @@
         '<div class="field-row" style="margin-top:8px;"><div class="field">Additional services agreed upon<div class="field-box"></div></div></div>' +
 
         '<h2>3. Fees &amp; Payment Terms</h2>' +
-        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Monthly Fee</span></div><div class="field"><div class="field-line"></div><span class="field-label">Due Date Each Month</span></div></div>' +
-        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Accepted Payment Methods</span></div><div class="field"><div class="field-line"></div><span class="field-label">Late Fee (after grace period)</span></div></div>' +
-        '<p>Invoices are issued on the 1st of each month. A grace period of 5 days applies. Accounts past due by more than 15 days may result in a pause of services.</p>' +
+        '<p style="font-size:11px;color:#555;margin-bottom:6px;">Enter the agreed monthly fee amount in the field below. This amount is binding upon signature.</p>' +
+        '<div class="field-row field-row-2"><div class="field"><div style="display:flex;align-items:flex-end;gap:4px;"><span style="font-size:14px;font-weight:700;color:#0a1f44;line-height:1.8;">$</span><div class="field-line" style="flex:1;"></div></div><span class="field-label">Monthly Fee (required — enter dollar amount)</span></div><div class="field"><div class="field-line"></div><span class="field-label">Due Date Each Month</span></div></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Accepted Payment Methods</span></div><div class="field"><div style="display:flex;align-items:flex-end;gap:4px;"><span style="font-size:14px;font-weight:700;color:#0a1f44;line-height:1.8;">$</span><div class="field-line" style="flex:1;"></div></div><span class="field-label">Late Fee Amount (after grace period)</span></div></div>' +
+        '<p>Invoices are issued on the 1st of each month. A 5-day grace period applies. Accounts past due by more than 15 days may result in an immediate pause of services. The late fee specified above will be applied to any balance unpaid after the grace period.</p>' +
 
-        '<h2>4. Client Responsibilities</h2>' +
-        '<p>The Client agrees to provide all necessary financial documents, bank statements, receipts, and login access in a timely manner. Delays in providing information may result in delayed deliverables. The Client is responsible for the accuracy of all source documents provided.</p>' +
+        '<h2>4. Client Document Provision Obligation</h2>' +
+        '<p>The Client agrees to provide the following in a timely manner to enable accurate and on-time bookkeeping services:</p>' +
+        '<ul style="margin:6px 0 10px 18px;font-size:11px;line-height:1.8;">' +
+        '<li>Complete bank and credit card statements for all business accounts</li>' +
+        '<li>Receipts, invoices, and supporting documentation for all transactions</li>' +
+        '<li>Read-only or accountant-level login access to financial accounts and accounting software</li>' +
+        '<li>Payroll records, contractor payments, and any 1099 information</li>' +
+        '<li>Timely responses to questions or requests for clarification (within 5 business days)</li>' +
+        '</ul>' +
+        '<p>Delays in providing required documents may result in delayed deliverables and do not excuse payment obligations. The Client is solely responsible for the accuracy and completeness of all source documents provided. Precise Financials, LLC will rely on Client-provided information without independent verification.</p>' +
 
         '<h2>5. Term &amp; Termination</h2>' +
         '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Start Date</span></div><div class="field"><div class="field-line"></div><span class="field-label">Initial Term</span></div></div>' +
-        '<p>Either party may terminate this Agreement with <strong>30 days written notice</strong>. All outstanding fees are due upon termination. Precise Financials, LLC reserves the right to terminate immediately for non-payment.</p>' +
+        '<p>Either party may terminate this Agreement with <strong>30 days written notice</strong>. All outstanding fees are due and payable immediately upon termination regardless of notice period.</p>' +
+        '<p><strong>Termination for Non-Payment:</strong> If any invoice remains unpaid more than 15 days past its due date, Precise Financials, LLC reserves the right to immediately suspend all services without further notice until payment is received in full. If payment is not received within 30 days of suspension, this Agreement may be terminated immediately and all outstanding balances become due. Precise Financials, LLC shall not be liable for any damages, penalties, or losses arising from service suspension or termination due to non-payment.</p>' +
 
         '<h2>6. Confidentiality</h2>' +
-        '<p>Precise Financials, LLC agrees to keep all Client financial information strictly confidential and will not disclose it to any third party without written consent, except as required by law.</p>' +
+        '<p>Precise Financials, LLC agrees to keep all Client financial information, business records, and personal data strictly confidential. Precise Financials, LLC will not disclose, share, sell, or use Client information for any purpose other than providing the services described in this Agreement, without prior written consent from the Client, except as required by applicable law or regulatory authority. This confidentiality obligation survives termination of this Agreement.</p>' +
+        '<p>The Client acknowledges that Precise Financials, LLC may retain copies of records as required for legal, regulatory, or professional compliance purposes.</p>' +
 
         '<h2>7. Limitation of Liability</h2>' +
-        '<p>Precise Financials, LLC is not a licensed CPA firm. Services provided are bookkeeping in nature and do not constitute legal, tax, or financial advice. Liability is limited to fees paid in the most recent 30-day period.</p>' +
+        '<p>Precise Financials, LLC is not a licensed CPA firm. Services provided are bookkeeping in nature and do not constitute legal, tax, or financial advice. Precise Financials, LLC is not responsible for errors or omissions resulting from inaccurate, incomplete, or untimely information provided by the Client.</p>' +
+        '<p><strong>Liability Cap:</strong> In no event shall the total liability of Precise Financials, LLC to the Client for any claim arising out of or related to this Agreement exceed the fees paid by the Client in the most recent 30-day billing period. Precise Financials, LLC shall not be liable for any indirect, incidental, consequential, or special damages of any kind, including but not limited to lost profits or tax penalties.</p>' +
 
         '<h2>8. Signatures</h2>' +
         '<div class="sig-block">' +
@@ -3477,11 +3544,11 @@
 
         '<h2>Part I — Taxpayer Information</h2>' +
         '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Taxpayer Full Legal Name</span></div><div class="field"><div class="field-line"></div><span class="field-label">Taxpayer SSN</span></div></div>' +
-        '<div class="field-row field-row-3"><div class="field"><div class="field-line"></div><span class="field-label">Tax Year of Return</span></div><div class="field"><div class="field-line"></div><span class="field-label">Filing Status</span></div><div class="field"><div class="field-line"></div><span class="field-label">Date of Birth</span></div></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Tax Year of Return</span></div><div class="field"><div class="field-line"></div><span class="field-label">Filing Status</span></div></div>' +
 
         '<h3>Spouse Information (Complete only if Married Filing Jointly)</h3>' +
         '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Spouse Full Legal Name</span></div><div class="field"><div class="field-line"></div><span class="field-label">Spouse SSN</span></div></div>' +
-        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Spouse Date of Birth</span></div><div class="field"><div class="field-line"></div><span class="field-label">Spouse Date of Birth</span></div></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Spouse Date of Birth</span></div><div class="field"><div class="field-line"></div><span class="field-label">Spouse Phone / Email</span></div></div>' +
 
         '<h2>Part II — Tax Return Information (Whole Dollars Only)</h2>' +
         '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">1 &nbsp; Adjusted Gross Income</span></div><div class="field"><div class="field-line"></div><span class="field-label">2 &nbsp; Total Tax</span></div></div>' +
@@ -3633,6 +3700,159 @@
         '<div class="sig-block">' +
         '<div><div class="sig-field">Client Signature<div class="sig-line"></div></div><div class="sig-field" style="margin-top:10px;">Printed Name<div class="sig-date"></div></div><div class="sig-field" style="margin-top:10px;">Date<div class="sig-date"></div></div></div>' +
         '<div><div class="sig-field">Precise Financials, LLC — Britteny Cooke<div class="sig-line"></div></div><div class="sig-field" style="margin-top:10px;">Date<div class="sig-date"></div></div></div>' +
+        '</div>' +
+        ftr + '</div>';
+    }
+
+    if (type === 'strategy-contract') {
+      title = 'Financial Strategy Service Agreement';
+      filename = 'PF-Financial-Strategy-Agreement-' + year + '.html';
+      content = hdr('Financial Strategy Service Agreement') + '<div class="body">' +
+        '<p>This Financial Strategy Service Agreement ("Agreement") is entered into as of the date signed below between <strong>Precise Financials, LLC</strong> ("Service Provider") and the client identified below ("Client").</p>' +
+
+        '<h2>1. Parties</h2>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Client Name</span></div><div class="field"><div class="field-line"></div><span class="field-label">Business Name</span></div></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Address</span></div><div class="field"><div class="field-line"></div><span class="field-label">Phone / Email</span></div></div>' +
+
+        '<h2>2. Services</h2>' +
+        '<p>Precise Financials, LLC agrees to provide the following financial strategy services:</p>' +
+        '<div class="check-row"><span class="check-item"><span class="check-box"></span>Monthly strategy retainer</span><span class="check-item"><span class="check-box"></span>One-time strategy session (1 hr)</span><span class="check-item"><span class="check-box"></span>Profit &amp; Loss review</span><span class="check-item"><span class="check-box"></span>Budget planning &amp; forecasting</span></div>' +
+        '<div class="check-row"><span class="check-item"><span class="check-box"></span>Cash flow analysis</span><span class="check-item"><span class="check-box"></span>Profitability review</span><span class="check-item"><span class="check-box"></span>Business growth planning</span><span class="check-item"><span class="check-box"></span>KPI &amp; goal tracking</span></div>' +
+        '<div class="field-row"><div class="field">Additional services or scope details<div class="field-box"></div></div></div>' +
+
+        '<h2>3. Fees &amp; Payment Terms</h2>' +
+        '<h3>Service Type</h3>' +
+        '<div class="check-row"><span class="check-item"><span class="check-box"></span>Monthly Retainer</span><span class="check-item"><span class="check-box"></span>One-Time Session</span><span class="check-item"><span class="check-box"></span>Project-Based</span></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div style="display:flex;align-items:flex-end;gap:4px;"><span style="font-size:14px;font-weight:700;color:#0a1f44;line-height:1.8;">$</span><div class="field-line" style="flex:1;"></div></div><span class="field-label">Agreed Fee (required — enter dollar amount)</span></div><div class="field"><div class="field-line"></div><span class="field-label">Payment Due / Billing Cycle</span></div></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Accepted Payment Methods</span></div><div class="field"><div class="field-line"></div><span class="field-label">Invoice Date (if monthly retainer)</span></div></div>' +
+        '<p>For monthly retainers, invoices are issued on the 1st of each month with a 5-day grace period. One-time session fees are due prior to the session. Precise Financials, LLC reserves the right to pause services for accounts more than 15 days past due.</p>' +
+
+        '<h2>4. Scope &amp; Limitations</h2>' +
+        '<p>Services provided under this Agreement are financial strategy and advisory in nature and are intended to help the Client understand their financial data and make informed business decisions. These services do <strong>not</strong> constitute legal advice, certified financial planning (CFP), investment advice, or tax advice. Precise Financials, LLC is not a licensed CPA firm.</p>' +
+        '<p>Recommendations and projections are based on information provided by the Client. Precise Financials, LLC is not responsible for business outcomes resulting from decisions made based on strategy sessions or reports.</p>' +
+
+        '<h2>5. Client Responsibilities</h2>' +
+        '<p>The Client agrees to:</p>' +
+        '<ul style="margin:6px 0 10px 18px;font-size:11px;line-height:1.8;">' +
+        '<li>Provide accurate and up-to-date financial records, including bank statements, P&amp;L reports, and expense data</li>' +
+        '<li>Respond to requests for information within 5 business days</li>' +
+        '<li>Attend scheduled sessions or provide at least 24 hours notice to reschedule</li>' +
+        '<li>Implement and monitor any agreed-upon action items between sessions</li>' +
+        '</ul>' +
+
+        '<h2>6. Term &amp; Termination</h2>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Start Date</span></div><div class="field"><div class="field-line"></div><span class="field-label">Initial Term (or "Month-to-Month")</span></div></div>' +
+        '<p>Either party may terminate this Agreement with <strong>30 days written notice</strong>. All outstanding fees are due upon termination. For non-payment of 15+ days, Precise Financials, LLC may suspend services immediately without further notice.</p>' +
+
+        '<h2>7. Confidentiality</h2>' +
+        '<p>Precise Financials, LLC agrees to keep all Client financial information, business data, and strategic plans strictly confidential. This information will not be shared with any third party without prior written consent, except as required by law. This obligation survives termination of this Agreement.</p>' +
+
+        '<h2>8. Limitation of Liability</h2>' +
+        '<p>In no event shall the total liability of Precise Financials, LLC exceed the fees paid by the Client in the most recent 30-day period. Precise Financials, LLC shall not be liable for any indirect, consequential, or incidental damages, including but not limited to lost revenue or business decisions made based on strategy sessions.</p>' +
+
+        '<h2>9. Signatures</h2>' +
+        '<div class="sig-block">' +
+        '<div><div class="sig-field">Client Signature<div class="sig-line"></div></div><div class="sig-field" style="margin-top:10px;">Printed Name<div class="sig-date"></div></div><div class="sig-field" style="margin-top:10px;">Date<div class="sig-date"></div></div></div>' +
+        '<div><div class="sig-field">Precise Financials, LLC — Britteny Cooke<div class="sig-line"></div></div><div class="sig-field" style="margin-top:10px;">Date<div class="sig-date"></div></div></div>' +
+        '</div>' +
+        ftr + '</div>';
+    }
+
+    if (type === 'payroll-intake') {
+      title = 'Payroll Client Intake Form';
+      filename = 'PF-Payroll-Intake-' + year + '.html';
+      content = hdr('Payroll Client Intake Form') + '<div class="body">' +
+        '<p class="notice">Please complete this form before your first payroll is processed. Accurate information is essential for correct tax withholding and timely payroll. All information is kept strictly confidential.</p>' +
+
+        '<h2>1. Business Information</h2>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Legal Business Name</span></div><div class="field"><div class="field-line"></div><span class="field-label">DBA / Trade Name (if different)</span></div></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Owner / Contact Name</span></div><div class="field"><div class="field-line"></div><span class="field-label">Title / Role</span></div></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Business Address</span></div><div class="field"><div class="field-line"></div><span class="field-label">City / State / ZIP</span></div></div>' +
+        '<div class="field-row field-row-3"><div class="field"><div class="field-line"></div><span class="field-label">Phone</span></div><div class="field"><div class="field-line"></div><span class="field-label">Email</span></div><div class="field"><div class="field-line"></div><span class="field-label">Website (if any)</span></div></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Federal EIN (Employer ID Number)</span></div><div class="field"><div class="field-line"></div><span class="field-label">State Tax ID / Withholding Number</span></div></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Business Entity Type</span></div><div class="field"><div class="field-line"></div><span class="field-label">State of Operation</span></div></div>' +
+
+        '<h2>2. Payroll Schedule</h2>' +
+        '<h3>Pay Frequency</h3>' +
+        '<div class="check-row"><span class="check-item"><span class="check-box"></span>Weekly</span><span class="check-item"><span class="check-box"></span>Bi-Weekly (every 2 weeks)</span><span class="check-item"><span class="check-box"></span>Semi-Monthly (1st &amp; 15th)</span><span class="check-item"><span class="check-box"></span>Monthly</span></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">First Payroll Date</span></div><div class="field"><div class="field-line"></div><span class="field-label">Pay Period End Date (first period)</span></div></div>' +
+
+        '<h2>3. Employees &amp; Contractors</h2>' +
+        '<div class="field-row field-row-3"><div class="field"><div class="field-line"></div><span class="field-label">Total # of W-2 Employees</span></div><div class="field"><div class="field-line"></div><span class="field-label">Total # of 1099 Contractors</span></div><div class="field"><div class="field-line"></div><span class="field-label">Owner(s) on Payroll?</span></div></div>' +
+        '<h3>Payment Method</h3>' +
+        '<div class="check-row"><span class="check-item"><span class="check-box"></span>Direct deposit</span><span class="check-item"><span class="check-box"></span>Paper checks</span><span class="check-item"><span class="check-box"></span>Both</span></div>' +
+        '<p style="font-size:11px;color:#555;margin:8px 0 4px;">For each employee, please attach or provide separately: full legal name, address, SSN, date of hire, pay rate, and completed W-4.</p>' +
+
+        '<h2>4. Tax Filing Information</h2>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Federal Tax Deposit Schedule (monthly / semi-weekly)</span></div><div class="field"><div class="field-line"></div><span class="field-label">State Unemployment Account # (SUTA)</span></div></div>' +
+        '<h3>Which filings do you need help with?</h3>' +
+        '<div class="check-row"><span class="check-item"><span class="check-box"></span>Form 941 (quarterly federal)</span><span class="check-item"><span class="check-box"></span>State withholding returns</span><span class="check-item"><span class="check-box"></span>FUTA (Form 940 annual)</span><span class="check-item"><span class="check-box"></span>SUTA (state unemployment)</span><span class="check-item"><span class="check-box"></span>W-2s &amp; W-3</span><span class="check-item"><span class="check-box"></span>1099-NEC</span></div>' +
+
+        '<h2>5. Current Payroll Setup</h2>' +
+        '<h3>Are you switching from another payroll provider?</h3>' +
+        '<div class="check-row"><span class="check-item"><span class="check-box"></span>Yes</span><span class="check-item"><span class="check-box"></span>No — this is our first time using payroll services</span></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Previous Provider (if switching)</span></div><div class="field"><div class="field-line"></div><span class="field-label">Last Payroll Date with Previous Provider</span></div></div>' +
+        '<h3>Do you use any accounting software?</h3>' +
+        '<div class="check-row"><span class="check-item"><span class="check-box"></span>QuickBooks Online</span><span class="check-item"><span class="check-box"></span>QuickBooks Desktop</span><span class="check-item"><span class="check-box"></span>Other</span><span class="check-item"><span class="check-box"></span>None</span></div>' +
+
+        '<h2>6. Additional Information</h2>' +
+        '<div class="field-row"><div class="field">Any special pay items, bonuses, garnishments, or deductions we should know about<div class="field-box"></div></div></div>' +
+        '<div class="field-row"><div class="field">Any questions or notes for Precise Financials, LLC<div class="field-box"></div></div></div>' +
+
+        '<h2>7. Signature</h2>' +
+        '<div class="sig-block">' +
+        '<div><div class="sig-field">Client Signature<div class="sig-line"></div></div><div class="sig-field" style="margin-top:10px;">Printed Name<div class="sig-date"></div></div><div class="sig-field" style="margin-top:10px;">Date<div class="sig-date"></div></div></div>' +
+        '<div><div class="sig-field">Received By — Precise Financials, LLC<div class="sig-line"></div></div><div class="sig-field" style="margin-top:10px;">Date<div class="sig-date"></div></div></div>' +
+        '</div>' +
+        ftr + '</div>';
+    }
+
+    if (type === 'llc-intake') {
+      title = 'LLC Setup Client Intake Form';
+      filename = 'PF-LLC-Intake-' + year + '.html';
+      content = hdr('LLC Setup Client Intake Form') + '<div class="body">' +
+        '<p class="notice">Please complete this form before we begin your LLC formation. The more detail you provide, the faster we can get your business set up correctly. All information is kept strictly confidential.</p>' +
+
+        '<h2>1. Owner / Applicant Information</h2>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Full Legal Name</span></div><div class="field"><div class="field-line"></div><span class="field-label">Date of Birth</span></div></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Home Address</span></div><div class="field"><div class="field-line"></div><span class="field-label">City / State / ZIP</span></div></div>' +
+        '<div class="field-row field-row-3"><div class="field"><div class="field-line"></div><span class="field-label">Phone</span></div><div class="field"><div class="field-line"></div><span class="field-label">Email</span></div><div class="field"><div class="field-line"></div><span class="field-label">Social Security Number (SSN)</span></div></div>' +
+
+        '<h2>2. LLC Details</h2>' +
+        '<div class="field-row"><div class="field"><div class="field-line"></div><span class="field-label">Proposed LLC Name (first choice)</span></div></div>' +
+        '<div class="field-row"><div class="field"><div class="field-line"></div><span class="field-label">Proposed LLC Name (second choice, in case first is taken)</span></div></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">State of Formation</span></div><div class="field"><div class="field-line"></div><span class="field-label">Principal Business Address</span></div></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Industry / Type of Business</span></div><div class="field"><div class="field-line"></div><span class="field-label">Brief Description of Business Activity</span></div></div>' +
+
+        '<h2>3. Ownership Structure</h2>' +
+        '<h3>Number of Members (owners)</h3>' +
+        '<div class="check-row"><span class="check-item"><span class="check-box"></span>Single-Member LLC (just me)</span><span class="check-item"><span class="check-box"></span>Multi-Member LLC (more than one owner)</span></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Co-Owner Name (if applicable)</span></div><div class="field"><div class="field-line"></div><span class="field-label">Ownership % Split</span></div></div>' +
+        '<h3>Management Structure</h3>' +
+        '<div class="check-row"><span class="check-item"><span class="check-box"></span>Member-Managed (owners run the business)</span><span class="check-item"><span class="check-box"></span>Manager-Managed (hired manager runs day-to-day)</span></div>' +
+
+        '<h2>4. Registered Agent</h2>' +
+        '<p style="font-size:11px;color:#555;margin-bottom:8px;">A registered agent is required in your state to receive legal documents on behalf of your LLC. This can be yourself, another member, or a registered agent service.</p>' +
+        '<h3>Who will serve as Registered Agent?</h3>' +
+        '<div class="check-row"><span class="check-item"><span class="check-box"></span>Myself</span><span class="check-item"><span class="check-box"></span>A co-owner / member</span><span class="check-item"><span class="check-box"></span>A registered agent service (I need a recommendation)</span></div>' +
+        '<div class="field-row field-row-2"><div class="field"><div class="field-line"></div><span class="field-label">Registered Agent Name</span></div><div class="field"><div class="field-line"></div><span class="field-label">Registered Agent Address (must be in state of formation)</span></div></div>' +
+
+        '<h2>5. EIN &amp; Banking</h2>' +
+        '<h3>Do you already have an EIN?</h3>' +
+        '<div class="check-row"><span class="check-item"><span class="check-box"></span>Yes</span><span class="check-item"><span class="check-box"></span>No — I need one applied for</span></div>' +
+        '<div class="field-row"><div class="field"><div class="field-line"></div><span class="field-label">Existing EIN (if applicable)</span></div></div>' +
+        '<h3>Do you need a business bank account?</h3>' +
+        '<div class="check-row"><span class="check-item"><span class="check-box"></span>Yes — I need guidance opening one</span><span class="check-item"><span class="check-box"></span>No — I already have one</span><span class="check-item"><span class="check-box"></span>Not yet — I will open one after formation</span></div>' +
+
+        '<h2>6. Additional Services Needed</h2>' +
+        '<div class="check-row"><span class="check-item"><span class="check-box"></span>Operating Agreement</span><span class="check-item"><span class="check-box"></span>Bookkeeping setup</span><span class="check-item"><span class="check-box"></span>QuickBooks setup</span><span class="check-item"><span class="check-box"></span>Startup financial planning</span><span class="check-item"><span class="check-box"></span>Tax preparation</span></div>' +
+        '<div class="field-row"><div class="field">Any other questions or things we should know<div class="field-box"></div></div></div>' +
+
+        '<h2>7. Signature</h2>' +
+        '<p style="font-size:11px;color:#555;margin-bottom:8px;">By signing below, you confirm that the information provided is accurate and that you authorize Precise Financials, LLC to begin the LLC formation process on your behalf.</p>' +
+        '<div class="sig-block">' +
+        '<div><div class="sig-field">Client Signature<div class="sig-line"></div></div><div class="sig-field" style="margin-top:10px;">Printed Name<div class="sig-date"></div></div><div class="sig-field" style="margin-top:10px;">Date<div class="sig-date"></div></div></div>' +
+        '<div><div class="sig-field">Received By — Precise Financials, LLC<div class="sig-line"></div></div><div class="sig-field" style="margin-top:10px;">Date<div class="sig-date"></div></div></div>' +
         '</div>' +
         ftr + '</div>';
     }
