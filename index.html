@@ -373,6 +373,17 @@
     .process-step h3 { font-family: 'Playfair Display', serif; font-size: 16px; color: var(--navy); margin-bottom: 0.5rem; }
     .process-step p { font-size: 13px; color: var(--text-muted); line-height: 1.7; }
     .process-arrow { font-size: 24px; color: var(--gold); align-self: center; padding-top: 1rem; }
+    .why-section { background: var(--navy); padding: 3.5rem 2.5rem; }
+    .why-section .section-label { color: var(--gold); }
+    .why-section .section-title { color: #fff; }
+    .why-section .section-title em { color: var(--gold); font-style: normal; }
+    .why-section .divider { background: var(--gold); opacity: 0.5; }
+    .why-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 2.5rem; }
+    .why-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(201,168,76,0.25); border-top: 3px solid var(--gold); border-radius: 8px; padding: 1.75rem 1.5rem; }
+    .why-card-icon { font-size: 32px; margin-bottom: 0.85rem; }
+    .why-card h3 { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--gold); margin-bottom: 0.6rem; }
+    .why-card p { font-size: 13.5px; color: rgba(255,255,255,0.78); line-height: 1.75; margin: 0; }
+    @media(max-width:640px){ .why-grid { grid-template-columns: 1fr; } .why-section { padding: 3rem 1.2rem; } }
     .credentials { margin-top: 1.25rem; display: flex; flex-direction: column; gap: 0.6rem; }
     .credential-badge { display: flex; align-items: center; gap: 0.75rem; background: #f0f5fb; border: 1px solid rgba(10,31,68,0.12); border-left: 4px solid var(--gold); border-radius: 4px; padding: 0.6rem 0.85rem; }
     .credential-progress { border-left-color: #afc0d8; opacity: 0.85; }
@@ -1089,6 +1100,34 @@
         <div class="process-icon">&#9989;</div>
         <h3>We Handle the Rest</h3>
         <p>Sit back and focus on growing your business while we take care of your finances, software, or website &mdash; whatever you need.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="why-section">
+    <div class="section-label">Why clients choose us</div>
+    <div class="section-title">Why Choose <em>Precise Financials?</em></div>
+    <div class="divider"></div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-card-icon">&#127968;</div>
+        <h3>Local Expert</h3>
+        <p>Proudly serving the Arizona and Utah border community with personalized one-on-one attention for every client.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-card-icon">&#127891;</div>
+        <h3>Degreed Professional</h3>
+        <p>AAS in Accounting from Mohave College plus Bookkeeping Certification and QuickBooks ProAdvisor — real credentials, real expertise.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-card-icon">&#128176;</div>
+        <h3>Affordable Pricing</h3>
+        <p>Professional financial services at rates designed for small businesses and rural communities — quality care without the big-firm price tag.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-card-icon">&#128737;</div>
+        <h3>Fully Licensed</h3>
+        <p>PTIN Registered Tax Preparer and IRS e-File Provider with comprehensive data security protocols to keep your information safe.</p>
       </div>
     </div>
   </div>
