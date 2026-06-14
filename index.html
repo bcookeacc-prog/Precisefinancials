@@ -2079,8 +2079,6 @@
       const openBtn = document.getElementById('open-' + s);
       openBtn.href = val || '#';
     });
-    const email = localStorage.getItem('inquiry_email') || '';
-    document.getElementById('admin-inquiry-email').value = email;
     renderRequests();
     renderTrash();
     renderConsultations();
@@ -2234,8 +2232,6 @@
       const openBtn = document.getElementById('open-' + s);
       openBtn.href = val || '#';
     });
-    const inquiryEmail = document.getElementById('admin-inquiry-email').value.trim();
-    if (inquiryEmail) localStorage.setItem('inquiry_email', inquiryEmail);
     loadSocialIcons();
     const saved = document.getElementById('admin-saved');
     saved.style.display = 'block';
