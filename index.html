@@ -5,6 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Precise Financials, LLC</title>
   <meta name="description" content="Precise Financials, LLC — Expert bookkeeping, tax preparation, payroll, financial strategy, QuickBooks setup, and more for small businesses." />
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:title" content="Precise Financials, LLC — Bookkeeping &amp; Tax Services" />
+  <meta property="og:description" content="Expert bookkeeping, tax preparation, payroll, and financial strategy for small businesses in Arizona, Utah, and nationwide." />
+  <meta property="og:image" content="https://bcookeacc-prog.github.io/Precisefinancials/logo.png" />
+  <meta property="og:url" content="https://bcookeacc-prog.github.io/Precisefinancials/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Precise Financials, LLC" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Precise Financials, LLC — Bookkeeping &amp; Tax Services" />
+  <meta name="twitter:description" content="Expert bookkeeping, tax preparation, payroll, and financial strategy for small businesses." />
+  <meta name="twitter:image" content="https://bcookeacc-prog.github.io/Precisefinancials/logo.png" />
   <!-- PWA / Home Screen -->
   <link rel="manifest" href="manifest.json" />
   <link rel="apple-touch-icon" href="logo.png" />
@@ -925,6 +936,45 @@
       .deadline-grid { grid-template-columns: 1fr; }
     }
 
+    /* ── FLOATING CONTACT BUTTON ───────────────────── */
+    #float-contact-btn { position: fixed; bottom: 24px; right: 24px; z-index: 900; background: var(--gold); color: var(--navy); border: none; border-radius: 50px; padding: 13px 20px; font-weight: 700; font-size: 14px; cursor: pointer; box-shadow: 0 4px 18px rgba(10,31,68,0.22); display: flex; align-items: center; gap: 8px; transition: transform 0.15s, box-shadow 0.15s; }
+    #float-contact-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(10,31,68,0.3); }
+    #contact-modal-overlay { display: none; position: fixed; inset: 0; background: rgba(10,31,68,0.5); z-index: 1000; align-items: flex-end; justify-content: flex-end; padding: 0 24px 90px; }
+    #contact-modal-overlay.open { display: flex; }
+    #contact-modal { background: #fff; border-radius: 12px; padding: 1.25rem; width: 260px; box-shadow: 0 8px 32px rgba(10,31,68,0.2); }
+    .contact-modal-title { font-family: 'Playfair Display', serif; font-size: 15px; color: var(--navy); font-weight: 700; margin-bottom: 0.75rem; }
+    .contact-modal-opt { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 6px; text-decoration: none; color: var(--navy); font-size: 14px; font-weight: 600; margin-bottom: 6px; background: #f0f5fb; transition: background 0.15s; }
+    .contact-modal-opt:hover { background: #dce8f5; }
+    .contact-modal-opt span { font-size: 20px; }
+
+    /* ── WHAT TO BRING ──────────────────────────────── */
+    .bring-section { background: #f0f5fb; border-radius: 8px; padding: 1.25rem 1.5rem; margin-bottom: 1.5rem; border-left: 4px solid var(--gold); }
+    .bring-toggle { display: flex; align-items: center; justify-content: space-between; cursor: pointer; }
+    .bring-toggle h4 { font-family: 'Playfair Display', serif; font-size: 15px; color: var(--navy); margin: 0; }
+    .bring-toggle span { font-size: 12px; color: var(--gold); font-weight: 700; }
+    .bring-list { display: none; margin-top: 0.85rem; }
+    .bring-list.open { display: block; }
+    .bring-service { margin-bottom: 0.85rem; }
+    .bring-service-name { font-size: 12px; font-weight: 700; color: var(--navy); text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 4px; }
+    .bring-service ul { padding-left: 1.2rem; }
+    .bring-service li { font-size: 13px; color: var(--text-muted); line-height: 1.7; }
+
+    /* ── LEAD MAGNET ────────────────────────────────── */
+    .lead-magnet-strip { background: var(--navy); border: 2px solid var(--gold); border-radius: 10px; padding: 2rem; display: flex; align-items: center; gap: 1.5rem; margin-top: 2.5rem; }
+    .lead-magnet-icon { font-size: 48px; flex-shrink: 0; }
+    .lead-magnet-text h3 { font-family: 'Playfair Display', serif; color: var(--gold); font-size: 1.1rem; margin-bottom: 4px; }
+    .lead-magnet-text p { color: #afc0d8; font-size: 13.5px; line-height: 1.6; margin-bottom: 0.75rem; }
+    @media(max-width:600px){ .lead-magnet-strip { flex-direction: column; text-align: center; } }
+
+    /* ── HOURS STRIP ────────────────────────────────── */
+    .hours-strip { background: rgba(255,255,255,0.06); border: 1px solid rgba(201,168,76,0.2); border-radius: 6px; padding: 0.85rem 1.25rem; margin-bottom: 1rem; display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+    .hours-item { font-size: 13px; color: #afc0d8; }
+    .hours-item strong { color: var(--gold); }
+
+    /* ── SHARE LOG (ADMIN) ──────────────────────────── */
+    .share-log-entry { display: flex; align-items: center; gap: 10px; padding: 7px 10px; background: #f7f9fc; border-radius: 4px; margin-bottom: 4px; font-size: 13px; }
+    .share-log-platform { font-weight: 700; color: var(--navy); min-width: 80px; }
+
     /* ── SEASONAL BANNER ───────────────────────────── */
     #seasonal-banner { background: var(--gold); color: var(--navy); text-align: center; padding: 10px 48px; font-size: 14px; font-weight: 700; position: relative; display: none; }
     #seasonal-banner button { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); background: none; border: none; font-size: 20px; cursor: pointer; color: var(--navy); line-height: 1; padding: 0; }
@@ -1599,6 +1649,15 @@
     </div>
 
     <div style="text-align:center;margin-top:3rem;padding:2rem;background:#f0f5fb;border-radius:6px;">
+      <div class="lead-magnet-strip">
+        <div class="lead-magnet-icon">&#9989;</div>
+        <div class="lead-magnet-text">
+          <h3>Free Year-End Bookkeeping Checklist</h3>
+          <p>Don&rsquo;t miss a deduction. Download our free printable checklist covering records, income, expenses, payroll, and tax prep items &mdash; everything you need to close out the year clean.</p>
+          <button onclick="downloadChecklist()" style="background:var(--gold);color:var(--navy);border:none;border-radius:4px;padding:9px 20px;font-weight:700;font-size:13px;cursor:pointer;">&#11015; Download Free Checklist</button>
+        </div>
+      </div>
+
       <p style="font-family:'Playfair Display',serif;font-size:18px;color:var(--navy);margin-bottom:0.5rem;">Have a deadline question?</p>
       <p style="font-size:14px;color:var(--text-muted);margin-bottom:1.25rem;">Don&rsquo;t guess &mdash; ask a professional. Book a free 30-minute call and we&rsquo;ll help you stay compliant.</p>
       <button class="btn-gold" onclick="showPage('book')">Book a Free Consultation</button>
@@ -1659,6 +1718,39 @@
     <div class="section-title">Book a <em>Free Consultation</em></div>
     <div class="divider"></div>
     <p style="text-align:center;color:var(--text-muted);max-width:560px;margin:0 auto 0.75rem;font-size:15px;line-height:1.8;">Schedule your free 30-minute consultation for bookkeeping, tax, payroll, financial strategy, or QuickBooks services. Fill out the form below and we will confirm your appointment within 1&ndash;3 business days.</p>
+
+    <div style="max-width:560px;margin:0 auto 1.25rem;">
+      <div class="bring-section">
+        <div class="bring-toggle" onclick="toggleBring()">
+          <h4>&#128203; What to Have Ready</h4>
+          <span id="bring-arrow">&#9660; Show</span>
+        </div>
+        <div class="bring-list" id="bring-list">
+          <div class="bring-service">
+            <div class="bring-service-name">Bookkeeping</div>
+            <ul><li>Recent bank &amp; credit card statements</li><li>Current bookkeeping software login (if any)</li><li>List of regular business expenses</li></ul>
+          </div>
+          <div class="bring-service">
+            <div class="bring-service-name">Tax Preparation</div>
+            <ul><li>Last year&rsquo;s tax return</li><li>Any W-2s or 1099s received</li><li>List of deductible expenses</li><li>EIN or Social Security Number</li></ul>
+          </div>
+          <div class="bring-service">
+            <div class="bring-service-name">Payroll</div>
+            <ul><li>Employee names, addresses, and SSNs</li><li>Pay rates and pay schedule</li><li>Prior payroll records (if switching providers)</li></ul>
+          </div>
+          <div class="bring-service">
+            <div class="bring-service-name">LLC Setup</div>
+            <ul><li>Desired business name (2&ndash;3 options)</li><li>Names and addresses of all members/owners</li><li>State you want to register in</li></ul>
+          </div>
+          <div class="bring-service">
+            <div class="bring-service-name">QuickBooks Setup</div>
+            <ul><li>List of your bank accounts and credit cards</li><li>Chart of accounts (if you have one)</li><li>QuickBooks subscription (or we can help set one up)</li></ul>
+          </div>
+          <p style="font-size:12px;color:var(--text-muted);margin-top:8px;font-style:italic;">Don&rsquo;t stress if you don&rsquo;t have everything &mdash; we&rsquo;ll walk you through it on the call.</p>
+        </div>
+      </div>
+    </div>
+
     <div style="max-width:560px;margin:0 auto;background:#fff;border-radius:6px;padding:2.5rem;border:1px solid rgba(10,31,68,0.08);box-shadow:0 4px 20px rgba(10,31,68,0.06);">
       <div class="form-group">
         <label>Full Name <span style="color:#c0392b;">*</span></label>
@@ -1940,6 +2032,21 @@
     <button onclick="adminSaveBanner()" style="font-size:12px;padding:5px 14px;background:var(--navy);color:#fff;border:none;border-radius:3px;cursor:pointer;">Update Banner Text</button>
 
     <!-- NEWSLETTER SIGNUPS -->
+    <!-- GOOGLE REVIEW LINK -->
+    <div class="admin-section-title" style="margin-top:1.5rem;">Google Review Link</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:0.75rem;">Paste your Google Business review link here. It will appear in the footer so clients can leave you a review.</p>
+    <input type="url" id="admin-google-review" placeholder="https://g.page/r/YOUR_REVIEW_LINK" style="width:100%;padding:8px 10px;border:1.5px solid #dce3ec;border-radius:4px;font-size:13px;margin-bottom:0.5rem;box-sizing:border-box;" />
+    <button onclick="adminSaveGoogleReview()" style="font-size:12px;padding:5px 14px;background:var(--navy);color:#fff;border:none;border-radius:3px;cursor:pointer;">Save Link</button>
+
+    <!-- SHARE LOG -->
+    <div class="admin-section-title" style="margin-top:1.5rem;">Site Shares <span id="share-badge" style="display:none;background:#c0392b;color:#fff;border-radius:10px;font-size:10px;padding:1px 6px;margin-left:6px;vertical-align:middle;"></span></div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:0.75rem;">Recorded each time a visitor uses the share or copy-link button on your site.</p>
+    <div id="admin-share-log"></div>
+    <div style="display:flex;gap:6px;margin-top:6px;">
+      <button onclick="renderShareLog()" style="font-size:12px;padding:4px 12px;background:var(--navy);color:#fff;border:none;border-radius:3px;cursor:pointer;">Refresh</button>
+      <button onclick="if(confirm('Clear all share records?')){localStorage.removeItem('pf_share_log');localStorage.setItem('pf_share_unread','0');updateShareBadge();renderShareLog();}" style="font-size:12px;padding:4px 12px;background:none;border:1px solid rgba(10,31,68,0.2);border-radius:3px;cursor:pointer;color:var(--text-muted);">Clear Log</button>
+    </div>
+
     <div class="admin-section-title" style="margin-top:1.5rem;">Newsletter Subscribers</div>
     <p style="font-size:13px;color:var(--text-muted);margin-bottom:0.75rem;">Email addresses collected from the newsletter signup on your home page.</p>
     <div id="admin-newsletter-list" style="max-height:200px;overflow-y:auto;"></div>
@@ -2303,6 +2410,14 @@
     <a href="https://www.tiktok.com/@precise.financial?lang=en" target="_blank" style="color:#6b84a8;font-size:13px;text-decoration:none;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='#6b84a8'"><i class="fab fa-tiktok"></i> TikTok</a>
     <a href="https://www.linkedin.com/in/britteny-cooke-557439397" target="_blank" style="color:#6b84a8;font-size:13px;text-decoration:none;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='#6b84a8'"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
   </div>
+  <div class="hours-strip">
+    <div class="hours-item"><strong>Mon&ndash;Thu</strong> &nbsp;8:00 am &ndash; 5:00 pm MT</div>
+    <div class="hours-item"><strong>Friday</strong> &nbsp;8:00 am &ndash; 1:00 pm MT</div>
+    <div class="hours-item"><strong>Sat&ndash;Sun</strong> &nbsp;Closed</div>
+  </div>
+  <div style="margin-bottom:1rem;">
+    <a id="google-review-link" href="#" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.08);border:1px solid rgba(201,168,76,0.3);border-radius:20px;padding:7px 16px;color:var(--gold);font-size:13px;font-weight:600;text-decoration:none;" onmouseover="this.style.background='rgba(201,168,76,0.15)'" onmouseout="this.style.background='rgba(255,255,255,0.08)'">&#11088; Leave Us a Google Review</a>
+  </div>
   <div class="footer-links">
     <button onclick="showPage('home')">Home</button>
     <button onclick="showPage('about')">About</button>
@@ -2412,7 +2527,12 @@
     renderTrash();
     renderConsultations();
     renderAdminNewsletter();
+    renderShareLog();
     initBanner();
+    // load Google review link into admin field
+    var grl = localStorage.getItem('pf_google_review_link') || '';
+    var gField = document.getElementById('admin-google-review');
+    if (gField && grl) gField.value = grl;
   }
 
   function acceptRequest(id) {
@@ -2665,6 +2785,20 @@
     document.getElementById('book-notes').value = '';
     document.getElementById('book-error').style.display = 'none';
     document.getElementById('book-success').style.display = 'block';
+    // Auto-reply: open client's email with a pre-written confirmation
+    var subject = encodeURIComponent('Your Consultation Request — Precise Financials, LLC');
+    var body = encodeURIComponent(
+      'Hi ' + name + ',\n\n' +
+      'Thank you for requesting a consultation with Precise Financials, LLC!\n\n' +
+      'We received your request and will confirm your 30-minute appointment within 1–3 business days.\n\n' +
+      'Your requested time: ' + date + ' at ' + (time || 'TBD') + ' (Mountain Time)\n\n' +
+      'If you have any questions in the meantime, feel free to reply to this email or call us at (928) 224-9548.\n\n' +
+      'We look forward to speaking with you!\n\n' +
+      '— Brittney Cooke\nPrecise Financials, LLC\n(928) 224-9548\nbrittney@precisefinancials.biz'
+    );
+    setTimeout(function() {
+      window.location.href = 'mailto:' + email + '?subject=' + subject + '&body=' + body;
+    }, 800);
   }
 
   function getApptStatuses() {
@@ -4153,6 +4287,22 @@
     }
   }
 
+  // ── GOOGLE REVIEW LINK ──────────────────────────────────────
+  function adminSaveGoogleReview() {
+    var val = document.getElementById('admin-google-review').value.trim();
+    if (val) {
+      localStorage.setItem('pf_google_review_link', val);
+      var link = document.getElementById('google-review-link');
+      if (link) link.href = val;
+      alert('Google review link saved!');
+    }
+  }
+  // Init Google review link in footer on page load
+  (function() {
+    var grl = localStorage.getItem('pf_google_review_link') || '';
+    if (grl) { var link = document.getElementById('google-review-link'); if (link) link.href = grl; }
+  })();
+
   // ── TESTIMONIALS ────────────────────────────────────────────
   var testiEditingId = null;
   var testiStars = 5;
@@ -4382,7 +4532,138 @@
 
   buildTimeOptions(17); // initialize with Mon–Thu hours on page load
 
+  // ── FLOATING CONTACT BUTTON ─────────────────────────────────
+  function toggleContactModal() {
+    var overlay = document.getElementById('contact-modal-overlay');
+    overlay.classList.toggle('open');
+  }
+  document.addEventListener('click', function(e) {
+    var overlay = document.getElementById('contact-modal-overlay');
+    if (overlay.classList.contains('open') && !document.getElementById('contact-modal').contains(e.target) && e.target.id !== 'float-contact-btn') {
+      overlay.classList.remove('open');
+    }
+  });
+
+  // ── SHARE TRACKING ──────────────────────────────────────────
+  function logShare(platform) {
+    var log = JSON.parse(localStorage.getItem('pf_share_log') || '[]');
+    log.unshift({ platform: platform, date: new Date().toLocaleString(), page: window.location.href });
+    localStorage.setItem('pf_share_log', JSON.stringify(log));
+    // increment unread badge
+    var unread = parseInt(localStorage.getItem('pf_share_unread') || '0') + 1;
+    localStorage.setItem('pf_share_unread', String(unread));
+  }
+  function shareVia(platform) {
+    var url = 'https://bcookeacc-prog.github.io/Precisefinancials/';
+    var text = 'Check out Precise Financials, LLC — expert bookkeeping, tax prep, and payroll for small businesses!';
+    logShare(platform);
+    toggleContactModal();
+    if (platform === 'Facebook') window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url), '_blank');
+    else if (platform === 'Twitter/X') window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(url) + '&text=' + encodeURIComponent(text), '_blank');
+    else if (platform === 'Copy Link') {
+      navigator.clipboard.writeText(url).then(function() { alert('Link copied to clipboard!'); });
+    } else if (platform === 'Native Share' && navigator.share) {
+      navigator.share({ title: 'Precise Financials, LLC', text: text, url: url });
+    }
+  }
+  function renderShareLog() {
+    var el = document.getElementById('admin-share-log');
+    if (!el) return;
+    var log = JSON.parse(localStorage.getItem('pf_share_log') || '[]');
+    localStorage.setItem('pf_share_unread', '0');
+    updateShareBadge();
+    if (log.length === 0) { el.innerHTML = '<div style="font-size:13px;color:var(--text-muted);">No shares recorded yet.</div>'; return; }
+    el.innerHTML = log.map(function(s) {
+      return '<div class="share-log-entry"><span class="share-log-platform">' + s.platform + '</span><span style="color:var(--text-muted);">' + s.date + '</span></div>';
+    }).join('');
+  }
+  function updateShareBadge() {
+    var n = parseInt(localStorage.getItem('pf_share_unread') || '0');
+    var badge = document.getElementById('share-badge');
+    if (badge) { badge.textContent = n; badge.style.display = n > 0 ? 'inline-flex' : 'none'; }
+  }
+  updateShareBadge();
+
+  // ── WHAT TO BRING TOGGLE ────────────────────────────────────
+  function toggleBring() {
+    var list = document.getElementById('bring-list');
+    var arrow = document.getElementById('bring-arrow');
+    list.classList.toggle('open');
+    arrow.textContent = list.classList.contains('open') ? '▲ Hide' : '▼ Show';
+  }
+
+  // ── LEAD MAGNET DOWNLOAD ────────────────────────────────────
+  function downloadChecklist() {
+    var year = new Date().getFullYear();
+    var style = '<style>body{font-family:Georgia,serif;max-width:700px;margin:40px auto;color:#0d1b35;} h1{color:#0a1f44;border-bottom:3px solid #c9a84c;padding-bottom:8px;margin-bottom:4px;font-size:22px;} h2{color:#0a1f44;font-size:15px;margin:20px 0 6px;} .subtitle{color:#5a6a82;font-size:13px;margin-bottom:24px;} ul{padding-left:20px;margin-bottom:8px;} li{margin-bottom:5px;font-size:13.5px;line-height:1.6;} .check{color:#c9a84c;font-weight:bold;margin-right:4px;} .footer{margin-top:32px;padding-top:12px;border-top:1px solid #dce8f5;font-size:11px;color:#5a6a82;text-align:center;} .tip{background:#f0f5fb;border-left:4px solid #c9a84c;padding:10px 14px;margin:12px 0;font-size:13px;border-radius:0 4px 4px 0;} @media print{.no-print{display:none}}</style>';
+    var content = '<h1>&#9989; Year-End Bookkeeping Checklist</h1>' +
+      '<div class="subtitle">Prepared by Precise Financials, LLC &nbsp;&bull;&nbsp; (928) 224-9548 &nbsp;&bull;&nbsp; brittney@precisefinancials.biz</div>' +
+      '<h2>&#128193; Gather Your Records</h2><ul>' +
+      '<li><span class="check">&#9744;</span> All bank statements (every account used for business)</li>' +
+      '<li><span class="check">&#9744;</span> Credit card statements (business cards only)</li>' +
+      '<li><span class="check">&#9744;</span> Loan and line-of-credit statements</li>' +
+      '<li><span class="check">&#9744;</span> PayPal, Venmo, or Cash App transaction history</li>' +
+      '<li><span class="check">&#9744;</span> Receipts for purchases over $75</li>' +
+      '</ul>' +
+      '<h2>&#128181; Income</h2><ul>' +
+      '<li><span class="check">&#9744;</span> All invoices sent to clients (paid and unpaid)</li>' +
+      '<li><span class="check">&#9744;</span> Any 1099 forms received</li>' +
+      '<li><span class="check">&#9744;</span> Cash income records</li>' +
+      '<li><span class="check">&#9744;</span> Refunds or credits received</li>' +
+      '</ul>' +
+      '<h2>&#128203; Expenses &amp; Deductions</h2><ul>' +
+      '<li><span class="check">&#9744;</span> Office supplies and equipment</li>' +
+      '<li><span class="check">&#9744;</span> Software subscriptions (QuickBooks, etc.)</li>' +
+      '<li><span class="check">&#9744;</span> Home office expenses (if applicable)</li>' +
+      '<li><span class="check">&#9744;</span> Vehicle mileage log or actual vehicle expenses</li>' +
+      '<li><span class="check">&#9744;</span> Phone and internet bills (business portion)</li>' +
+      '<li><span class="check">&#9744;</span> Professional fees (accounting, legal)</li>' +
+      '<li><span class="check">&#9744;</span> Marketing and advertising costs</li>' +
+      '<li><span class="check">&#9744;</span> Employee wages and contractor payments</li>' +
+      '</ul>' +
+      '<h2>&#128101; Payroll (if applicable)</h2><ul>' +
+      '<li><span class="check">&#9744;</span> Payroll records for all employees</li>' +
+      '<li><span class="check">&#9744;</span> 941 quarterly payroll tax returns</li>' +
+      '<li><span class="check">&#9744;</span> W-2 and 1099-NEC forms to prepare</li>' +
+      '</ul>' +
+      '<h2>&#128196; Tax Prep Items</h2><ul>' +
+      '<li><span class="check">&#9744;</span> Prior year tax return</li>' +
+      '<li><span class="check">&#9744;</span> EIN (Employer Identification Number)</li>' +
+      '<li><span class="check">&#9744;</span> Quarterly estimated tax payment records</li>' +
+      '<li><span class="check">&#9744;</span> Any IRS correspondence received this year</li>' +
+      '</ul>' +
+      '<div class="tip">&#128161; <strong>Pro Tip:</strong> Don\'t wait until tax season! Keeping your books current throughout the year saves you time, money, and stress. Precise Financials offers monthly bookkeeping starting at $300/mo.</div>' +
+      '<h2>&#127919; Final Steps</h2><ul>' +
+      '<li><span class="check">&#9744;</span> Reconcile all accounts in QuickBooks (or your bookkeeping software)</li>' +
+      '<li><span class="check">&#9744;</span> Review your Profit &amp; Loss statement</li>' +
+      '<li><span class="check">&#9744;</span> Review your Balance Sheet</li>' +
+      '<li><span class="check">&#9744;</span> Book a year-end strategy call with your accountant</li>' +
+      '</ul>' +
+      '<div class="footer">Precise Financials, LLC &nbsp;|&nbsp; (928) 224-9548 &nbsp;|&nbsp; brittney@precisefinancials.biz &nbsp;|&nbsp; &copy; ' + year + ' All rights reserved.<br>This checklist is for informational purposes only and does not constitute financial or tax advice.</div>';
+    var win = window.open('', '_blank');
+    win.document.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Year-End Bookkeeping Checklist — Precise Financials</title>' + style + '</head><body>' + content + '<br><button class="no-print" onclick="window.print()" style="background:#c9a84c;color:#0a1f44;border:none;padding:10px 24px;font-size:14px;font-weight:700;border-radius:4px;cursor:pointer;margin-top:8px;">&#128438; Print / Save as PDF</button></body></html>');
+    win.document.close();
+  }
+
 </script>
+
+<!-- FLOATING CONTACT BUTTON -->
+<button id="float-contact-btn" onclick="toggleContactModal()">
+  &#128172; Quick Contact
+</button>
+<div id="contact-modal-overlay">
+  <div id="contact-modal">
+    <div class="contact-modal-title">Get in Touch</div>
+    <a href="tel:9282249548" class="contact-modal-opt"><span>&#128222;</span> (928) 224-9548</a>
+    <a href="mailto:brittney@precisefinancials.biz" class="contact-modal-opt"><span>&#9993;</span> Send an Email</a>
+    <a href="sms:9282249548" class="contact-modal-opt"><span>&#128172;</span> Send a Text</a>
+    <div class="contact-modal-opt" style="cursor:pointer;" onclick="shareVia('Facebook')"><span>&#128279;</span> Share on Facebook</div>
+    <div class="contact-modal-opt" style="cursor:pointer;" onclick="shareVia('Copy Link')"><span>&#128203;</span> Copy Page Link</div>
+    <div style="margin-top:8px;padding-top:8px;border-top:1px solid #f0f5fb;text-align:center;">
+      <button onclick="toggleContactModal()" style="background:none;border:none;font-size:12px;color:var(--text-muted);cursor:pointer;">Close</button>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
