@@ -1181,12 +1181,12 @@
           <li>QuickBooks setup &amp; support</li>
           <li>General ledger management</li>
         </ul>
-      <button class="btn-outline" onclick="showPage('book')" style="margin-top:1.25rem;width:100%;">Book a Consultation</button>
+      <button class="btn-outline" onclick="bookService('Bookkeeping')" style="margin-top:1.25rem;width:100%;">Book a Consultation</button>
       </div>
       <div class="service-card">
         <span class="service-num">02</span>
         <h3>Tax Preparation</h3>
-        <p>Expert tax filing for individuals, LLCs, S-corps, and more "” on time and fully optimized.</p>
+        <p>Expert tax filing for individuals, LLCs, S-corps, and more “” on time and fully optimized.</p>
         <ul>
           <li>Individual &amp; business returns</li>
           <li>Tax planning strategies</li>
@@ -1194,7 +1194,7 @@
           <li>Prior year amendments</li>
           <li>Quarterly estimated taxes</li>
         </ul>
-      <button class="btn-outline" onclick="showPage('book')" style="margin-top:1.25rem;width:100%;">Book a Consultation</button>
+      <button class=”btn-outline” onclick=”bookService('Tax Preparation')” style=”margin-top:1.25rem;width:100%;”>Book a Consultation</button>
       </div>
       <div class="service-card">
         <span class="service-num">03</span>
@@ -1207,7 +1207,7 @@
           <li>Profit &amp; loss review</li>
           <li>Strategic financial guidance</li>
         </ul>
-      <button class="btn-outline" onclick="showPage('book')" style="margin-top:1.25rem;width:100%;">Book a Consultation</button>
+      <button class="btn-outline" onclick="bookService('Financial Strategy')" style="margin-top:1.25rem;width:100%;">Book a Consultation</button>
       </div>
       <div class="service-card">
         <span class="service-num">04</span>
@@ -1220,7 +1220,7 @@
           <li>New hire reporting</li>
           <li>Compliance support</li>
         </ul>
-      <button class="btn-outline" onclick="showPage('book')" style="margin-top:1.25rem;width:100%;">Book a Consultation</button>
+      <button class="btn-outline" onclick="bookService('Payroll Services')" style="margin-top:1.25rem;width:100%;">Book a Consultation</button>
       </div>
       <div class="service-card">
         <span class="service-num">05</span>
@@ -1233,7 +1233,7 @@
           <li>Bookkeeping system setup</li>
           <li>Startup financial planning</li>
         </ul>
-      <button class="btn-outline" onclick="showPage('book')" style="margin-top:1.25rem;width:100%;">Book a Consultation</button>
+      <button class="btn-outline" onclick="bookService('LLC Setup')" style="margin-top:1.25rem;width:100%;">Book a Consultation</button>
       </div>
       <div class="service-card">
         <span class="service-num">06</span>
@@ -1246,7 +1246,7 @@
           <li>1-on-1 basic training session</li>
           <li>Ongoing support available</li>
         </ul>
-      <button class="btn-outline" onclick="showPage('book')" style="margin-top:1.25rem;width:100%;">Book a Consultation</button>
+      <button class="btn-outline" onclick="bookService('QuickBooks Setup &amp; Training')" style="margin-top:1.25rem;width:100%;">Book a Consultation</button>
       </div>
     </div>
   </div>
@@ -2013,6 +2013,14 @@
     if (navBtn) navBtn.classList.add('active');
     window.scrollTo({ top: 0, behavior: 'smooth' });
     document.getElementById('nav-links').classList.remove('open');
+  }
+
+  function bookService(service) {
+    showPage('book');
+    document.querySelectorAll('[id^="bsvc"]').forEach(function(c) { c.checked = false; });
+    document.querySelectorAll('[id^="bsvc"]').forEach(function(c) {
+      if (c.value === service) c.checked = true;
+    });
   }
 
   document.getElementById('hamburger').addEventListener('click', function() {
