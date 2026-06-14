@@ -920,10 +920,69 @@
       .price-table { font-size: 13px; }
       .social-bar { padding: 0.8rem 1rem; gap: 0.75rem; }
       .trust-bar { flex-direction: column; gap: 0.5rem; text-align: center; }
+      .testimonial-grid { grid-template-columns: 1fr; }
+      .newsletter-strip { padding: 2.5rem 1.2rem; }
+      .deadline-grid { grid-template-columns: 1fr; }
     }
+
+    /* ── SEASONAL BANNER ───────────────────────────── */
+    #seasonal-banner { background: var(--gold); color: var(--navy); text-align: center; padding: 10px 48px; font-size: 14px; font-weight: 700; position: relative; display: none; }
+    #seasonal-banner button { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); background: none; border: none; font-size: 20px; cursor: pointer; color: var(--navy); line-height: 1; padding: 0; }
+
+    /* ── TESTIMONIALS ──────────────────────────────── */
+    .testimonials-section { background: #f0f5fb; padding: 3.5rem 2.5rem; }
+    .testimonials-section .section-label { color: var(--gold); }
+    .testimonial-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2rem; }
+    .testimonial-card { background: #fff; border-radius: 8px; padding: 1.75rem 1.5rem; border: 1px solid rgba(10,31,68,0.08); border-top: 3px solid var(--gold); position: relative; }
+    .testimonial-stars { color: var(--gold); font-size: 15px; margin-bottom: 0.75rem; letter-spacing: 2px; }
+    .testimonial-quote { font-size: 14.5px; color: var(--text-muted); line-height: 1.8; font-style: italic; margin-bottom: 1rem; }
+    .testimonial-author { font-size: 13px; font-weight: 700; color: var(--navy); }
+    .testimonial-service { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
+    .testimonial-placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; background: #f7f9fc; border: 2px dashed rgba(10,31,68,0.15); border-radius: 8px; padding: 2rem; text-align: center; min-height: 160px; }
+
+    /* ── NEWSLETTER ────────────────────────────────── */
+    .newsletter-strip { background: var(--navy); padding: 3rem 2.5rem; text-align: center; }
+    .newsletter-strip .section-label { color: var(--gold); }
+    .newsletter-strip h2 { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: #fff; margin: 0.5rem 0 0.5rem; }
+    .newsletter-strip p { color: #afc0d8; font-size: 15px; margin-bottom: 1.5rem; }
+    .newsletter-form { display: flex; gap: 0.75rem; max-width: 480px; margin: 0 auto; }
+    .newsletter-form input { flex: 1; padding: 12px 16px; border: none; border-radius: 4px; font-size: 14px; font-family: inherit; }
+    .newsletter-form button { background: var(--gold); color: var(--navy); border: none; border-radius: 4px; padding: 12px 24px; font-weight: 700; font-size: 14px; cursor: pointer; white-space: nowrap; }
+    .newsletter-form button:hover { opacity: 0.9; }
+    .newsletter-note { font-size: 12px; color: #6b84a8; margin-top: 0.75rem; }
+    @media(max-width:520px){ .newsletter-form { flex-direction: column; } }
+
+    /* ── WHAT TO EXPECT ────────────────────────────── */
+    .expect-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 2rem; }
+    .expect-card { text-align: center; padding: 1.5rem 1rem; }
+    .expect-num { width: 48px; height: 48px; border-radius: 50%; background: var(--navy); color: var(--gold); font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; }
+    .expect-card h4 { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--navy); margin-bottom: 0.5rem; }
+    .expect-card p { font-size: 13.5px; color: var(--text-muted); line-height: 1.7; margin: 0; }
+    @media(max-width:700px){ .expect-grid { grid-template-columns: repeat(2, 1fr); } }
+
+    /* ── RESOURCES PAGE ────────────────────────────── */
+    .deadline-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 1.5rem; }
+    .deadline-card { background: #fff; border-radius: 8px; border: 1px solid rgba(10,31,68,0.1); border-left: 4px solid var(--gold); padding: 1.25rem 1.5rem; }
+    .deadline-card.passed { border-left-color: #afc0d8; opacity: 0.7; }
+    .deadline-card.upcoming { border-left-color: #c0392b; background: #fff8f8; }
+    .deadline-month { font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+    .deadline-date { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--navy); font-weight: 700; margin-bottom: 4px; }
+    .deadline-desc { font-size: 13.5px; color: var(--text-dark); font-weight: 600; margin-bottom: 3px; }
+    .deadline-detail { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+    .resource-link-card { display: flex; align-items: center; gap: 1rem; background: #fff; border: 1px solid rgba(10,31,68,0.1); border-radius: 8px; padding: 1rem 1.25rem; text-decoration: none; transition: border-color 0.2s, box-shadow 0.2s; }
+    .resource-link-card:hover { border-color: var(--gold); box-shadow: 0 4px 12px rgba(10,31,68,0.08); }
+    .resource-link-icon { font-size: 24px; flex-shrink: 0; }
+    .resource-link-title { font-size: 14px; font-weight: 700; color: var(--navy); }
+    .resource-link-desc { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
   </style>
 </head>
 <body>
+
+<!-- SEASONAL BANNER -->
+<div id="seasonal-banner">
+  <span id="seasonal-banner-text">Tax season is here — don&rsquo;t wait! Book your appointment today before spots fill up.</span>
+  <button onclick="dismissBanner()" title="Dismiss">&times;</button>
+</div>
 
 <nav>
   <div class="logo" onclick="showPage('home')">
@@ -939,6 +998,7 @@
     <button data-page="services" onclick="showPage('services')">Services</button>
     <button data-page="pricing" onclick="showPage('pricing')">Financial Packages</button>
     <button data-page="faq" onclick="showPage('faq')">FAQ</button>
+    <button data-page="resources" onclick="showPage('resources')">Resources</button>
     <button data-page="book" onclick="showPage('book')" style="background:var(--gold);color:var(--navy);border-radius:4px;font-weight:700;">Book Now</button>
   </div>
 </nav>
@@ -1081,6 +1141,75 @@
         <p>PTIN Registered Tax Preparer and IRS e-File Provider with comprehensive data security protocols to keep your information safe.</p>
       </div>
     </div>
+  </div>
+
+  <!-- WHAT TO EXPECT -->
+  <div class="section" style="background:#fff;">
+    <div class="section-label">No guesswork</div>
+    <div class="section-title">What to <em>Expect</em></div>
+    <div class="divider"></div>
+    <p style="text-align:center;color:var(--text-muted);max-width:560px;margin:0 auto;font-size:15px;line-height:1.8;">Getting started is simple. Here&rsquo;s exactly what happens after you reach out:</p>
+    <div class="expect-grid">
+      <div class="expect-card">
+        <div class="expect-num">1</div>
+        <h4>Book a Free Call</h4>
+        <p>Schedule your free 30-minute consultation online. Pick a day and time that works for you &mdash; no pressure, no obligation.</p>
+      </div>
+      <div class="expect-card">
+        <div class="expect-num">2</div>
+        <h4>We Learn Your Business</h4>
+        <p>On the call, we listen first. We&rsquo;ll ask about your goals, current setup, and pain points so we can tailor the right solution.</p>
+      </div>
+      <div class="expect-card">
+        <div class="expect-num">3</div>
+        <h4>Get a Custom Plan</h4>
+        <p>You&rsquo;ll receive a clear proposal with exactly what we&rsquo;ll do, what it costs, and what documents we&rsquo;ll need to get started.</p>
+      </div>
+      <div class="expect-card">
+        <div class="expect-num">4</div>
+        <h4>We Handle the Rest</h4>
+        <p>Once you&rsquo;re onboarded &mdash; typically within 3&ndash;5 business days &mdash; we get to work so you can get back to running your business.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- TESTIMONIALS -->
+  <div class="testimonials-section">
+    <div style="text-align:center;">
+      <div class="section-label">Client stories</div>
+      <div class="section-title">What Our <em>Clients Say</em></div>
+      <div class="divider" style="margin:0 auto 0.5rem;"></div>
+    </div>
+    <div class="testimonial-grid">
+      <div class="testimonial-placeholder">
+        <div style="font-size:32px;margin-bottom:0.75rem;">&#11088;</div>
+        <div style="font-size:14px;font-weight:700;color:var(--navy);margin-bottom:4px;">Reviews Coming Soon</div>
+        <div style="font-size:13px;color:var(--text-muted);">We&rsquo;re just getting started &mdash; client testimonials will appear here.</div>
+      </div>
+      <div class="testimonial-placeholder">
+        <div style="font-size:32px;margin-bottom:0.75rem;">&#11088;</div>
+        <div style="font-size:14px;font-weight:700;color:var(--navy);margin-bottom:4px;">Be Our First Review</div>
+        <div style="font-size:13px;color:var(--text-muted);">Book a consultation and let us show you what Precise Financials can do.</div>
+      </div>
+      <div class="testimonial-placeholder">
+        <div style="font-size:32px;margin-bottom:0.75rem;">&#11088;</div>
+        <div style="font-size:14px;font-weight:700;color:var(--navy);margin-bottom:4px;">Your Story Here</div>
+        <div style="font-size:13px;color:var(--text-muted);">Real results from real clients &mdash; coming soon as we grow together.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NEWSLETTER -->
+  <div class="newsletter-strip">
+    <div class="section-label">Stay informed</div>
+    <h2>Tax Tips &amp; Deadline Reminders</h2>
+    <p>Get seasonal tax tips, IRS deadline alerts, and small business finance advice delivered to your inbox.</p>
+    <div class="newsletter-form">
+      <input type="email" id="nl-email" placeholder="your@email.com" />
+      <button onclick="newsletterSignup()">Subscribe</button>
+    </div>
+    <div id="nl-success" style="display:none;color:var(--gold);font-weight:700;margin-top:0.75rem;">&#10003; You&rsquo;re on the list! We&rsquo;ll be in touch.</div>
+    <p class="newsletter-note">No spam, ever. Unsubscribe any time.</p>
   </div>
 
   <div class="cta-strip">
@@ -1385,6 +1514,162 @@
 
 
 
+<!-- RESOURCES -->
+<div id="resources" class="page">
+  <div class="section" style="max-width:900px;">
+    <div class="section-label">Plan ahead</div>
+    <div class="section-title">2026 Tax <em>Deadlines</em></div>
+    <div class="divider"></div>
+    <p style="color:var(--text-muted);font-size:15px;line-height:1.8;max-width:620px;">Missing a tax deadline can mean penalties and interest. Use this calendar to stay ahead &mdash; and when in doubt, reach out early.</p>
+
+    <div class="deadline-grid">
+      <div class="deadline-card">
+        <div class="deadline-month">January 2026</div>
+        <div class="deadline-date">Jan 15</div>
+        <div class="deadline-desc">Q4 2025 Estimated Tax Payment</div>
+        <div class="deadline-detail">4th quarter estimated tax payment due for self-employed individuals and businesses.</div>
+      </div>
+      <div class="deadline-card">
+        <div class="deadline-month">January 2026</div>
+        <div class="deadline-date">Jan 31</div>
+        <div class="deadline-desc">W-2s &amp; 1099s Must Be Sent</div>
+        <div class="deadline-detail">Employers must send W-2s to employees. Businesses must send 1099-NEC to contractors.</div>
+      </div>
+      <div class="deadline-card">
+        <div class="deadline-month">March 2026</div>
+        <div class="deadline-date">Mar 17</div>
+        <div class="deadline-desc">S-Corp &amp; Partnership Returns (Form 1120-S / 1065)</div>
+        <div class="deadline-detail">Business tax returns due for S-corporations and partnerships. Extension available.</div>
+      </div>
+      <div class="deadline-card">
+        <div class="deadline-month">April 2026</div>
+        <div class="deadline-date">Apr 15</div>
+        <div class="deadline-desc">Individual &amp; C-Corp Tax Returns</div>
+        <div class="deadline-detail">Personal returns (Form 1040) and C-corporation returns (Form 1120) due. Q1 estimated tax payment also due.</div>
+      </div>
+      <div class="deadline-card">
+        <div class="deadline-month">April 2026</div>
+        <div class="deadline-date">Apr 15</div>
+        <div class="deadline-desc">Q1 2026 Estimated Tax Payment</div>
+        <div class="deadline-detail">First quarter estimated tax payment due for self-employed individuals and businesses.</div>
+      </div>
+      <div class="deadline-card">
+        <div class="deadline-month">June 2026</div>
+        <div class="deadline-date">Jun 16</div>
+        <div class="deadline-desc">Q2 2026 Estimated Tax Payment</div>
+        <div class="deadline-detail">Second quarter estimated tax payment due.</div>
+      </div>
+      <div class="deadline-card">
+        <div class="deadline-month">September 2026</div>
+        <div class="deadline-date">Sep 15</div>
+        <div class="deadline-desc">Q3 Estimated Tax &amp; Extended Business Returns</div>
+        <div class="deadline-detail">Q3 estimated payment due. Extended S-corp and partnership returns also due today.</div>
+      </div>
+      <div class="deadline-card">
+        <div class="deadline-month">October 2026</div>
+        <div class="deadline-date">Oct 15</div>
+        <div class="deadline-desc">Extended Individual Returns Due</div>
+        <div class="deadline-detail">Final deadline for individuals who filed a 6-month extension in April.</div>
+      </div>
+      <div class="deadline-card">
+        <div class="deadline-month">January 2027</div>
+        <div class="deadline-date">Jan 15</div>
+        <div class="deadline-desc">Q4 2026 Estimated Tax Payment</div>
+        <div class="deadline-detail">Final estimated tax payment for the 2026 tax year.</div>
+      </div>
+    </div>
+
+    <div style="background:#fff8e7;border:1px solid rgba(201,168,76,0.3);border-radius:8px;padding:1.25rem 1.5rem;margin-top:2rem;">
+      <div style="font-size:14px;font-weight:700;color:var(--navy);margin-bottom:4px;">&#9888; Dates may shift when they fall on weekends or federal holidays.</div>
+      <div style="font-size:13px;color:var(--text-muted);">Always confirm deadlines with the IRS or your tax professional. When in doubt &mdash; file early.</div>
+    </div>
+
+    <div class="section-label" style="margin-top:3rem;">Helpful Links</div>
+    <div class="section-title">Official <em>Resources</em></div>
+    <div class="divider"></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin-top:1rem;">
+      <a href="https://www.irs.gov" target="_blank" class="resource-link-card">
+        <div class="resource-link-icon">&#127981;</div>
+        <div><div class="resource-link-title">IRS.gov</div><div class="resource-link-desc">Forms, payments, refund status, and tax law</div></div>
+      </a>
+      <a href="https://www.irs.gov/payments/direct-pay" target="_blank" class="resource-link-card">
+        <div class="resource-link-icon">&#128196;</div>
+        <div><div class="resource-link-title">IRS Direct Pay</div><div class="resource-link-desc">Make estimated tax payments online for free</div></div>
+      </a>
+      <a href="https://www.sba.gov" target="_blank" class="resource-link-card">
+        <div class="resource-link-icon">&#127970;</div>
+        <div><div class="resource-link-title">SBA.gov</div><div class="resource-link-desc">Small business loans, licenses, and startup guides</div></div>
+      </a>
+      <a href="https://azdor.gov" target="_blank" class="resource-link-card">
+        <div class="resource-link-icon">&#127758;</div>
+        <div><div class="resource-link-title">Arizona DOR</div><div class="resource-link-desc">Arizona state tax filing and business registration</div></div>
+      </a>
+      <a href="https://tax.utah.gov" target="_blank" class="resource-link-card">
+        <div class="resource-link-icon">&#127758;</div>
+        <div><div class="resource-link-title">Utah State Tax Commission</div><div class="resource-link-desc">Utah state income tax, sales tax, and business taxes</div></div>
+      </a>
+      <a href="https://www.irs.gov/businesses/small-businesses-self-employed/self-employed-individuals-tax-center" target="_blank" class="resource-link-card">
+        <div class="resource-link-icon">&#128188;</div>
+        <div><div class="resource-link-title">Self-Employed Tax Center</div><div class="resource-link-desc">IRS guide for freelancers and small business owners</div></div>
+      </a>
+    </div>
+
+    <div style="text-align:center;margin-top:3rem;padding:2rem;background:#f0f5fb;border-radius:6px;">
+      <p style="font-family:'Playfair Display',serif;font-size:18px;color:var(--navy);margin-bottom:0.5rem;">Have a deadline question?</p>
+      <p style="font-size:14px;color:var(--text-muted);margin-bottom:1.25rem;">Don&rsquo;t guess &mdash; ask a professional. Book a free 30-minute call and we&rsquo;ll help you stay compliant.</p>
+      <button class="btn-gold" onclick="showPage('book')">Book a Free Consultation</button>
+    </div>
+  </div>
+</div>
+
+<!-- PRIVACY POLICY -->
+<div id="privacy" class="page">
+  <div class="section" style="max-width:760px;">
+    <div class="section-label">Legal</div>
+    <div class="section-title">Privacy <em>Policy</em></div>
+    <div class="divider"></div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:2rem;">Last updated: June 2026</p>
+
+    <div style="font-size:15px;color:var(--text-dark);line-height:1.85;">
+      <h3 style="font-family:'Playfair Display',serif;color:var(--navy);font-size:1.1rem;margin:1.5rem 0 0.5rem;">1. Information We Collect</h3>
+      <p>When you use our website or contact us, we may collect the following information: your name, email address, phone number, the services you&rsquo;re interested in, and any notes or questions you provide through our booking or contact forms. We also collect information about your preferred appointment date and time.</p>
+
+      <h3 style="font-family:'Playfair Display',serif;color:var(--navy);font-size:1.1rem;margin:1.5rem 0 0.5rem;">2. How We Use Your Information</h3>
+      <p>We use the information you provide solely to:</p>
+      <ul style="padding-left:1.5rem;margin:0.5rem 0;">
+        <li>Respond to your consultation requests and schedule appointments</li>
+        <li>Provide bookkeeping, tax, payroll, and financial services</li>
+        <li>Send you relevant tax tips and deadline reminders if you subscribe to our newsletter</li>
+        <li>Improve our services and communicate with you about your account</li>
+      </ul>
+      <p style="margin-top:0.75rem;">We do not sell, rent, or share your personal information with third parties for marketing purposes.</p>
+
+      <h3 style="font-family:'Playfair Display',serif;color:var(--navy);font-size:1.1rem;margin:1.5rem 0 0.5rem;">3. Data Storage</h3>
+      <p>Appointment requests and contact form submissions are stored locally in your browser (localStorage) and are accessible only to Precise Financials LLC through the secure admin portal. No data is transmitted to or stored on external servers through this website.</p>
+
+      <h3 style="font-family:'Playfair Display',serif;color:var(--navy);font-size:1.1rem;margin:1.5rem 0 0.5rem;">4. Financial Information</h3>
+      <p>We take the confidentiality of your financial information very seriously. Any financial records, tax documents, or sensitive data shared with us for service purposes are handled in accordance with professional accounting standards and are never disclosed to unauthorized parties.</p>
+
+      <h3 style="font-family:'Playfair Display',serif;color:var(--navy);font-size:1.1rem;margin:1.5rem 0 0.5rem;">5. Newsletter &amp; Communications</h3>
+      <p>If you subscribe to our newsletter, your email address is stored locally and used only to send you tax tips, deadline reminders, and business finance information from Precise Financials LLC. You may unsubscribe at any time by contacting us directly.</p>
+
+      <h3 style="font-family:'Playfair Display',serif;color:var(--navy);font-size:1.1rem;margin:1.5rem 0 0.5rem;">6. Cookies &amp; Tracking</h3>
+      <p>This website does not use tracking cookies or third-party analytics. We use browser localStorage only to remember your session and store form submissions for follow-up.</p>
+
+      <h3 style="font-family:'Playfair Display',serif;color:var(--navy);font-size:1.1rem;margin:1.5rem 0 0.5rem;">7. Your Rights</h3>
+      <p>You have the right to request access to, correction of, or deletion of any personal information you have submitted to us. To make such a request, please contact us at:</p>
+      <div style="background:#f0f5fb;border-radius:6px;padding:1rem 1.25rem;margin-top:0.75rem;">
+        <strong>Precise Financials, LLC</strong><br>
+        &#9993; <a href="mailto:britteny@precisefinancials.biz" style="color:var(--navy);">britteny@precisefinancials.biz</a><br>
+        &#128222; <a href="tel:9282249548" style="color:var(--navy);">(928) 224-9548</a>
+      </div>
+
+      <h3 style="font-family:'Playfair Display',serif;color:var(--navy);font-size:1.1rem;margin:1.5rem 0 0.5rem;">8. Changes to This Policy</h3>
+      <p>We may update this Privacy Policy from time to time. Any changes will be reflected on this page with an updated date. Continued use of our website after changes are posted constitutes your acceptance of the revised policy.</p>
+    </div>
+  </div>
+</div>
+
 <div id="book" class="page">
   <div class="section">
     <div class="section-title">Book a <em>Free Consultation</em></div>
@@ -1659,6 +1944,23 @@
 
     <button class="admin-save-btn" onclick="adminSave()">Save Settings</button>
     <div class="admin-saved" id="admin-saved">Settings saved successfully!</div>
+
+    <!-- BANNER TOGGLE -->
+    <div class="admin-section-title" style="margin-top:1.5rem;">Seasonal Banner</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:0.75rem;">Show or hide the announcement banner at the top of your site. Edit the message below.</p>
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:0.75rem;">
+      <label style="font-size:13px;font-weight:600;color:var(--navy);">Banner:</label>
+      <button id="banner-toggle-btn" onclick="adminToggleBanner()" style="padding:5px 16px;border-radius:4px;border:none;font-size:12px;font-weight:700;cursor:pointer;background:#c0392b;color:#fff;">OFF</button>
+    </div>
+    <input type="text" id="admin-banner-text" placeholder="e.g. Tax season is here — book your spot today!" style="width:100%;padding:8px 10px;border:1.5px solid #dce3ec;border-radius:4px;font-size:13px;margin-bottom:0.5rem;box-sizing:border-box;" />
+    <button onclick="adminSaveBanner()" style="font-size:12px;padding:5px 14px;background:var(--navy);color:#fff;border:none;border-radius:3px;cursor:pointer;">Update Banner Text</button>
+
+    <!-- NEWSLETTER SIGNUPS -->
+    <div class="admin-section-title" style="margin-top:1.5rem;">Newsletter Subscribers</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:0.75rem;">Email addresses collected from the newsletter signup on your home page.</p>
+    <div id="admin-newsletter-list" style="max-height:200px;overflow-y:auto;"></div>
+    <button onclick="renderAdminNewsletter()" style="font-size:12px;padding:4px 12px;background:var(--navy);color:#fff;border:none;border-radius:3px;cursor:pointer;margin-top:6px;">Refresh</button>
+    <button onclick="exportNewsletter()" style="font-size:12px;padding:4px 12px;background:none;border:1px solid rgba(10,31,68,0.2);border-radius:3px;cursor:pointer;margin-top:6px;margin-left:6px;color:var(--navy);">Copy All Emails</button>
 
     <div class="admin-section-title" style="margin-top:1.5rem;">Change Password</div>
     <p style="font-size:13px;color:var(--text-muted);margin-bottom:1rem;">Update your admin portal login password.</p>
@@ -1984,9 +2286,11 @@
     <button onclick="showPage('services')">Services</button>
     <button onclick="showPage('pricing')">Financial Packages</button>
     <button onclick="showPage('faq')">FAQ</button>
+    <button onclick="showPage('resources')">Resources</button>
     <button onclick="showPage('book')">Book Now</button>
+    <button onclick="showPage('privacy')">Privacy Policy</button>
   </div>
-  <p>&copy; 2025 Precise Financials, LLC. All rights reserved.</p>
+  <p>&copy; 2026 Precise Financials, LLC. All rights reserved.</p>
 </footer>
 
 <script>
@@ -2084,6 +2388,8 @@
     renderRequests();
     renderTrash();
     renderConsultations();
+    renderAdminNewsletter();
+    initBanner();
   }
 
   function acceptRequest(id) {
@@ -3821,6 +4127,80 @@
       document.body.removeChild(a);
       URL.revokeObjectURL(a.href);
     }
+  }
+
+  // ── SEASONAL BANNER ────────────────────────────────────────
+  function initBanner() {
+    var on = localStorage.getItem('pf_banner_on') === '1';
+    var text = localStorage.getItem('pf_banner_text') || '';
+    var el = document.getElementById('seasonal-banner');
+    var textEl = document.getElementById('seasonal-banner-text');
+    var dismissed = sessionStorage.getItem('pf_banner_dismissed') === '1';
+    if (on && text && !dismissed) {
+      textEl.textContent = text;
+      el.style.display = 'block';
+    }
+    // sync admin UI
+    var btn = document.getElementById('banner-toggle-btn');
+    var inp = document.getElementById('admin-banner-text');
+    if (btn) { btn.textContent = on ? 'ON' : 'OFF'; btn.style.background = on ? '#1a6b3c' : '#c0392b'; }
+    if (inp && text) inp.value = text;
+  }
+  function dismissBanner() {
+    sessionStorage.setItem('pf_banner_dismissed', '1');
+    document.getElementById('seasonal-banner').style.display = 'none';
+  }
+  function adminToggleBanner() {
+    var on = localStorage.getItem('pf_banner_on') === '1';
+    localStorage.setItem('pf_banner_on', on ? '0' : '1');
+    initBanner();
+  }
+  function adminSaveBanner() {
+    var text = document.getElementById('admin-banner-text').value.trim();
+    if (text) localStorage.setItem('pf_banner_text', text);
+    initBanner();
+    alert('Banner text updated!');
+  }
+  initBanner();
+
+  // ── NEWSLETTER ──────────────────────────────────────────────
+  function newsletterSignup() {
+    var email = document.getElementById('nl-email').value.trim();
+    if (!email || !email.includes('@')) { alert('Please enter a valid email address.'); return; }
+    var list = JSON.parse(localStorage.getItem('pf_newsletter') || '[]');
+    if (list.some(function(e) { return e.email === email; })) {
+      document.getElementById('nl-success').textContent = 'You’re already subscribed!';
+      document.getElementById('nl-success').style.display = 'block';
+      return;
+    }
+    list.unshift({ email: email, date: new Date().toLocaleDateString() });
+    localStorage.setItem('pf_newsletter', JSON.stringify(list));
+    document.getElementById('nl-email').value = '';
+    document.getElementById('nl-success').style.display = 'block';
+  }
+  function renderAdminNewsletter() {
+    var el = document.getElementById('admin-newsletter-list');
+    if (!el) return;
+    var list = JSON.parse(localStorage.getItem('pf_newsletter') || '[]');
+    if (list.length === 0) { el.innerHTML = '<div style="font-size:13px;color:var(--text-muted);padding:8px 0;">No subscribers yet.</div>'; return; }
+    el.innerHTML = list.map(function(s, i) {
+      return '<div style="display:flex;align-items:center;justify-content:space-between;padding:6px 10px;background:#f7f9fc;border-radius:4px;margin-bottom:4px;font-size:13px;">' +
+        '<div><span style="font-weight:600;color:var(--navy);">' + s.email + '</span><span style="color:var(--text-muted);font-size:11px;margin-left:8px;">Added ' + s.date + '</span></div>' +
+        '<button onclick="deleteSubscriber(' + i + ')" style="background:none;border:none;color:#c0392b;cursor:pointer;font-size:14px;padding:0;">&times;</button>' +
+        '</div>';
+    }).join('');
+  }
+  function deleteSubscriber(idx) {
+    var list = JSON.parse(localStorage.getItem('pf_newsletter') || '[]');
+    list.splice(idx, 1);
+    localStorage.setItem('pf_newsletter', JSON.stringify(list));
+    renderAdminNewsletter();
+  }
+  function exportNewsletter() {
+    var list = JSON.parse(localStorage.getItem('pf_newsletter') || '[]');
+    if (list.length === 0) { alert('No subscribers yet.'); return; }
+    var emails = list.map(function(s) { return s.email; }).join(', ');
+    navigator.clipboard.writeText(emails).then(function() { alert('Copied ' + list.length + ' email(s) to clipboard!'); });
   }
 
   // ── BOOKING TIME SLOTS ─────────────────────────────────────
