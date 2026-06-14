@@ -1893,14 +1893,14 @@
       <button onclick="showAddClientForm()" style="font-size:12px;padding:5px 14px;background:var(--navy);color:#fff;border:none;border-radius:3px;cursor:pointer;">+ Add Client</button>
     </div>
     <div id="client-add-form" style="display:none;background:#f7f9fc;border-radius:6px;padding:1rem;margin-bottom:1rem;border:1px solid rgba(10,31,68,0.1);">
-      <div style="font-size:12px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.75rem;">New Client</div>
+      <div id="cli-form-title" style="font-size:12px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.75rem;">New Client</div>
       <input id="cli-name" type="text" placeholder="Full Name *" style="width:100%;padding:8px 10px;border:1px solid rgba(10,31,68,0.18);border-radius:4px;font-size:13px;margin-bottom:6px;box-sizing:border-box;" />
       <input id="cli-email" type="email" placeholder="Email" style="width:100%;padding:8px 10px;border:1px solid rgba(10,31,68,0.18);border-radius:4px;font-size:13px;margin-bottom:6px;box-sizing:border-box;" />
       <input id="cli-phone" type="tel" placeholder="(555)555-5555" oninput="phoneInput(this)" style="width:100%;padding:8px 10px;border:1px solid rgba(10,31,68,0.18);border-radius:4px;font-size:13px;margin-bottom:6px;box-sizing:border-box;" />
       <input id="cli-services" type="text" placeholder="Services (e.g. Bookkeeping, Payroll)" style="width:100%;padding:8px 10px;border:1px solid rgba(10,31,68,0.18);border-radius:4px;font-size:13px;margin-bottom:6px;box-sizing:border-box;" />
       <input id="cli-notes" type="text" placeholder="Notes (optional)" style="width:100%;padding:8px 10px;border:1px solid rgba(10,31,68,0.18);border-radius:4px;font-size:13px;margin-bottom:10px;box-sizing:border-box;" />
       <div style="display:flex;gap:8px;">
-        <button onclick="saveClient()" style="flex:1;background:var(--gold);color:var(--navy);border:none;border-radius:4px;padding:8px;font-weight:700;font-size:13px;cursor:pointer;">Save Client</button>
+        <button id="cli-save-btn" onclick="saveClient()" style="flex:1;background:var(--gold);color:var(--navy);border:none;border-radius:4px;padding:8px;font-weight:700;font-size:13px;cursor:pointer;">Save Client</button>
         <button onclick="hideAddClientForm()" style="flex:1;background:none;border:1px solid rgba(10,31,68,0.2);border-radius:4px;padding:8px;font-size:13px;cursor:pointer;color:var(--text-muted);">Cancel</button>
       </div>
     </div>
@@ -2723,19 +2723,50 @@
     try { return JSON.parse(localStorage.getItem('pf_clients') || '[]'); } catch(e) { return []; }
   }
   function saveClients(c) { localStorage.setItem('pf_clients', JSON.stringify(c)); }
+  var cliEditingId = null;
   function showAddClientForm() {
+    cliEditingId = null;
+    document.getElementById('cli-form-title').textContent = 'New Client';
+    document.getElementById('cli-save-btn').textContent = 'Save Client';
+    ['cli-name','cli-email','cli-phone','cli-services','cli-notes'].forEach(function(id){ document.getElementById(id).value = ''; });
     document.getElementById('client-add-form').style.display = 'block';
     document.getElementById('cli-name').focus();
   }
   function hideAddClientForm() {
+    cliEditingId = null;
     document.getElementById('client-add-form').style.display = 'none';
+    document.getElementById('cli-form-title').textContent = 'New Client';
+    document.getElementById('cli-save-btn').textContent = 'Save Client';
     ['cli-name','cli-email','cli-phone','cli-services','cli-notes'].forEach(function(id){ document.getElementById(id).value = ''; });
+  }
+  function editClient(id) {
+    var clients = getClients();
+    var c = clients.find(function(x){ return x.id === id; });
+    if (!c) return;
+    cliEditingId = id;
+    document.getElementById('cli-form-title').textContent = 'Edit Client';
+    document.getElementById('cli-save-btn').textContent = 'Update Client';
+    document.getElementById('cli-name').value = c.name || '';
+    document.getElementById('cli-email').value = c.email || '';
+    document.getElementById('cli-phone').value = c.phone || '';
+    document.getElementById('cli-services').value = c.services || '';
+    document.getElementById('cli-notes').value = c.notes || '';
+    document.getElementById('client-add-form').style.display = 'block';
+    document.getElementById('cli-name').focus();
+    document.getElementById('client-add-form').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
   function saveClient() {
     var name = document.getElementById('cli-name').value.trim();
     if (!name) { alert('Please enter a name.'); return; }
     var clients = getClients();
-    clients.unshift({ id: Date.now(), name: name, email: document.getElementById('cli-email').value.trim(), phone: document.getElementById('cli-phone').value.trim(), services: document.getElementById('cli-services').value.trim(), notes: document.getElementById('cli-notes').value.trim(), added: new Date().toLocaleDateString() });
+    if (cliEditingId !== null) {
+      clients = clients.map(function(c) {
+        if (c.id !== cliEditingId) return c;
+        return { id: c.id, name: name, email: document.getElementById('cli-email').value.trim(), phone: document.getElementById('cli-phone').value.trim(), services: document.getElementById('cli-services').value.trim(), notes: document.getElementById('cli-notes').value.trim(), added: c.added };
+      });
+    } else {
+      clients.unshift({ id: Date.now(), name: name, email: document.getElementById('cli-email').value.trim(), phone: document.getElementById('cli-phone').value.trim(), services: document.getElementById('cli-services').value.trim(), notes: document.getElementById('cli-notes').value.trim(), added: new Date().toLocaleDateString() });
+    }
     saveClients(clients);
     hideAddClientForm();
     renderClients();
@@ -2760,7 +2791,10 @@
       if (c.email || c.phone) html += '<div class="request-card-meta">' + [c.email, c.phone ? formatPhone(c.phone) : ''].filter(Boolean).join(' | ') + '</div>';
       if (c.services) html += '<div class="request-card-services">' + c.services + '</div>';
       if (c.notes) html += '<div class="request-card-message">' + c.notes + '</div>';
+      html += '<div style="display:flex;align-items:center;justify-content:space-between;margin-top:6px;">';
       html += '<div class="request-card-date">Added: ' + c.added + '</div>';
+      html += '<button onclick="editClient(' + c.id + ')" style="background:none;border:1px solid rgba(10,31,68,0.18);border-radius:4px;padding:4px 10px;font-size:12px;color:var(--navy);cursor:pointer;font-weight:600;">&#9998; Edit</button>';
+      html += '</div>';
       html += '</div>';
     });
     list.innerHTML = html;
