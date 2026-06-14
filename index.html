@@ -1180,23 +1180,7 @@
       <div class="section-title">What Our <em>Clients Say</em></div>
       <div class="divider" style="margin:0 auto 0.5rem;"></div>
     </div>
-    <div class="testimonial-grid">
-      <div class="testimonial-placeholder">
-        <div style="font-size:32px;margin-bottom:0.75rem;">&#11088;</div>
-        <div style="font-size:14px;font-weight:700;color:var(--navy);margin-bottom:4px;">Reviews Coming Soon</div>
-        <div style="font-size:13px;color:var(--text-muted);">We&rsquo;re just getting started &mdash; client testimonials will appear here.</div>
-      </div>
-      <div class="testimonial-placeholder">
-        <div style="font-size:32px;margin-bottom:0.75rem;">&#11088;</div>
-        <div style="font-size:14px;font-weight:700;color:var(--navy);margin-bottom:4px;">Be Our First Review</div>
-        <div style="font-size:13px;color:var(--text-muted);">Book a consultation and let us show you what Precise Financials can do.</div>
-      </div>
-      <div class="testimonial-placeholder">
-        <div style="font-size:32px;margin-bottom:0.75rem;">&#11088;</div>
-        <div style="font-size:14px;font-weight:700;color:var(--navy);margin-bottom:4px;">Your Story Here</div>
-        <div style="font-size:13px;color:var(--text-muted);">Real results from real clients &mdash; coming soon as we grow together.</div>
-      </div>
-    </div>
+    <div class="testimonial-grid" id="testimonial-grid"></div>
   </div>
 
   <!-- NEWSLETTER -->
@@ -2116,6 +2100,11 @@
         <div style="font-size:12px;font-weight:700;color:var(--navy);">Tools</div>
         <div style="font-size:11px;color:var(--text-muted);margin-top:3px;">Notes &amp; templates</div>
       </div>
+      <div onclick="openAdminPage('testimonials')" style="cursor:pointer;background:#fff;border:1px solid rgba(10,31,68,0.12);border-radius:8px;padding:16px 10px;text-align:center;transition:box-shadow 0.15s;" onmouseover="this.style.boxShadow='0 4px 12px rgba(10,31,68,0.12)'" onmouseout="this.style.boxShadow=''">
+        <div style="font-size:24px;margin-bottom:6px;">⭐</div>
+        <div style="font-size:12px;font-weight:700;color:var(--navy);">Testimonials</div>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:3px;">Client reviews</div>
+      </div>
     </div>
 
     <div class="admin-section-title" style="margin-bottom:0;">Requests</div>
@@ -2212,6 +2201,40 @@
     </div>
     <input id="client-search" type="text" placeholder="Search clients..." oninput="renderClients()" style="width:100%;padding:8px 10px;border:1px solid rgba(10,31,68,0.18);border-radius:4px;font-size:13px;margin-bottom:0.75rem;box-sizing:border-box;" />
     <div id="client-list"></div>
+  </div>
+
+  <!-- TESTIMONIALS PAGE -->
+  <div class="admin-box" id="admin-page-testimonials" style="display:none;max-width:600px;max-height:90vh;overflow-y:auto;">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:1.25rem;">
+      <button onclick="closeAdminPage('testimonials')" style="background:none;border:none;cursor:pointer;font-size:20px;color:var(--navy);padding:0;line-height:1;">&#8592;</button>
+      <div class="admin-logo" style="margin:0;">⭐ Testimonials</div>
+    </div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:1rem;">Add, edit, or remove client reviews shown on your home page.</p>
+
+    <!-- ADD / EDIT FORM -->
+    <div id="testi-form" style="background:#f7f9fc;border-radius:6px;padding:1rem;margin-bottom:1rem;border:1px solid rgba(10,31,68,0.1);">
+      <div id="testi-form-title" style="font-size:12px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.75rem;">New Testimonial</div>
+      <label style="font-size:12px;font-weight:600;color:var(--navy);display:block;margin-bottom:3px;">Client Quote <span style="color:#c0392b;">*</span></label>
+      <textarea id="testi-quote" placeholder="What did the client say?" rows="3" style="width:100%;padding:8px 10px;border:1px solid rgba(10,31,68,0.18);border-radius:4px;font-size:13px;margin-bottom:8px;box-sizing:border-box;resize:vertical;font-family:inherit;"></textarea>
+      <label style="font-size:12px;font-weight:600;color:var(--navy);display:block;margin-bottom:3px;">Client Name <span style="color:#c0392b;">*</span></label>
+      <input id="testi-name" type="text" placeholder="e.g. Sarah M." style="width:100%;padding:8px 10px;border:1px solid rgba(10,31,68,0.18);border-radius:4px;font-size:13px;margin-bottom:8px;box-sizing:border-box;" />
+      <label style="font-size:12px;font-weight:600;color:var(--navy);display:block;margin-bottom:3px;">Service</label>
+      <input id="testi-service" type="text" placeholder="e.g. Bookkeeping Client" style="width:100%;padding:8px 10px;border:1px solid rgba(10,31,68,0.18);border-radius:4px;font-size:13px;margin-bottom:8px;box-sizing:border-box;" />
+      <label style="font-size:12px;font-weight:600;color:var(--navy);display:block;margin-bottom:5px;">Star Rating</label>
+      <div style="display:flex;gap:6px;margin-bottom:10px;" id="testi-stars-row">
+        <button onclick="setTestiStars(1)" class="testi-star-btn" data-star="1" style="font-size:20px;background:none;border:none;cursor:pointer;padding:2px;">&#9733;</button>
+        <button onclick="setTestiStars(2)" class="testi-star-btn" data-star="2" style="font-size:20px;background:none;border:none;cursor:pointer;padding:2px;">&#9733;</button>
+        <button onclick="setTestiStars(3)" class="testi-star-btn" data-star="3" style="font-size:20px;background:none;border:none;cursor:pointer;padding:2px;">&#9733;</button>
+        <button onclick="setTestiStars(4)" class="testi-star-btn" data-star="4" style="font-size:20px;background:none;border:none;cursor:pointer;padding:2px;">&#9733;</button>
+        <button onclick="setTestiStars(5)" class="testi-star-btn" data-star="5" style="font-size:20px;background:none;border:none;cursor:pointer;padding:2px;">&#9733;</button>
+      </div>
+      <div style="display:flex;gap:8px;">
+        <button id="testi-save-btn" onclick="saveTestimonial()" style="flex:1;background:var(--gold);color:var(--navy);border:none;border-radius:4px;padding:8px;font-weight:700;font-size:13px;cursor:pointer;">Save Testimonial</button>
+        <button onclick="resetTestiForm()" style="flex:1;background:none;border:1px solid rgba(10,31,68,0.2);border-radius:4px;padding:8px;font-size:13px;cursor:pointer;color:var(--text-muted);">Cancel</button>
+      </div>
+    </div>
+
+    <div id="testi-list"></div>
   </div>
 
   <!-- REVENUE PAGE -->
@@ -2552,6 +2575,7 @@
     if (page === 'clients') renderClients();
     if (page === 'revenue') renderRevenue();
     if (page === 'tools') renderTools();
+    if (page === 'testimonials') { resetTestiForm(); renderAdminTestimonials(); }
   }
 
   function closeAdminPage(page) {
@@ -2564,7 +2588,7 @@
     document.getElementById('admin-overlay').classList.remove('open');
     document.getElementById('admin-login-box').style.display = 'block';
     document.getElementById('admin-dashboard-box').style.display = 'none';
-    ['clients','revenue','tools'].forEach(function(p) {
+    ['clients','revenue','tools','testimonials'].forEach(function(p) {
       document.getElementById('admin-page-' + p).style.display = 'none';
     });
     document.getElementById('admin-pw-input').value = '';
@@ -4128,6 +4152,121 @@
       URL.revokeObjectURL(a.href);
     }
   }
+
+  // ── TESTIMONIALS ────────────────────────────────────────────
+  var testiEditingId = null;
+  var testiStars = 5;
+
+  function getTestimonials() { try { return JSON.parse(localStorage.getItem('pf_testimonials') || '[]'); } catch(e) { return []; } }
+  function saveTestimonials(t) { localStorage.setItem('pf_testimonials', JSON.stringify(t)); }
+
+  function setTestiStars(n) {
+    testiStars = n;
+    document.querySelectorAll('.testi-star-btn').forEach(function(btn) {
+      btn.style.color = parseInt(btn.getAttribute('data-star')) <= n ? 'var(--gold)' : '#ccc';
+    });
+  }
+
+  function resetTestiForm() {
+    testiEditingId = null;
+    testiStars = 5;
+    document.getElementById('testi-form-title').textContent = 'New Testimonial';
+    document.getElementById('testi-save-btn').textContent = 'Save Testimonial';
+    document.getElementById('testi-quote').value = '';
+    document.getElementById('testi-name').value = '';
+    document.getElementById('testi-service').value = '';
+    setTestiStars(5);
+  }
+
+  function saveTestimonial() {
+    var quote = document.getElementById('testi-quote').value.trim();
+    var name = document.getElementById('testi-name').value.trim();
+    var service = document.getElementById('testi-service').value.trim();
+    if (!quote || !name) { alert('Please enter the client quote and name.'); return; }
+    var list = getTestimonials();
+    if (testiEditingId !== null) {
+      list = list.map(function(t) {
+        return t.id === testiEditingId ? { id: t.id, quote: quote, name: name, service: service, stars: testiStars } : t;
+      });
+    } else {
+      list.push({ id: Date.now(), quote: quote, name: name, service: service, stars: testiStars });
+    }
+    saveTestimonials(list);
+    renderTestimonials();
+    renderAdminTestimonials();
+    resetTestiForm();
+  }
+
+  function editTestimonial(id) {
+    var t = getTestimonials().find(function(x) { return x.id === id; });
+    if (!t) return;
+    testiEditingId = id;
+    document.getElementById('testi-form-title').textContent = 'Edit Testimonial';
+    document.getElementById('testi-save-btn').textContent = 'Update Testimonial';
+    document.getElementById('testi-quote').value = t.quote || '';
+    document.getElementById('testi-name').value = t.name || '';
+    document.getElementById('testi-service').value = t.service || '';
+    setTestiStars(t.stars || 5);
+    document.getElementById('testi-form').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  function deleteTestimonial(id) {
+    if (!confirm('Remove this testimonial?')) return;
+    saveTestimonials(getTestimonials().filter(function(t) { return t.id !== id; }));
+    renderTestimonials();
+    renderAdminTestimonials();
+  }
+
+  function renderAdminTestimonials() {
+    var el = document.getElementById('testi-list');
+    if (!el) return;
+    var list = getTestimonials();
+    if (list.length === 0) {
+      el.innerHTML = '<div style="font-size:13px;color:var(--text-muted);padding:8px 0;">No testimonials yet. Add one above.</div>';
+      return;
+    }
+    el.innerHTML = list.map(function(t) {
+      var stars = '';
+      for (var i = 1; i <= 5; i++) stars += '<span style="color:' + (i <= t.stars ? 'var(--gold)' : '#ccc') + ';">&#9733;</span>';
+      return '<div class="request-card" style="margin-bottom:8px;">' +
+        '<div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px;">' +
+        '<div style="flex:1;">' +
+        '<div style="font-size:14px;">' + stars + '</div>' +
+        '<div style="font-size:13px;color:var(--text-dark);margin:5px 0;font-style:italic;">"' + t.quote + '"</div>' +
+        '<div style="font-size:12px;font-weight:700;color:var(--navy);">' + t.name + (t.service ? ' &mdash; <span style="font-weight:400;color:var(--text-muted);">' + t.service + '</span>' : '') + '</div>' +
+        '</div>' +
+        '<div style="display:flex;gap:8px;flex-shrink:0;">' +
+        '<button onclick="editTestimonial(' + t.id + ')" style="background:none;border:1px solid rgba(10,31,68,0.18);border-radius:4px;padding:4px 10px;font-size:12px;color:var(--navy);cursor:pointer;">&#9998; Edit</button>' +
+        '<button onclick="deleteTestimonial(' + t.id + ')" style="background:none;border:none;color:#c0392b;cursor:pointer;font-size:18px;padding:0;line-height:1;">&times;</button>' +
+        '</div></div></div>';
+    }).join('');
+  }
+
+  // Public-facing testimonials (home page)
+  function renderTestimonials() {
+    var grid = document.getElementById('testimonial-grid');
+    if (!grid) return;
+    var list = getTestimonials();
+    if (list.length === 0) {
+      grid.innerHTML =
+        '<div class="testimonial-placeholder"><div style="font-size:32px;margin-bottom:0.75rem;">&#11088;</div><div style="font-size:14px;font-weight:700;color:var(--navy);margin-bottom:4px;">Reviews Coming Soon</div><div style="font-size:13px;color:var(--text-muted);">We&rsquo;re just getting started &mdash; client testimonials will appear here.</div></div>' +
+        '<div class="testimonial-placeholder"><div style="font-size:32px;margin-bottom:0.75rem;">&#11088;</div><div style="font-size:14px;font-weight:700;color:var(--navy);margin-bottom:4px;">Be Our First Review</div><div style="font-size:13px;color:var(--text-muted);">Book a consultation and let us show you what Precise Financials can do.</div></div>' +
+        '<div class="testimonial-placeholder"><div style="font-size:32px;margin-bottom:0.75rem;">&#11088;</div><div style="font-size:14px;font-weight:700;color:var(--navy);margin-bottom:4px;">Your Story Here</div><div style="font-size:13px;color:var(--text-muted);">Real results from real clients &mdash; coming soon as we grow together.</div></div>';
+      return;
+    }
+    grid.innerHTML = list.map(function(t) {
+      var stars = '';
+      for (var i = 1; i <= 5; i++) stars += '<span style="color:' + (i <= t.stars ? 'var(--gold)' : '#ddd') + ';">&#9733;</span>';
+      return '<div class="testimonial-card">' +
+        '<div class="testimonial-stars">' + stars + '</div>' +
+        '<div class="testimonial-quote">&ldquo;' + t.quote + '&rdquo;</div>' +
+        '<div class="testimonial-author">' + t.name + '</div>' +
+        (t.service ? '<div class="testimonial-service">' + t.service + '</div>' : '') +
+        '</div>';
+    }).join('');
+  }
+
+  renderTestimonials();
 
   // ── SEASONAL BANNER ────────────────────────────────────────
   function initBanner() {
