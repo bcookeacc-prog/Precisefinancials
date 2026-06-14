@@ -1405,11 +1405,15 @@
       </div>
       <div class="form-group">
         <label>Preferred Date <span style="color:#c0392b;">*</span></label>
-        <input type="date" id="book-date" />
+        <input type="date" id="book-date" onchange="bookDateChanged()" />
+        <div style="font-size:12px;color:var(--text-muted);margin-top:5px;">Mon&ndash;Fri only &mdash; weekends unavailable</div>
       </div>
       <div class="form-group">
         <label>Preferred Time <span style="color:#c0392b;">*</span></label>
-        <input type="time" id="book-time" />
+        <select id="book-time">
+          <option value="">-- Select a time --</option>
+        </select>
+        <div style="font-size:12px;color:var(--text-muted);margin-top:5px;">Mountain Time &mdash; Mon&ndash;Thu: 8 am&ndash;5 pm &bull; Fri: 8 am&ndash;1 pm</div>
       </div>
       <div class="form-group">
         <label>Your Time Zone</label>
@@ -2326,6 +2330,7 @@
     document.getElementById('book-phone').value = '';
     document.getElementById('book-date').value = '';
     document.getElementById('book-time').value = '';
+    buildTimeOptions(17);
     ['bsvc1','bsvc2','bsvc3','bsvc4','bsvc5','bsvc6','bsvc7'].forEach(id=>{ var el=document.getElementById(id); if(el) el.checked=false; });
     document.getElementById('book-notes').value = '';
     document.getElementById('book-error').style.display = 'none';
@@ -3791,6 +3796,45 @@
     }
   }
 
+  // ── BOOKING TIME SLOTS ─────────────────────────────────────
+  // Mon–Thu: 8 am–5 pm MT  |  Fri: 8 am–1 pm MT
+  function buildTimeOptions(maxHour) {
+    var sel = document.getElementById('book-time');
+    if (!sel) return;
+    var current = sel.value;
+    sel.innerHTML = '<option value="">-- Select a time --</option>';
+    for (var h = 8; h <= maxHour; h++) {
+      for (var m = 0; m < 60; m += 30) {
+        if (h === maxHour && m > 0) break; // only :00 at the closing hour
+        var val = String(h).padStart(2, '0') + ':' + String(m).padStart(2, '0');
+        var opt = document.createElement('option');
+        opt.value = val;
+        opt.textContent = formatTime(val);
+        if (val === current) opt.selected = true;
+        sel.appendChild(opt);
+      }
+    }
+  }
+
+  function bookDateChanged() {
+    var dateInput = document.getElementById('book-date');
+    var val = dateInput.value;
+    if (!val) { buildTimeOptions(17); return; }
+    // Parse YYYY-MM-DD without timezone shift
+    var parts = val.split('-');
+    var d = new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, parseInt(parts[2]));
+    var dow = d.getDay(); // 0=Sun, 6=Sat
+    if (dow === 0 || dow === 6) {
+      alert('Appointments are available Monday–Friday only. Please select a weekday.');
+      dateInput.value = '';
+      buildTimeOptions(17);
+      return;
+    }
+    // Friday = 5 → 8 am–1 pm, otherwise 8 am–5 pm
+    buildTimeOptions(dow === 5 ? 13 : 17);
+  }
+
+  buildTimeOptions(17); // initialize with Mon–Thu hours on page load
 
 </script>
 
