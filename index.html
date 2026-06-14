@@ -941,11 +941,16 @@
     #float-contact-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(10,31,68,0.3); }
     #contact-modal-overlay { display: none; position: fixed; inset: 0; background: rgba(10,31,68,0.5); z-index: 1000; align-items: flex-end; justify-content: flex-end; padding: 0 24px 90px; }
     #contact-modal-overlay.open { display: flex; }
-    #contact-modal { background: #fff; border-radius: 12px; padding: 1.25rem; width: 260px; box-shadow: 0 8px 32px rgba(10,31,68,0.2); }
+    #contact-modal { background: #fff; border-radius: 12px; padding: 1.25rem; width: 300px; box-shadow: 0 8px 32px rgba(10,31,68,0.2); max-height: 90vh; overflow-y: auto; }
     .contact-modal-title { font-family: 'Playfair Display', serif; font-size: 15px; color: var(--navy); font-weight: 700; margin-bottom: 0.75rem; }
-    .contact-modal-opt { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 6px; text-decoration: none; color: var(--navy); font-size: 14px; font-weight: 600; margin-bottom: 6px; background: #f0f5fb; transition: background 0.15s; }
+    .contact-modal-opt { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 6px; text-decoration: none; color: var(--navy); font-size: 14px; font-weight: 600; margin-bottom: 6px; background: #f0f5fb; transition: background 0.15s; cursor: pointer; }
     .contact-modal-opt:hover { background: #dce8f5; }
     .contact-modal-opt span { font-size: 20px; }
+    .contact-modal-divider { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-muted); margin: 10px 0 8px; }
+    .share-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 6px; }
+    .share-btn { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 8px 4px; border-radius: 8px; background: #f0f5fb; border: none; cursor: pointer; font-size: 11px; font-weight: 600; color: var(--navy); transition: background 0.15s; line-height: 1.2; }
+    .share-btn:hover { background: #dce8f5; }
+    .share-btn .sb-icon { font-size: 20px; }
 
     /* ── WHAT TO BRING ──────────────────────────────── */
     .bring-section { background: #f0f5fb; border-radius: 8px; padding: 1.25rem 1.5rem; margin-bottom: 1.5rem; border-left: 4px solid var(--gold); }
@@ -4532,6 +4537,12 @@
 
   buildTimeOptions(17); // initialize with Mon–Thu hours on page load
 
+  // Hide "More" share button on browsers without Web Share API
+  if (!navigator.share) {
+    var nsb = document.getElementById('native-share-btn');
+    if (nsb) nsb.style.display = 'none';
+  }
+
   // ── FLOATING CONTACT BUTTON ─────────────────────────────────
   function toggleContactModal() {
     var overlay = document.getElementById('contact-modal-overlay');
@@ -4558,12 +4569,30 @@
     var text = 'Check out Precise Financials, LLC — expert bookkeeping, tax prep, and payroll for small businesses!';
     logShare(platform);
     toggleContactModal();
-    if (platform === 'Facebook') window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url), '_blank');
-    else if (platform === 'Twitter/X') window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(url) + '&text=' + encodeURIComponent(text), '_blank');
-    else if (platform === 'Copy Link') {
+    if (platform === 'Facebook') {
+      window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url), '_blank');
+    } else if (platform === 'Twitter/X') {
+      window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(url) + '&text=' + encodeURIComponent(text), '_blank');
+    } else if (platform === 'LinkedIn') {
+      window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(url), '_blank');
+    } else if (platform === 'WhatsApp') {
+      window.open('https://wa.me/?text=' + encodeURIComponent(text + ' ' + url), '_blank');
+    } else if (platform === 'TikTok') {
+      navigator.clipboard.writeText(url).then(function() {
+        alert('Link copied! Open TikTok, create a post, and paste the link in your caption or bio.');
+      });
+    } else if (platform === 'Instagram') {
+      navigator.clipboard.writeText(url).then(function() {
+        alert('Link copied! Open Instagram and paste it in your bio or story link.');
+      });
+    } else if (platform === 'Copy Link') {
       navigator.clipboard.writeText(url).then(function() { alert('Link copied to clipboard!'); });
-    } else if (platform === 'Native Share' && navigator.share) {
-      navigator.share({ title: 'Precise Financials, LLC', text: text, url: url });
+    } else if (platform === 'Native Share') {
+      if (navigator.share) {
+        navigator.share({ title: 'Precise Financials, LLC', text: text, url: url });
+      } else {
+        navigator.clipboard.writeText(url).then(function() { alert('Link copied to clipboard!'); });
+      }
     }
   }
   function renderShareLog() {
@@ -4657,8 +4686,17 @@
     <a href="tel:9282249548" class="contact-modal-opt"><span>&#128222;</span> (928) 224-9548</a>
     <a href="mailto:brittney@precisefinancials.biz" class="contact-modal-opt"><span>&#9993;</span> Send an Email</a>
     <a href="sms:9282249548" class="contact-modal-opt"><span>&#128172;</span> Send a Text</a>
-    <div class="contact-modal-opt" style="cursor:pointer;" onclick="shareVia('Facebook')"><span>&#128279;</span> Share on Facebook</div>
-    <div class="contact-modal-opt" style="cursor:pointer;" onclick="shareVia('Copy Link')"><span>&#128203;</span> Copy Page Link</div>
+    <div class="contact-modal-divider">&#128279; Share This Page</div>
+    <div class="share-grid">
+      <button class="share-btn" onclick="shareVia('Facebook')"><span class="sb-icon">&#x1F1EB;</span>Facebook</button>
+      <button class="share-btn" onclick="shareVia('Twitter/X')"><span class="sb-icon">&#x1D54F;</span>Twitter/X</button>
+      <button class="share-btn" onclick="shareVia('LinkedIn')"><span class="sb-icon">&#x1F4BC;</span>LinkedIn</button>
+      <button class="share-btn" onclick="shareVia('WhatsApp')"><span class="sb-icon">&#x1F4AC;</span>WhatsApp</button>
+      <button class="share-btn" onclick="shareVia('TikTok')"><span class="sb-icon">&#x1F3B5;</span>TikTok</button>
+      <button class="share-btn" onclick="shareVia('Instagram')"><span class="sb-icon">&#x1F4F7;</span>Instagram</button>
+      <button class="share-btn" onclick="shareVia('Copy Link')"><span class="sb-icon">&#128203;</span>Copy Link</button>
+      <button class="share-btn" id="native-share-btn" onclick="shareVia('Native Share')"><span class="sb-icon">&#128228;</span>More</button>
+    </div>
     <div style="margin-top:8px;padding-top:8px;border-top:1px solid #f0f5fb;text-align:center;">
       <button onclick="toggleContactModal()" style="background:none;border:none;font-size:12px;color:var(--text-muted);cursor:pointer;">Close</button>
     </div>
