@@ -391,7 +391,8 @@
     .why-card h3 { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--gold); margin-bottom: 0.6rem; }
     .why-card p { font-size: 13.5px; color: rgba(255,255,255,0.78); line-height: 1.75; margin: 0; }
     @media(max-width:640px){ .why-grid { grid-template-columns: 1fr; } .why-section { padding: 3rem 1.2rem; } }
-    .credentials { margin-top: 1.25rem; display: flex; flex-direction: column; gap: 0.6rem; }
+    .credentials { margin-top: 1.25rem; display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+    @media(max-width:600px){ .credentials { grid-template-columns: 1fr; } }
     .credential-badge { display: flex; align-items: center; gap: 0.75rem; background: #f0f5fb; border: 1px solid rgba(10,31,68,0.12); border-left: 4px solid var(--gold); border-radius: 4px; padding: 0.6rem 0.85rem; }
     .credential-progress { border-left-color: #afc0d8; opacity: 0.85; }
     .credential-icon { font-size: 22px; flex-shrink: 0; }
