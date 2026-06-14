@@ -2476,7 +2476,13 @@
           id: c.id,
           time: ov.time !== undefined ? ov.time : (c.preferredTime || ''),
           name: ov.name !== undefined ? ov.name : (c.name || 'Consultation booking'),
-          notes: ov.notes !== undefined ? ov.notes : ('30-Min Call — ' + statusLabel),
+          statusLabel: statusLabel,
+          callType: '30-Min Call',
+          services: c.services || '',
+          email: c.email || '',
+          phone: c.phone || '',
+          clientNotes: c.notes || '',
+          notes: ov.notes !== undefined ? ov.notes : '',
           fromBooking: true
         });
       });
@@ -2493,7 +2499,13 @@
           id: r.id,
           time: ov.time !== undefined ? ov.time : (r.prefTime || ''),
           name: ov.name !== undefined ? ov.name : (r.name || 'General Inquiry'),
-          notes: ov.notes !== undefined ? ov.notes : ('General Inquiry — ' + statusLabel),
+          statusLabel: statusLabel,
+          callType: 'Inquiry',
+          services: Array.isArray(r.services) ? r.services.join(', ') : (r.services || ''),
+          email: r.email || '',
+          phone: r.phone || '',
+          clientNotes: r.message || '',
+          notes: ov.notes !== undefined ? ov.notes : '',
           fromBooking: true
         });
       });
@@ -2560,10 +2572,25 @@
     } else {
       all.forEach(function(a) {
         html += '<div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px;background:#fff;border-radius:4px;padding:10px 12px;margin-bottom:6px;border-left:3px solid ' + (a.type==='booking' ? 'var(--gold)' : 'var(--navy)') + ';">';
-        html += '<div>';
-        if (a.time) html += '<div style="font-size:12px;font-weight:700;color:var(--text-muted);">' + formatTime(a.time) + '</div>';
-        html += '<div style="font-size:14px;font-weight:600;color:var(--navy);">' + (a.name||'Appointment') + '</div>';
-        if (a.notes) html += '<div style="font-size:12px;color:var(--text-muted);">' + a.notes + '</div>';
+        html += '<div style="flex:1;min-width:0;">';
+        if (a.time) html += '<div style="font-size:12px;font-weight:700;color:var(--text-muted);">' + formatTime(a.time) + (a.callType ? ' &nbsp;&bull;&nbsp; ' + a.callType : '') + '</div>';
+        html += '<div style="font-size:14px;font-weight:700;color:var(--navy);margin-top:2px;">' + (a.name||'Appointment') + '</div>';
+        if (a.type === 'booking') {
+          if (a.services) html += '<div style="font-size:13px;font-weight:600;color:#1a6b3c;margin-top:4px;">&#128203; ' + a.services + '</div>';
+          if (a.email || a.phone) {
+            html += '<div style="font-size:12px;color:var(--text-muted);margin-top:3px;">';
+            if (a.email) html += '&#9993; ' + a.email;
+            if (a.email && a.phone) html += ' &nbsp;&middot;&nbsp; ';
+            if (a.phone) html += '&#128222; ' + formatPhone(a.phone);
+            html += '</div>';
+          }
+          if (a.clientNotes) html += '<div style="font-size:12px;color:var(--text-muted);margin-top:3px;font-style:italic;">&#8220;' + a.clientNotes + '&#8221;</div>';
+          if (a.notes) html += '<div style="font-size:12px;color:var(--text-muted);margin-top:3px;">' + a.notes + '</div>';
+          var statusColor = a.statusLabel === 'Confirmed' ? '#1a6b3c' : a.statusLabel === 'Reschedule Requested' ? '#b8860b' : '#888';
+          html += '<div style="font-size:11px;font-weight:700;color:' + statusColor + ';margin-top:5px;text-transform:uppercase;letter-spacing:0.4px;">' + (a.statusLabel || 'Pending') + '</div>';
+        } else {
+          if (a.notes) html += '<div style="font-size:12px;color:var(--text-muted);margin-top:3px;">' + a.notes + '</div>';
+        }
         html += '</div>';
         if (a.type==='manual') {
           html += '<div style="display:flex;gap:8px;flex-shrink:0;align-items:center;">';
