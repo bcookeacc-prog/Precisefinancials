@@ -1970,12 +1970,43 @@
   <div class="admin-box" id="admin-login-box">
     <div class="admin-logo">Precise Financials</div>
     <div class="admin-sub">Admin Portal — Private Access Only</div>
-    <div class="form-group">
-      <label>Password</label>
-      <input type="password" id="admin-pw-input" placeholder="Enter password" onkeydown="if(event.key==='Enter') adminLogin()" />
-      <div class="admin-error" id="admin-error">Incorrect password. Try again.</div>
+
+    <!-- Normal login -->
+    <div id="admin-login-section">
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="admin-pw-input" placeholder="Enter password" onkeydown="if(event.key==='Enter') adminLogin()" />
+        <div class="admin-error" id="admin-error">Incorrect password. Try again.</div>
+      </div>
+      <button class="admin-save-btn" onclick="adminLogin()">Log In</button>
+      <div style="text-align:center;margin-top:12px;">
+        <button onclick="showAdminReset()" style="background:none;border:none;color:var(--text-muted);font-size:13px;cursor:pointer;text-decoration:underline;">Forgot your password?</button>
+      </div>
     </div>
-    <button class="admin-save-btn" onclick="adminLogin()">Log In</button>
+
+    <!-- Reset with recovery code -->
+    <div id="admin-reset-section" style="display:none;">
+      <div style="font-size:14px;font-weight:600;color:var(--navy);margin-bottom:6px;">Reset Password</div>
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:14px;">Enter your recovery code, then choose a new password.</p>
+      <div class="form-group" style="margin-bottom:10px;">
+        <label>Recovery Code</label>
+        <input type="text" id="reset-recovery-input" placeholder="Your recovery code" style="width:100%;padding:0.6rem 0.85rem;border:1.5px solid #dce3ec;border-radius:4px;font-size:14px;box-sizing:border-box;" />
+      </div>
+      <div class="form-group" style="margin-bottom:10px;">
+        <label>New Password</label>
+        <input type="password" id="reset-new-pw" placeholder="New password (min 6 chars)" style="width:100%;padding:0.6rem 0.85rem;border:1.5px solid #dce3ec;border-radius:4px;font-size:14px;box-sizing:border-box;" />
+      </div>
+      <div class="form-group" style="margin-bottom:10px;">
+        <label>Confirm New Password</label>
+        <input type="password" id="reset-confirm-pw" placeholder="Confirm new password" style="width:100%;padding:0.6rem 0.85rem;border:1.5px solid #dce3ec;border-radius:4px;font-size:14px;box-sizing:border-box;" />
+      </div>
+      <div id="reset-error" style="display:none;color:#c0392b;font-size:13px;margin-bottom:8px;"></div>
+      <div id="reset-success" style="display:none;color:#1a6b3c;font-size:13px;margin-bottom:8px;">Password reset! You can now log in.</div>
+      <button class="admin-save-btn" onclick="resetAdminPassword()" style="width:100%;">Reset Password</button>
+      <div style="text-align:center;margin-top:10px;">
+        <button onclick="showAdminLogin()" style="background:none;border:none;color:var(--text-muted);font-size:13px;cursor:pointer;text-decoration:underline;">Back to Login</button>
+      </div>
+    </div>
   </div>
 
   <!-- DASHBOARD -->
@@ -2068,6 +2099,15 @@
     <div id="pw-error" style="display:none;color:#c0392b;font-size:13px;margin-bottom:8px;"></div>
     <div id="pw-success" style="display:none;color:#1a6b3c;font-size:13px;margin-bottom:8px;">Password updated successfully!</div>
     <button class="admin-save-btn" onclick="changeAdminPassword()" style="margin-bottom:1.5rem;">Update Password</button>
+
+    <div class="admin-section-title" style="margin-top:0.5rem;">Recovery Code</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:0.75rem;">This code lets you reset your password from the login screen if you ever forget it. Keep it somewhere safe.</p>
+    <div style="display:flex;gap:8px;align-items:center;margin-bottom:6px;">
+      <input type="text" id="admin-recovery-code-input" placeholder="Set a recovery code" style="flex:1;padding:0.6rem 0.85rem;border:1.5px solid #dce3ec;border-radius:4px;font-size:14px;box-sizing:border-box;" />
+      <button onclick="adminSaveRecoveryCode()" style="padding:0.6rem 1rem;background:var(--navy);color:#fff;border:none;border-radius:4px;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;">Save</button>
+    </div>
+    <div id="recovery-code-current" style="font-size:12px;color:var(--text-muted);margin-bottom:1.5rem;"></div>
+    <div id="recovery-save-success" style="display:none;color:#1a6b3c;font-size:13px;margin-bottom:1rem;">Recovery code saved!</div>
 
     <div class="admin-section-title" style="margin-top:0.5rem;">Forms &amp; Agreements</div>
     <p style="font-size:13px;color:var(--gold);font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Precise Financials — Custom Forms</p>
@@ -2491,6 +2531,50 @@
   function getAdminPassword() { return localStorage.getItem('pf_admin_password') || 'Precise2026!'; }
   const SOCIALS = ['facebook','instagram','tiktok','linkedin'];
 
+  function getRecoveryCode() { return localStorage.getItem('pf_admin_recovery') || 'PF-RESET-2026'; }
+
+  function showAdminReset() {
+    document.getElementById('admin-login-section').style.display = 'none';
+    document.getElementById('admin-reset-section').style.display = 'block';
+    document.getElementById('reset-error').style.display = 'none';
+    document.getElementById('reset-success').style.display = 'none';
+  }
+  function showAdminLogin() {
+    document.getElementById('admin-reset-section').style.display = 'none';
+    document.getElementById('admin-login-section').style.display = 'block';
+  }
+  function resetAdminPassword() {
+    var code = document.getElementById('reset-recovery-input').value.trim();
+    var nw = document.getElementById('reset-new-pw').value;
+    var conf = document.getElementById('reset-confirm-pw').value;
+    var err = document.getElementById('reset-error');
+    var suc = document.getElementById('reset-success');
+    err.style.display = 'none'; suc.style.display = 'none';
+    if (code !== getRecoveryCode()) { err.textContent = 'Recovery code is incorrect.'; err.style.display = 'block'; return; }
+    if (nw.length < 6) { err.textContent = 'Password must be at least 6 characters.'; err.style.display = 'block'; return; }
+    if (nw !== conf) { err.textContent = 'Passwords do not match.'; err.style.display = 'block'; return; }
+    localStorage.setItem('pf_admin_password', nw);
+    document.getElementById('reset-recovery-input').value = '';
+    document.getElementById('reset-new-pw').value = '';
+    document.getElementById('reset-confirm-pw').value = '';
+    suc.style.display = 'block';
+    setTimeout(function() { showAdminLogin(); suc.style.display = 'none'; }, 2000);
+  }
+  function adminSaveRecoveryCode() {
+    var val = document.getElementById('admin-recovery-code-input').value.trim();
+    if (!val) { alert('Please enter a recovery code.'); return; }
+    localStorage.setItem('pf_admin_recovery', val);
+    document.getElementById('admin-recovery-code-input').value = '';
+    var suc = document.getElementById('recovery-save-success');
+    suc.style.display = 'block';
+    setTimeout(function(){ suc.style.display = 'none'; }, 3000);
+    showCurrentRecoveryCode();
+  }
+  function showCurrentRecoveryCode() {
+    var el = document.getElementById('recovery-code-current');
+    if (el) el.textContent = 'Current code: ' + getRecoveryCode();
+  }
+
   function changeAdminPassword() {
     var cur = document.getElementById('pw-current').value;
     var nw = document.getElementById('pw-new').value;
@@ -2534,6 +2618,7 @@
     renderAdminNewsletter();
     renderShareLog();
     initBanner();
+    showCurrentRecoveryCode();
     // load Google review link into admin field
     var grl = localStorage.getItem('pf_google_review_link') || '';
     var gField = document.getElementById('admin-google-review');
