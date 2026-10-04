@@ -75,10 +75,23 @@
     </div>
 
     <div class="to-block">
-      <p>To: <span class="field-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> &nbsp;&nbsp; (hereinafter "Client")</p>
+      <p style="font-size:11px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:0.6px;margin-bottom:4px;">Primary Taxpayer</p>
+      <p>Name: <span class="field-line" style="min-width:260px;">&nbsp;</span> &nbsp;&nbsp; Date of Birth: <span class="field-line" style="min-width:120px;">&nbsp;</span></p>
+      <p style="margin-top:5px;">SSN (last 4 only): <span class="field-line" style="min-width:80px;">&nbsp;</span> &nbsp;&nbsp; Occupation: <span class="field-line" style="min-width:160px;">&nbsp;</span></p>
       <p style="margin-top:5px;">Address: <span class="field-line" style="min-width:300px;">&nbsp;</span></p>
       <p style="margin-top:5px;">Email: <span class="field-line" style="min-width:220px;">&nbsp;</span> &nbsp;&nbsp; Phone: <span class="field-line" style="min-width:130px;">&nbsp;</span></p>
-      <p style="margin-top:5px;">Tax Year: <span class="field-line" style="min-width:100px;">&nbsp;</span> &nbsp;&nbsp; Filing Status: <span class="field-line" style="min-width:160px;">&nbsp;</span></p>
+
+      <p style="font-size:11px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:0.6px;margin-top:14px;margin-bottom:4px;">Spouse / Partner (if applicable)</p>
+      <p>Name: <span class="field-line" style="min-width:260px;">&nbsp;</span> &nbsp;&nbsp; Date of Birth: <span class="field-line" style="min-width:120px;">&nbsp;</span></p>
+      <p style="margin-top:5px;">SSN (last 4 only): <span class="field-line" style="min-width:80px;">&nbsp;</span> &nbsp;&nbsp; Occupation: <span class="field-line" style="min-width:160px;">&nbsp;</span></p>
+
+      <p style="font-size:11px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:0.6px;margin-top:14px;margin-bottom:6px;">Filing Information</p>
+      <p>Tax Year: <span class="field-line" style="min-width:90px;">&nbsp;</span> &nbsp;&nbsp; Filing Status:
+        <span style="display:inline-flex;align-items:center;gap:6px;margin-left:6px;font-size:12px;"><span style="width:12px;height:12px;border:1.5px solid #888;border-radius:2px;display:inline-block;"></span> Single</span>
+        <span style="display:inline-flex;align-items:center;gap:6px;margin-left:10px;font-size:12px;"><span style="width:12px;height:12px;border:1.5px solid #888;border-radius:2px;display:inline-block;"></span> Married Filing Jointly</span>
+        <span style="display:inline-flex;align-items:center;gap:6px;margin-left:10px;font-size:12px;"><span style="width:12px;height:12px;border:1.5px solid #888;border-radius:2px;display:inline-block;"></span> Married Filing Separately</span>
+        <span style="display:inline-flex;align-items:center;gap:6px;margin-left:10px;font-size:12px;"><span style="width:12px;height:12px;border:1.5px solid #888;border-radius:2px;display:inline-block;"></span> Head of Household</span>
+      </p>
     </div>
 
     <div class="section">
@@ -157,11 +170,11 @@
       <p>Precise Financials, LLC is not a licensed CPA firm. Services are tax preparation in nature and do not constitute legal advice. The Firm is not responsible for errors resulting from inaccurate, incomplete, or untimely information provided by the Client. The Firm is not liable for any taxes, penalties, or interest assessed by the IRS or any taxing authority resulting from inaccurate Client-provided information. Total liability shall not exceed the fees paid for the specific service giving rise to the claim.</p>
     </div>
 
-    <p style="margin-top:10px;font-size:13px;">By signing below, both parties confirm they have read, understand, and agree to the terms of this engagement.</p>
+    <p style="margin-top:10px;font-size:13px;">By signing below, all parties confirm they have read, understand, and agree to the terms of this engagement. If filing jointly, both spouses/partners must sign.</p>
 
     <div class="sig-block">
       <div class="sig-box">
-        <p>Client Signature</p>
+        <p>Primary Taxpayer Signature</p>
         <div class="sig-line"></div>
         <div class="sig-label">Signature</div>
         <div class="sig-line" style="margin-top:14px;"></div>
@@ -177,6 +190,21 @@
         <div class="sig-label">Printed Name</div>
         <div class="sig-line" style="margin-top:14px;"></div>
         <div class="sig-label">Date</div>
+      </div>
+    </div>
+
+    <div class="sig-block" style="margin-top:20px;padding-top:18px;border-top:1px solid #e8edf3;">
+      <div class="sig-box">
+        <p>Spouse / Partner Signature <span style="font-size:10px;color:#888;font-weight:400;">(if filing jointly)</span></p>
+        <div class="sig-line"></div>
+        <div class="sig-label">Signature</div>
+        <div class="sig-line" style="margin-top:14px;"></div>
+        <div class="sig-label">Printed Name</div>
+        <div class="sig-line" style="margin-top:14px;"></div>
+        <div class="sig-label">Date</div>
+      </div>
+      <div class="sig-box" style="display:flex;flex-direction:column;justify-content:flex-end;">
+        <p style="font-size:11px;color:#888;line-height:1.6;">Both signatures are required when filing jointly. If filing separately, only the primary taxpayer's signature is needed above.</p>
       </div>
     </div>
 
