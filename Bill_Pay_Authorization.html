@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Bill Pay Authorization Form — Precise Financials, LLC</title>
+<style>
+  :root { --navy: #0a1f44; --gold: #c9a84c; --light-blue: #dce8f5; --text: #1a1a2e; --muted: #555; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Georgia', serif; background: #f4f6f9; color: var(--text); font-size: 13px; }
+  .page { max-width: 820px; margin: 30px auto; background: #fff; border: 1px solid #dde3ec; border-radius: 8px; }
+  .header { background: var(--navy); color: #fff; padding: 24px 36px 18px; display: flex; align-items: center; gap: 18px; border-radius: 8px 8px 0 0; }
+  .header-logo-img { height: 55px; width: auto; display: none; }
+  .header-logo { font-family: 'Arial', sans-serif; font-size: 22px; font-weight: 800; letter-spacing: 0.5px; color: #fff; line-height: 1.2; }
+  .header-logo span { color: var(--gold); }
+  .header-right { margin-left: auto; text-align: right; font-size: 11px; color: #a8bcd4; line-height: 1.7; }
+  .gold-bar { height: 4px; background: linear-gradient(90deg, var(--gold), #e8c96a, var(--gold)); }
+  .doc-title { background: var(--light-blue); text-align: center; padding: 14px; }
+  .doc-title h1 { font-size: 17px; color: var(--navy); letter-spacing: 1px; text-transform: uppercase; font-family: 'Arial', sans-serif; }
+  .doc-title p { font-size: 11px; color: var(--muted); margin-top: 3px; }
+  .body { padding: 30px 36px; }
+  .section { margin-bottom: 20px; }
+  .section h2 { font-family: 'Arial', sans-serif; font-size: 12px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--navy); border-bottom: 2px solid var(--gold); padding-bottom: 4px; margin-bottom: 10px; }
+  .section p { font-size: 13px; line-height: 1.75; color: #333; margin-bottom: 8px; }
+  .section ul { margin: 6px 0 8px 20px; }
+  .section ul li { font-size: 13px; line-height: 1.8; color: #333; }
+  .field-row { display: flex; align-items: baseline; gap: 6px; margin-bottom: 10px; font-size: 13px; color: #333; flex-wrap: wrap; }
+  .field-row label { white-space: nowrap; }
+  .field-line { border-bottom: 1px solid #bbb; display: inline-block; flex: 1; min-width: 120px; height: 16px; }
+  .field-line-sm { border-bottom: 1px solid #bbb; display: inline-block; min-width: 100px; height: 16px; }
+  .field-line-lg { border-bottom: 1px solid #bbb; display: inline-block; min-width: 240px; height: 16px; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 24px; }
+  .check-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; margin: 8px 0; }
+  .check-item { display: flex; align-items: flex-start; gap: 7px; font-size: 13px; line-height: 1.6; }
+  .cb { width: 13px; height: 13px; border: 1.5px solid #888; border-radius: 2px; flex-shrink: 0; margin-top: 2px; }
+  .payee-table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+  .payee-table th { background: var(--navy); color: #fff; font-family: 'Arial', sans-serif; font-size: 11px; text-transform: uppercase; padding: 7px 10px; text-align: left; }
+  .payee-table td { padding: 8px 10px; font-size: 13px; border-bottom: 1px solid #e8edf3; }
+  .payee-table td .fill { border-bottom: 1px solid #bbb; display: block; min-height: 14px; width: 100%; }
+  .payee-table tr:nth-child(even) td { background: #f8fafd; }
+  .notice { background: #fffbf0; border-left: 3px solid var(--gold); padding: 10px 14px; font-size: 12px; color: #555; line-height: 1.6; margin: 14px 0; border-radius: 0 4px 4px 0; }
+  .sig-block { margin-top: 28px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px 40px; }
+  .sig-box p { font-size: 12px; color: var(--muted); margin-bottom: 6px; }
+  .sig-line { border-bottom: 1.5px solid #333; margin-bottom: 4px; height: 28px; }
+  .sig-label { font-size: 11px; color: var(--muted); }
+  .footer { background: var(--navy); color: #a8bcd4; text-align: center; font-size: 11px; padding: 12px; border-radius: 0 0 8px 8px; }
+  .print-btn { display: block; margin: 20px auto; padding: 10px 28px; background: var(--navy); color: #fff; border: none; border-radius: 6px; font-size: 13px; cursor: pointer; font-family: 'Arial', sans-serif; }
+  .print-btn:hover { background: var(--gold); color: var(--navy); }
+  @media print { body { background: #fff; } .page { margin: 0; border: none; border-radius: 0; } .print-btn { display: none; } }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <div style="display:flex;align-items:center;gap:16px;">
+      <img id="eng-logo" class="header-logo-img" alt="" />
+      <div class="header-logo">Precise<span> Financials</span><br><span style="font-size:13px;font-weight:400;color:#a8bcd4;">LLC</span></div>
+    </div>
+    <div class="header-right">
+      Colorado City, AZ<br>
+      (928) 307-7922<br>
+      brittney@precisefinancials.biz<br>
+      precisefinancials.vercel.app
+    </div>
+  </div>
+  <div class="gold-bar"></div>
+  <div class="doc-title">
+    <h1>Bill Pay Authorization Form</h1>
+    <p>Authorization for Precise Financials, LLC to Process Bill Payments on Behalf of Client</p>
+  </div>
+
+  <div class="body">
+
+    <div class="section">
+      <h2>Client Information</h2>
+      <div class="field-row"><label>Client / Business Name:</label><span class="field-line"></span></div>
+      <div class="two-col">
+        <div class="field-row"><label>Contact Name:</label><span class="field-line"></span></div>
+        <div class="field-row"><label>Date:</label><span class="field-line"></span></div>
+      </div>
+      <div class="field-row"><label>Address:</label><span class="field-line"></span></div>
+      <div class="two-col">
+        <div class="field-row"><label>Phone:</label><span class="field-line"></span></div>
+        <div class="field-row"><label>Email:</label><span class="field-line"></span></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Authorization</h2>
+      <p>I, the undersigned, hereby authorize Precise Financials, LLC ("the Firm") to access the payment account(s) listed below and process bill payments on my behalf to the vendors/payees identified in this form. This authorization remains in effect until revoked in writing.</p>
+      <p>The Firm is authorized to:</p>
+      <div class="check-grid" style="margin-bottom:8px;">
+        <div class="check-item"><div class="cb"></div> Schedule and submit bill payments</div>
+        <div class="check-item"><div class="cb"></div> Log into designated payment accounts</div>
+        <div class="check-item"><div class="cb"></div> Verify payment confirmations</div>
+        <div class="check-item"><div class="cb"></div> Communicate with vendors regarding invoices</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Payment Account(s)</h2>
+      <p>The following bank or payment account(s) are authorized for use in processing bill payments:</p>
+      <table class="payee-table">
+        <thead><tr><th>Bank / Institution Name</th><th>Account Type</th><th>Last 4 of Account #</th></tr></thead>
+        <tbody>
+          <tr><td><span class="fill">&nbsp;</span></td><td><span class="fill">&nbsp;</span></td><td><span class="fill">&nbsp;</span></td></tr>
+          <tr><td><span class="fill">&nbsp;</span></td><td><span class="fill">&nbsp;</span></td><td><span class="fill">&nbsp;</span></td></tr>
+        </tbody>
+      </table>
+      <div class="notice"><strong>Security Notice:</strong> Full account numbers, passwords, and login credentials are never stored in this form. Access credentials are shared separately through a secure method agreed upon by both parties.</div>
+    </div>
+
+    <div class="section">
+      <h2>Authorized Payees / Vendors</h2>
+      <p>The Firm is authorized to process payments to the following vendors on the Client's behalf:</p>
+      <table class="payee-table">
+        <thead><tr><th>Vendor / Payee Name</th><th>Payment Frequency</th><th>Approx. Amount</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td><span class="fill">&nbsp;</span></td><td><span class="fill">&nbsp;</span></td><td><span class="fill">&nbsp;</span></td><td><span class="fill">&nbsp;</span></td></tr>
+          <tr><td><span class="fill">&nbsp;</span></td><td><span class="fill">&nbsp;</span></td><td><span class="fill">&nbsp;</span></td><td><span class="fill">&nbsp;</span></td></tr>
+          <tr><td><span class="fill">&nbsp;</span></td><td><span class="fill">&nbsp;</span></td><td><span class="fill">&nbsp;</span></td><td><span class="fill">&nbsp;</span></td></tr>
+          <tr><td><span class="fill">&nbsp;</span></td><td><span class="fill">&nbsp;</span></td><td><span class="fill">&nbsp;</span></td><td><span class="fill">&nbsp;</span></td></tr>
+          <tr><td><span class="fill">&nbsp;</span></td><td><span class="fill">&nbsp;</span></td><td><span class="fill">&nbsp;</span></td><td><span class="fill">&nbsp;</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>Payment Limits &amp; Restrictions</h2>
+      <div class="two-col" style="margin-bottom:10px;">
+        <div class="field-row"><label>Per-payment limit: $</label><span class="field-line"></span></div>
+        <div class="field-row"><label>Monthly limit: $</label><span class="field-line"></span></div>
+      </div>
+      <div class="check-grid">
+        <div class="check-item"><div class="cb"></div> Client approval required for payments over the per-payment limit</div>
+        <div class="check-item"><div class="cb"></div> Client approval required for any new or unlisted payee</div>
+        <div class="check-item"><div class="cb"></div> No per-payment limit — process all invoices as received</div>
+        <div class="check-item"><div class="cb"></div> Other restriction: <span style="border-bottom:1px solid #bbb;display:inline-block;min-width:100px;">&nbsp;</span></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Approval Process</h2>
+      <p>Select how payments will be approved before processing:</p>
+      <div class="check-grid">
+        <div class="check-item"><div class="cb"></div> Client reviews and approves each invoice before payment</div>
+        <div class="check-item"><div class="cb"></div> Firm processes all recurring payments automatically; client notified after</div>
+        <div class="check-item"><div class="cb"></div> Client approves new payees; recurring payments processed automatically</div>
+        <div class="check-item"><div class="cb"></div> Firm submits payment batch for client approval weekly / monthly</div>
+      </div>
+      <div class="field-row" style="margin-top:10px;"><label>Preferred approval method (email, text, phone):</label><span class="field-line"></span></div>
+    </div>
+
+    <div class="section">
+      <h2>Term &amp; Revocation</h2>
+      <p>This authorization is effective as of the date signed below and remains in effect until revoked. The Client may revoke this authorization at any time by providing written notice to Precise Financials, LLC. Any payments already in process at the time of revocation will be completed. All outstanding fees owed to Precise Financials, LLC remain due upon revocation.</p>
+    </div>
+
+    <div class="section">
+      <h2>Client Responsibilities</h2>
+      <ul>
+        <li>Maintain sufficient funds in the designated account(s) to cover authorized payments.</li>
+        <li>Notify the Firm immediately of any account changes, closures, or fraud concerns.</li>
+        <li>Provide invoices and payment documentation to the Firm in a timely manner.</li>
+        <li>Review payment summaries and reconciliation reports provided by the Firm.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Firm Responsibilities</h2>
+      <ul>
+        <li>Process authorized payments accurately and on time.</li>
+        <li>Maintain a record of all payments made on the Client's behalf.</li>
+        <li>Notify the Client of any payment failures, rejected transactions, or unusual activity.</li>
+        <li>Keep all account credentials and financial information strictly confidential.</li>
+        <li>Provide payment summaries or reconciliation reports upon request or as agreed.</li>
+      </ul>
+    </div>
+
+    <div class="notice"><strong>Important:</strong> Precise Financials, LLC is not liable for late fees, penalties, or service interruptions resulting from insufficient funds, incorrect vendor information, or failure by the Client to provide invoices in a timely manner.</div>
+
+    <p style="margin-top:10px;font-size:13px;">By signing below, the Client authorizes Precise Financials, LLC to process bill payments as described in this form and confirms that all information provided is accurate.</p>
+
+    <div class="sig-block">
+      <div class="sig-box">
+        <p>Client Signature</p>
+        <div class="sig-line"></div>
+        <div class="sig-label">Signature</div>
+        <div class="sig-line" style="margin-top:14px;"></div>
+        <div class="sig-label">Printed Name</div>
+        <div class="sig-line" style="margin-top:14px;"></div>
+        <div class="sig-label">Date</div>
+      </div>
+      <div class="sig-box">
+        <p>Precise Financials, LLC</p>
+        <div class="sig-line"></div>
+        <div class="sig-label">Brittney Cooke, Owner</div>
+        <div class="sig-line" style="margin-top:14px;"></div>
+        <div class="sig-label">Printed Name</div>
+        <div class="sig-line" style="margin-top:14px;"></div>
+        <div class="sig-label">Date</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">Precise Financials, LLC &nbsp;|&nbsp; (928) 307-7922 &nbsp;|&nbsp; brittney@precisefinancials.biz &nbsp;|&nbsp; &copy; 2026 All rights reserved.</div>
+</div>
+<button class="print-btn" onclick="window.print()">🖨 Print / Save as PDF</button>
+<script>
+  try {
+    if (window.opener) {
+      var img = window.opener.document.querySelector('img[src^="data:image"]');
+      if (img) { var el = document.getElementById('eng-logo'); if (el) { el.src = img.src; el.style.display = 'block'; } }
+    }
+  } catch(e) {}
+</script>
+</body>
+</html>

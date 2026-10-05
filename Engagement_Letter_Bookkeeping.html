@@ -8,8 +8,8 @@
   :root { --navy: #0a1f44; --gold: #c9a84c; --light-blue: #dce8f5; --text: #1a1a2e; --muted: #555; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'Georgia', serif; background: #f4f6f9; color: var(--text); font-size: 13px; }
-  .page { max-width: 820px; margin: 30px auto; background: #fff; border: 1px solid #dde3ec; border-radius: 8px; overflow: hidden; }
-  .header { background: var(--navy); color: #fff; padding: 24px 36px 18px; display: flex; align-items: center; gap: 18px; }
+  .page { max-width: 820px; margin: 30px auto; background: #fff; border: 1px solid #dde3ec; border-radius: 8px; }
+  .header { background: var(--navy); color: #fff; padding: 24px 36px 18px; display: flex; align-items: center; gap: 18px; border-radius: 8px 8px 0 0; }
   .header-logo-img { height: 55px; width: auto; display: none; }
   .header-logo { font-family: 'Arial', sans-serif; font-size: 22px; font-weight: 800; letter-spacing: 0.5px; color: #fff; line-height: 1.2; }
   .header-logo span { color: var(--gold); }
@@ -41,7 +41,7 @@
   .sig-line { border-bottom: 1.5px solid #333; margin-bottom: 4px; height: 28px; }
   .sig-label { font-size: 11px; color: var(--muted); }
   .notice { background: #fffbf0; border-left: 3px solid var(--gold); padding: 10px 14px; font-size: 12px; color: #555; line-height: 1.6; margin: 14px 0; border-radius: 0 4px 4px 0; }
-  .footer { background: var(--navy); color: #a8bcd4; text-align: center; font-size: 11px; padding: 12px; }
+  .footer { background: var(--navy); color: #a8bcd4; text-align: center; font-size: 11px; padding: 12px; border-radius: 0 0 8px 8px; }
   .print-btn { display: block; margin: 20px auto; padding: 10px 28px; background: var(--navy); color: #fff; border: none; border-radius: 6px; font-size: 13px; cursor: pointer; font-family: 'Arial', sans-serif; }
   .print-btn:hover { background: var(--gold); color: var(--navy); }
   @media print { body { background: #fff; } .page { margin: 0; border: none; border-radius: 0; } .print-btn { display: none; } }
@@ -105,7 +105,8 @@
 
     <div class="section">
       <h2>Bookkeeping Software</h2>
-      <p>Precise Financials, LLC is willing to perform bookkeeping services using <strong>Wave Accounting</strong> (wave.com) at the Client's request. The following terms apply if Wave is used:</p>
+      <p><strong>QuickBooks:</strong> If a new QuickBooks account is being set up for this engagement, Precise Financials, LLC will establish and manage the account under the Firm — the cost is built into the agreed service pricing. If the Client already has an existing QuickBooks account, the Client remains responsible for their own subscription, login credentials, and any associated fees. Precise Financials, LLC will require accountant-level access in either case.</p>
+      <p style="margin-top:8px;"><strong>Wave Accounting:</strong> Precise Financials, LLC is willing to perform bookkeeping services using Wave Accounting (wave.com) at the Client's request. The following terms apply if Wave is selected:</p>
       <ul>
         <li>The Client is solely responsible for creating and managing their own Wave account.</li>
         <li>The Client is responsible for all fees charged by Wave, including payroll or payment processing add-ons.</li>
@@ -114,7 +115,8 @@
       </ul>
       <div class="check-grid" style="margin-top:10px;">
         <div class="check-item"><div class="cb"></div> Client requests Wave Accounting</div>
-        <div class="check-item"><div class="cb"></div> Client will use QuickBooks (cost is separate)</div>
+        <div class="check-item"><div class="cb"></div> New QuickBooks setup — managed by Precise Financials, LLC (included in pricing)</div>
+        <div class="check-item"><div class="cb"></div> Client has existing QuickBooks account (client responsible for subscription &amp; access)</div>
         <div class="check-item"><div class="cb"></div> Other: <span style="border-bottom:1px solid #bbb;display:inline-block;min-width:100px;">&nbsp;</span></div>
       </div>
     </div>
@@ -129,7 +131,7 @@
         </tbody>
       </table>
       <p>Invoices are issued on the 1st of each month with a 5-day grace period. Late payments beyond 15 days may be subject to a late fee. Services may be suspended for accounts more than 30 days past due. Accepted payment methods: Venmo @PreciseFinancials, Cash App $PreciseFinancialsAZ, ACH, or card.</p>
-      <div class="notice"><strong>Note:</strong> The monthly fee covers bookkeeping services only. Third-party software costs (QuickBooks, Wave add-ons, payroll platforms, etc.) are not included and are the sole responsibility of the Client.</div>
+      <div class="notice"><strong>Note:</strong> The monthly fee covers bookkeeping services only. For clients with an <strong>existing QuickBooks account</strong>, the client is responsible for their own subscription and access. New QuickBooks setups arranged through Precise Financials, LLC are managed under the Firm and are included in the agreed pricing. Wave Accounting add-on costs and other third-party platform fees are the sole responsibility of the Client.</div>
     </div>
 
     <div class="section">
