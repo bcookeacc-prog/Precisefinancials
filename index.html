@@ -2933,6 +2933,12 @@
       reply_to: email,
       message: 'New consultation request!\n\nName: ' + name + '\nEmail: ' + email + '\nPhone: ' + phone + '\nServices: ' + (services.join(', ') || 'None selected') + '\nNotes: ' + (notes || 'None')
     });
+    emailjs.send('service_l6f4wbh', 'template_sghl84v', {
+      to_name: name,
+      to_email: email,
+      services: services.join(', ') || 'Not specified',
+      notes: notes || 'None'
+    });
     document.getElementById('book-name').value = '';
     document.getElementById('book-email').value = '';
     document.getElementById('book-phone').value = '';
