@@ -2106,24 +2106,7 @@
       </div>
     </div>
 
-    <div class="admin-section-title" style="margin-bottom:0;">Requests</div>
-    <div class="admin-tabs">
-      <button class="admin-tab active" onclick="switchAdminTab('inquiries',this)">📋 Inquiries</button>
-      <button class="admin-tab" onclick="switchAdminTab('calendar',this)">🗓 Calendar</button>
-      <button class="admin-tab" onclick="switchAdminTab('trash',this)">🗑 Trash</button>
-    </div>
-
-    <div id="admin-tab-inquiries" class="admin-tab-content active">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.5rem;">
-        <p style="font-size:13px;color:var(--text-muted);margin:0;">Contact form submissions.</p>
-        <button onclick="renderRequests()" style="font-size:12px;padding:4px 12px;background:var(--navy);color:#fff;border:none;border-radius:3px;cursor:pointer;">Refresh</button>
-      </div>
-      <div id="admin-requests-list"></div>
-    </div>
-
-
-
-    <div id="admin-tab-calendar" class="admin-tab-content">
+    <div id="admin-tab-calendar" class="admin-tab-content active">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;">
         <button onclick="calPrev()" style="background:var(--navy);color:#fff;border:none;border-radius:4px;padding:6px 14px;cursor:pointer;font-size:16px;">&#8592;</button>
         <div id="cal-month-label" style="font-family:'Playfair Display',serif;font-size:18px;color:var(--navy);font-weight:700;"></div>
