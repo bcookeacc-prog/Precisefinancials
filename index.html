@@ -2106,41 +2106,7 @@
       </div>
     </div>
 
-    <div id="admin-tab-calendar" class="admin-tab-content active">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;">
-        <button onclick="calPrev()" style="background:var(--navy);color:#fff;border:none;border-radius:4px;padding:6px 14px;cursor:pointer;font-size:16px;">&#8592;</button>
-        <div id="cal-month-label" style="font-family:'Playfair Display',serif;font-size:18px;color:var(--navy);font-weight:700;"></div>
-        <button onclick="calNext()" style="background:var(--navy);color:#fff;border:none;border-radius:4px;padding:6px 14px;cursor:pointer;font-size:16px;">&#8594;</button>
-      </div>
-      <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px;margin-bottom:4px;">
-        <div style="text-align:center;font-size:11px;font-weight:700;color:var(--text-muted);padding:4px;">Sun</div>
-        <div style="text-align:center;font-size:11px;font-weight:700;color:var(--text-muted);padding:4px;">Mon</div>
-        <div style="text-align:center;font-size:11px;font-weight:700;color:var(--text-muted);padding:4px;">Tue</div>
-        <div style="text-align:center;font-size:11px;font-weight:700;color:var(--text-muted);padding:4px;">Wed</div>
-        <div style="text-align:center;font-size:11px;font-weight:700;color:var(--text-muted);padding:4px;">Thu</div>
-        <div style="text-align:center;font-size:11px;font-weight:700;color:var(--text-muted);padding:4px;">Fri</div>
-        <div style="text-align:center;font-size:11px;font-weight:700;color:var(--text-muted);padding:4px;">Sat</div>
-      </div>
-      <div id="cal-grid" style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px;"></div>
-
-      <div id="cal-day-panel" style="display:none;margin-top:1.25rem;background:#f7f9fc;border-radius:6px;padding:1.25rem;border:1px solid rgba(10,31,68,0.1);">
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;">
-          <div id="cal-day-title" style="font-family:'Playfair Display',serif;font-size:16px;color:var(--navy);font-weight:700;"></div>
-          <button onclick="document.getElementById('cal-day-panel').style.display='none'" style="background:none;border:none;font-size:18px;cursor:pointer;color:var(--text-muted);">&#10005;</button>
-        </div>
-        <div id="cal-day-appts" style="margin-bottom:1rem;"></div>
-        <div style="border-top:1px solid rgba(10,31,68,0.1);padding-top:1rem;">
-          <div style="font-size:12px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.6rem;">Add Appointment</div>
-          <input id="cal-new-time" type="time" style="width:100%;padding:8px 10px;border:1px solid rgba(10,31,68,0.18);border-radius:4px;font-size:14px;margin-bottom:0.5rem;box-sizing:border-box;" />
-          <input id="cal-new-name" type="text" placeholder="Client name" style="width:100%;padding:8px 10px;border:1px solid rgba(10,31,68,0.18);border-radius:4px;font-size:14px;margin-bottom:0.5rem;box-sizing:border-box;" />
-          <input id="cal-new-notes" type="text" placeholder="Notes (optional)" style="width:100%;padding:8px 10px;border:1px solid rgba(10,31,68,0.18);border-radius:4px;font-size:14px;margin-bottom:0.75rem;box-sizing:border-box;" />
-          <button id="cal-add-btn" onclick="calAddAppt()" style="width:100%;background:var(--gold);color:var(--navy);border:none;border-radius:4px;padding:9px;font-weight:700;font-size:13px;cursor:pointer;">Add Appointment</button>
-          <button id="cal-cancel-edit-btn" onclick="calCancelEdit()" style="display:none;width:100%;margin-top:6px;background:none;border:1px solid rgba(10,31,68,0.2);border-radius:4px;padding:7px;font-size:12px;color:var(--text-muted);cursor:pointer;">Cancel Edit</button>
-        </div>
-      </div>
-    </div>
-
-    <div id="admin-tab-trash" class="admin-tab-content">
+    <div id="admin-tab-trash" class="admin-tab-content active">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.5rem;">
         <p style="font-size:13px;color:var(--text-muted);margin:0;">Deleted requests — restore or remove permanently.</p>
         <button onclick="emptyTrash()" style="font-size:12px;padding:4px 12px;background:#c0392b;color:#fff;border:none;border-radius:3px;cursor:pointer;">Empty Trash</button>
