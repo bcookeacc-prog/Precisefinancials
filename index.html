@@ -734,6 +734,75 @@
     .price-table td:last-child { text-align: right; font-weight: 600; color: var(--navy); white-space: nowrap; }
     .price-note { font-weight: 400; font-size: 12px; color: var(--text-muted); }
 
+    /* ADMIN */
+    #admin-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: var(--navy);
+      z-index: 9999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      overflow-y: auto;
+      padding: 20px 12px;
+      box-sizing: border-box;
+    }
+    #admin-overlay.open { display: flex; }
+    .admin-box {
+      background: #dce8f5;
+      border-radius: 6px;
+      padding: 2.5rem;
+      width: 100%;
+      max-width: 480px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+      box-sizing: border-box;
+    }
+    @media (max-width: 700px) {
+      .admin-box { padding: 1.5rem 1rem; max-width: 100%; }
+      #admin-overlay { padding: 12px 8px; }
+    }
+    .admin-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      color: var(--navy);
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+    .admin-sub { font-size: 13px; color: var(--text-muted); margin-bottom: 1rem; }
+    .admin-tabs { display: flex; gap: 0; margin: 1rem 0 0; border-bottom: 2px solid rgba(10,31,68,0.1); overflow-x: auto; }
+    .admin-tab { flex-shrink: 0; padding: 9px 10px; font-size: 11px; font-weight: 700; background: none; border: none; border-bottom: 3px solid transparent; margin-bottom: -2px; cursor: pointer; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.04em; transition: all 0.2s; white-space: nowrap; }
+    .admin-tab.active { color: var(--navy); border-bottom-color: var(--gold); }
+    .admin-tab-content { display: none; padding-top: 1.25rem; }
+    .admin-tab-content.active { display: block; }
+    .admin-error { color: #c0392b; font-size: 13px; margin-top: 0.5rem; display: none; }
+    .admin-section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      color: var(--navy);
+      margin: 1.5rem 0 1rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(10,31,68,0.1);
+    }
+    .social-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+    .social-icon-label { width: 110px; font-size: 13px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; flex-shrink: 0; }
+    .social-row input { flex: 1; padding: 9px 12px; border: 1px solid rgba(10,31,68,0.18); border-radius: 2px; font-family: 'Source Sans 3', sans-serif; font-size: 14px; color: var(--text-dark); }
+    .social-row input:focus { outline: none; border-color: var(--gold); }
+    .social-open-btn { background: var(--gold-pale); border: 1px solid rgba(201,168,76,0.4); border-radius: 2px; padding: 8px 12px; font-size: 13px; cursor: pointer; color: var(--navy); white-space: nowrap; text-decoration: none; }
+    .social-open-btn:hover { background: var(--gold); }
+    .admin-save-btn { width: 100%; padding: 13px; background: var(--navy); color: var(--white); border: none; font-family: 'Source Sans 3', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; border-radius: 2px; margin-top: 1.5rem; }
+    .admin-save-btn:hover { background: var(--navy-light); }
+    .request-card { background: #f7f9fc; border: 1px solid #dce3ec; border-radius: 4px; padding: 1rem 1.25rem; margin-bottom: 0.85rem; position: relative; }
+    .request-card-name { font-weight: 700; color: var(--navy); font-size: 15px; margin-bottom: 0.3rem; }
+    .request-card-meta { font-size: 12px; color: var(--text-muted); margin-bottom: 0.5rem; }
+    .request-card-services { font-size: 12px; color: var(--gold); font-weight: 600; margin-bottom: 0.5rem; }
+    .request-card-message { font-size: 13px; color: #444; line-height: 1.6; }
+    .request-card-date { font-size: 11px; color: #aaa; margin-top: 0.5rem; }
+    .request-delete-btn { position: absolute; top: 0.75rem; right: 0.75rem; background: none; border: none; color: #c0392b; font-size: 18px; cursor: pointer; line-height: 1; padding: 2px 6px; border-radius: 3px; }
+    .request-delete-btn:hover { background: #fdecea; }
+    .no-requests { font-size: 13px; color: var(--text-muted); text-align: center; padding: 1.5rem 0; }
+    .admin-logout { text-align: center; margin-top: 1rem; font-size: 13px; color: var(--text-muted); cursor: pointer; text-decoration: underline; }
+    .admin-saved { text-align: center; color: green; font-size: 13px; margin-top: 0.5rem; display: none; }
 
     /* ── WHAT TO BRING ──────────────────────────────── */
     .bring-section { background: #f0f5fb; border-radius: 8px; padding: 1.25rem 1.5rem; margin-bottom: 1.5rem; border-left: 4px solid var(--gold); }
