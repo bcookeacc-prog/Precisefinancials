@@ -3830,7 +3830,7 @@
     var email = document.getElementById(‘nl-email’).value.trim();
     if (!email || !email.includes(‘@’)) { alert(‘Please enter a valid email address.’); return; }
     var btn = document.querySelector(‘.newsletter-form button’);
-    btn.textContent = ‘Subscribing…’;
+    btn.textContent = ‘Subscribing...’;
     btn.disabled = true;
     fetch(‘https://connect.mailerlite.com/api/subscribers’, {
       method: ‘POST’,
