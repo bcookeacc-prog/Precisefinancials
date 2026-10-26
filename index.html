@@ -883,6 +883,33 @@
     .hours-item { font-size: 13px; color: #afc0d8; }
     .hours-item strong { color: var(--gold); }
 
+    /* ── FOOTER ─────────────────────────────────────── */
+    footer { background: #0a1f44; color: #afc0d8; text-align: center; padding: 2.5rem 2rem 1.5rem; border-top: 3px solid var(--gold); }
+    .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: #fff; margin-bottom: 0.75rem; }
+    .footer-contact { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-bottom: 1.25rem; }
+    .footer-contact a { color: #afc0d8; text-decoration: none; font-size: 14px; transition: color 0.2s; }
+    .footer-contact a:hover { color: var(--gold); }
+    .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.3rem; margin-bottom: 1rem; }
+    .footer-links button { background: none; border: 1px solid rgba(201,168,76,0.25); color: #afc0d8; font-family: 'Source Sans 3', sans-serif; font-size: 13px; padding: 0.3rem 0.75rem; border-radius: 4px; cursor: pointer; transition: color 0.2s, border-color 0.2s; }
+    .footer-links button:hover { color: var(--gold); border-color: var(--gold); }
+    footer > p { font-size: 12px; color: #5d7a9a; margin-top: 1rem; }
+
+    /* ── FLOATING QUICK CONTACT ─────────────────────── */
+    #float-contact-btn { position: fixed; bottom: 24px; right: 24px; z-index: 500; background: var(--gold); color: var(--navy); border: none; border-radius: 30px; padding: 0.65rem 1.2rem; font-family: 'Source Sans 3', sans-serif; font-size: 14px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 16px rgba(0,0,0,0.22); transition: background 0.2s, transform 0.15s; }
+    #float-contact-btn:hover { background: #b8922e; transform: translateY(-2px); }
+    #contact-modal-overlay { display: none; position: fixed; bottom: 80px; right: 24px; z-index: 600; }
+    #contact-modal-overlay.open { display: block; }
+    #contact-modal { background: #fff; border-radius: 10px; box-shadow: 0 8px 32px rgba(0,0,0,0.18); padding: 1.2rem 1rem 0.75rem; min-width: 240px; max-width: 300px; }
+    .contact-modal-title { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 0.75rem; padding-bottom: 0.6rem; border-bottom: 1px solid #e8edf3; }
+    .contact-modal-opt { display: flex; align-items: center; gap: 0.6rem; color: var(--navy); text-decoration: none; font-size: 14px; padding: 0.5rem 0.25rem; border-radius: 4px; transition: background 0.15s; }
+    .contact-modal-opt:hover { background: #f4f7fb; }
+    .contact-modal-opt span { font-size: 16px; }
+    .contact-modal-divider { font-size: 12px; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 0.5px; margin: 0.6rem 0 0.4rem; padding-top: 0.6rem; border-top: 1px solid #e8edf3; }
+    .share-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.35rem; }
+    .share-btn { background: #f4f7fb; border: 1px solid #e0e8f0; border-radius: 5px; padding: 0.35rem 0.2rem; font-size: 11px; font-family: 'Source Sans 3', sans-serif; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 2px; transition: background 0.15s; color: var(--navy); }
+    .share-btn:hover { background: #dce8f5; }
+    .sb-icon { font-size: 16px; }
+
     /* ── SHARE LOG (ADMIN) ──────────────────────────── */
     .share-log-entry { display: flex; align-items: center; gap: 10px; padding: 7px 10px; background: #f7f9fc; border-radius: 4px; margin-bottom: 4px; font-size: 13px; }
     .share-log-platform { font-weight: 700; color: var(--navy); min-width: 80px; }
