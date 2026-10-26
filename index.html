@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -3827,43 +3827,43 @@
 
   // ── NEWSLETTER ──────────────────────────────────────────────
   function newsletterSignup() {
-    var email = document.getElementById(‘nl-email’).value.trim();
-    if (!email || !email.includes(‘@’)) { alert(‘Please enter a valid email address.’); return; }
-    var btn = document.querySelector(‘.newsletter-form button’);
-    btn.textContent = ‘Subscribing...’;
+    var email = document.getElementById('nl-email').value.trim();
+    if (!email || !email.includes('@')) { alert('Please enter a valid email address.'); return; }
+    var btn = document.querySelector('.newsletter-form button');
+    btn.textContent = 'Subscribing...';
     btn.disabled = true;
-    fetch(‘https://connect.mailerlite.com/api/subscribers’, {
-      method: ‘POST’,
+    fetch('https://connect.mailerlite.com/api/subscribers', {
+      method: 'POST',
       headers: {
-        ‘Content-Type’: ‘application/json’,
-        ‘Accept’: ‘application/json’,
-        ‘Authorization’: ‘Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0IiwianRpIjoiNWYwODYwYmYzZTQ5MTBjZTIyNWVkMGNhNWYwMTllNmI4NWZmNjA2NDEzZGFhZmU2YmNkOTQ2NmUzNjUyYTkwMDgzZDg2NDIyNGU4ODEyOTQiLCJpYXQiOjE3OTMwMjE5MTIuNzA1MTE1LCJuYmYiOjE3OTMwMjE5MTIuNzA1MTE4LCJleHAiOjQ5NDg2OTU1MTIuNjk4MjM2LCJzdWIiOiIyNzYxNDkzIiwic2NvcGVzIjpbXX0.agCQqbw3lRPfMBIrCYPXwvirm5QF8ta5Gc7h9NeWsLD07VMUZp4z_36rCPMNyFYa0OV4KO-iq8D_QpLI6BzF6_UY4rEzm6yCYhap5QcmCVZSop6oDBSiZHbwQ2LyG4V_UArwJg8NmpY5lo_T_MB6E9XqwjxuBsUL06AsCfJtgS1-Y_pG0SRX1jc-nkiWBUr0U32AxNKm2uJLA3QHorZJfaULck_JwczVZsrIdRH_UTZGVTSqNHJsz0MG-5le5RjzHjngBIIj1qCmB-dEcFvw6JsGlF3g3TsjdpEzRHRur9-50D3eYyx2SjeLkV5jdhup-9DLNmJGTndaRCnu1w7uRp1v2nurjHaeoTnY4tEQ_qrqlnZRxCJegLoCZdpfhNJfIR4hTAi4Ahx4xiAu5VtGGxYI25rV7PciI0aHis9hVtZnxIns1kFY6HOf6f5pVRa13PjRV4maG-IBb3e1bvBFg_wkW1B06_G9ufcF5lOZLBGjN5nDOUPMBUyd4NZJPETkNRi9ZV7LO3NBP-qZX0t1Mk_2N3l5i7P041jEluD8nsLctm6VHw7rGMkLcSNMD21yJ4qzReb6DiI1AicJFY9lGcjSC4H1QactbieMQFCb-1eiuJXH6maONmJnAhhNuRce3LM7rlzNea50tSWV30KD3JdFAX-e_3RvWXPO15VZO7o’
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0IiwianRpIjoiNWYwODYwYmYzZTQ5MTBjZTIyNWVkMGNhNWYwMTllNmI4NWZmNjA2NDEzZGFhZmU2YmNkOTQ2NmUzNjUyYTkwMDgzZDg2NDIyNGU4ODEyOTQiLCJpYXQiOjE3OTMwMjE5MTIuNzA1MTE1LCJuYmYiOjE3OTMwMjE5MTIuNzA1MTE4LCJleHAiOjQ5NDg2OTU1MTIuNjk4MjM2LCJzdWIiOiIyNzYxNDkzIiwic2NvcGVzIjpbXX0.agCQqbw3lRPfMBIrCYPXwvirm5QF8ta5Gc7h9NeWsLD07VMUZp4z_36rCPMNyFYa0OV4KO-iq8D_QpLI6BzF6_UY4rEzm6yCYhap5QcmCVZSop6oDBSiZHbwQ2LyG4V_UArwJg8NmpY5lo_T_MB6E9XqwjxuBsUL06AsCfJtgS1-Y_pG0SRX1jc-nkiWBUr0U32AxNKm2uJLA3QHorZJfaULck_JwczVZsrIdRH_UTZGVTSqNHJsz0MG-5le5RjzHjngBIIj1qCmB-dEcFvw6JsGlF3g3TsjdpEzRHRur9-50D3eYyx2SjeLkV5jdhup-9DLNmJGTndaRCnu1w7uRp1v2nurjHaeoTnY4tEQ_qrqlnZRxCJegLoCZdpfhNJfIR4hTAi4Ahx4xiAu5VtGGxYI25rV7PciI0aHis9hVtZnxIns1kFY6HOf6f5pVRa13PjRV4maG-IBb3e1bvBFg_wkW1B06_G9ufcF5lOZLBGjN5nDOUPMBUyd4NZJPETkNRi9ZV7LO3NBP-qZX0t1Mk_2N3l5i7P041jEluD8nsLctm6VHw7rGMkLcSNMD21yJ4qzReb6DiI1AicJFY9lGcjSC4H1QactbieMQFCb-1eiuJXH6maONmJnAhhNuRce3LM7rlzNea50tSWV30KD3JdFAX-e_3RvWXPO15VZO7o'
       },
-      body: JSON.stringify({ email: email, groups: [‘202398203095549263’] })
+      body: JSON.stringify({ email: email, groups: ['202398203095549263'] })
     })
     .then(function(res) {
-      btn.textContent = ‘Subscribe’;
+      btn.textContent = 'Subscribe';
       btn.disabled = false;
       if (res.status === 200 || res.status === 201) {
-        emailjs.send(‘service_l6f4wbh’, ‘template_0iftn5c’, {
-          from_name: ‘Newsletter Signup’,
+        emailjs.send('service_l6f4wbh', 'template_0iftn5c', {
+          from_name: 'Newsletter Signup',
           from_email: email,
           reply_to: email,
-          message: ‘New MailerLite subscriber: ‘ + email
+          message: 'New MailerLite subscriber: ' + email
         });
-        document.getElementById(‘nl-email’).value = ‘’;
-        document.getElementById(‘nl-success’).style.display = ‘block’;
+        document.getElementById('nl-email').value = '';
+        document.getElementById('nl-success').style.display = 'block';
       } else if (res.status === 409) {
-        document.getElementById(‘nl-success’).textContent = "You’re already subscribed!";
-        document.getElementById(‘nl-success’).style.display = ‘block’;
+        document.getElementById('nl-success').textContent = "You're already subscribed!";
+        document.getElementById('nl-success').style.display = 'block';
       } else {
-        alert(‘Something went wrong. Please try again.’);
+        alert('Something went wrong. Please try again.');
       }
     })
     .catch(function() {
-      btn.textContent = ‘Subscribe’;
+      btn.textContent = 'Subscribe';
       btn.disabled = false;
-      alert(‘Something went wrong. Please try again.’);
+      alert('Something went wrong. Please try again.');
     });
   }
   function renderAdminNewsletter() {
