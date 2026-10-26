@@ -3845,12 +3845,6 @@
       btn.textContent = 'Subscribe';
       btn.disabled = false;
       if (res.status === 200 || res.status === 201) {
-        emailjs.send('service_l6f4wbh', 'template_0iftn5c', {
-          from_name: 'Newsletter Signup',
-          from_email: email,
-          reply_to: email,
-          message: 'New MailerLite subscriber: ' + email
-        });
         document.getElementById('nl-email').value = '';
         document.getElementById('nl-success').style.display = 'block';
       } else if (res.status === 409) {
