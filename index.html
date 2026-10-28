@@ -3423,12 +3423,12 @@
       return '<div class="page"><div class="hdr"><div style="display:flex;align-items:center;gap:16px;">' +
         (logoHtml ? logoHtml.replace('style="height:55px;margin-bottom:6px;"', 'class="hdr-logo-img"') : '') +
         '<div><div class="hdr-name">Precise <span>Financials</span><br><span class="hdr-sub">LLC</span></div></div></div>' +
-        '<div class="hdr-right">Colorado City, AZ<br>(928) 307-7922<br>brittney@precisefinancials.biz</div></div>' +
+        '<div class="hdr-right">Colorado City, AZ<br>(928) 307-7922<br>brittney@precisefinancials.biz<br>precisefinancials.biz</div></div>' +
         '<div class="gold-bar"></div>' +
         '<div class="doc-title"><h1>' + docTitle + '</h1>' + (docSub ? '<p>' + docSub + '</p>' : '') + '</div>';
     };
 
-    var ftr = '<div class="footer">Precise Financials, LLC &nbsp;|&nbsp; (928) 307-7922 &nbsp;|&nbsp; brittney@precisefinancials.biz &nbsp;|&nbsp; &copy; ' + year + ' All rights reserved.</div></div>';
+    var ftr = '<div class="footer">Precise Financials, LLC &nbsp;|&nbsp; (928) 307-7922 &nbsp;|&nbsp; brittney@precisefinancials.biz &nbsp;|&nbsp; precisefinancials.biz &nbsp;|&nbsp; &copy; ' + year + ' All rights reserved.</div></div>';
 
     var content = '', title = '', filename = '';
 
@@ -3883,7 +3883,7 @@
     var logoHtml = logo ? '<img src="' + logo.src + '" style="height:55px;margin-bottom:6px;">' : '';
     var year = new Date().getFullYear();
 
-    var header = '<div class="pf-header"><div class="pf-logo">' + logoHtml + '<div><div class="pf-name">Precise Financials, LLC</div><div class="pf-contact">(928)307-7922 &nbsp;|&nbsp; brittney@precisefinancials.biz</div></div></div></div>';
+    var header = '<div class="pf-header"><div class="pf-logo">' + logoHtml + '<div><div class="pf-name">Precise Financials, LLC</div><div class="pf-contact">(928)307-7922 &nbsp;|&nbsp; brittney@precisefinancials.biz &nbsp;|&nbsp; precisefinancials.biz</div></div></div></div>';
 
     var baseStyle = '<style>*{margin:0;padding:0;box-sizing:border-box;}body{font-family:\'Segoe UI\',Arial,sans-serif;color:#1a1a2e;background:#fff;padding:24px;}' +
       '.pf-header{display:flex;align-items:center;justify-content:space-between;background:#dce8f5;color:#0a1f44;padding:16px 24px;border-radius:6px 6px 0 0;margin-bottom:0;border-bottom:3px solid #c9a84c;}' +
@@ -4171,7 +4171,7 @@
       clientBlock +
       '<div class="sheet-title">' + title + '</div>' +
       '<div style="padding:0 0 8px;">' + content + '</div>' +
-      '<div class="footer">Prepared by Precise Financials, LLC &nbsp;|&nbsp; (928)307-7922 &nbsp;|&nbsp; brittney@precisefinancials.biz &nbsp;|&nbsp; &copy; ' + year + ' All rights reserved.</div>' +
+      '<div class="footer">Prepared by Precise Financials, LLC &nbsp;|&nbsp; (928)307-7922 &nbsp;|&nbsp; brittney@precisefinancials.biz &nbsp;|&nbsp; precisefinancials.biz &nbsp;|&nbsp; &copy; ' + year + ' All rights reserved.</div>' +
       '<button class="print-btn" onclick="window.print()">🖨 Print / Save as PDF</button>' +
       '</body></html>';
 
@@ -4552,7 +4552,7 @@
     var year = new Date().getFullYear();
     var style = '<style>body{font-family:Georgia,serif;max-width:700px;margin:40px auto;color:#0d1b35;} h1{color:#0a1f44;border-bottom:3px solid #c9a84c;padding-bottom:8px;margin-bottom:4px;font-size:22px;} h2{color:#0a1f44;font-size:15px;margin:20px 0 6px;} .subtitle{color:#5a6a82;font-size:13px;margin-bottom:24px;} ul{padding-left:20px;margin-bottom:8px;} li{margin-bottom:5px;font-size:13.5px;line-height:1.6;} .check{color:#c9a84c;font-weight:bold;margin-right:4px;} .footer{margin-top:32px;padding-top:12px;border-top:1px solid #dce8f5;font-size:11px;color:#5a6a82;text-align:center;} .tip{background:#f0f5fb;border-left:4px solid #c9a84c;padding:10px 14px;margin:12px 0;font-size:13px;border-radius:0 4px 4px 0;} @media print{.no-print{display:none}}</style>';
     var content = '<h1>&#9989; Year-End Bookkeeping Checklist</h1>' +
-      '<div class="subtitle">Prepared by Precise Financials, LLC &nbsp;&bull;&nbsp; (928) 307-7922 &nbsp;&bull;&nbsp; brittney@precisefinancials.biz</div>' +
+      '<div class="subtitle">Prepared by Precise Financials, LLC &nbsp;&bull;&nbsp; (928) 307-7922 &nbsp;&bull;&nbsp; brittney@precisefinancials.biz &nbsp;&bull;&nbsp; precisefinancials.biz</div>' +
       '<h2>&#128193; Gather Your Records</h2><ul>' +
       '<li><span class="check">&#9744;</span> All bank statements (every account used for business)</li>' +
       '<li><span class="check">&#9744;</span> Credit card statements (business cards only)</li>' +
@@ -4594,7 +4594,7 @@
       '<li><span class="check">&#9744;</span> Review your Balance Sheet</li>' +
       '<li><span class="check">&#9744;</span> Book a year-end strategy call with your accountant</li>' +
       '</ul>' +
-      '<div class="footer">Precise Financials, LLC &nbsp;|&nbsp; (928) 307-7922 &nbsp;|&nbsp; brittney@precisefinancials.biz &nbsp;|&nbsp; &copy; ' + year + ' All rights reserved.<br>This checklist is for informational purposes only and does not constitute financial or tax advice.</div>';
+      '<div class="footer">Precise Financials, LLC &nbsp;|&nbsp; (928) 307-7922 &nbsp;|&nbsp; brittney@precisefinancials.biz &nbsp;|&nbsp; precisefinancials.biz &nbsp;|&nbsp; &copy; ' + year + ' All rights reserved.<br>This checklist is for informational purposes only and does not constitute financial or tax advice.</div>';
     var win = window.open('', '_blank');
     win.document.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Year-End Bookkeeping Checklist — Precise Financials</title>' + style + '</head><body>' + content + '<br><button class="no-print" onclick="window.print()" style="background:#c9a84c;color:#0a1f44;border:none;padding:10px 24px;font-size:14px;font-weight:700;border-radius:4px;cursor:pointer;margin-top:8px;">&#128438; Print / Save as PDF</button></body></html>');
     win.document.close();
